@@ -1,7 +1,13 @@
-import React from "react";
+import Hero from "../Hero.jsx/Hero.jsx";
+import Nav from "../../components/Header/Nav.jsx";
 
-const LandingPage = () => {
-  return <div>LandingPage</div>;
-};
+function LandingPage() {
+  return (
+    <div>
+      <Nav />
+      <Hero />
+    </div>
+  );
+}
 
 export default LandingPage;
