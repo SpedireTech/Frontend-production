@@ -1,5 +1,13 @@
+import Nav from "./components/Header/Nav";
+import Hero from "./pages/Hero.jsx/Hero";
+
 function App() {
-  return <div className="text-2xl text-red-700">App</div>;
+  return (
+    <div>
+      <Nav />
+      <Hero />
+    </div>
+  );
 }
 
 export default App;
