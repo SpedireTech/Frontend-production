@@ -1,6 +1,6 @@
-import React, { useState } from "react"; 
-import Lady from "../../assets/FirstLady.svg"
-
+import React, { useState } from "react";
+import Lady from "../../assets/FirstLady.svg";
+import Button from "../../components/Button/Button";
 
 const VerifyPhoneNumber = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -35,20 +35,14 @@ const VerifyPhoneNumber = () => {
         {/* Left side with image and text */}
         <div className="md:w-1/2 flex items-center bg-blue-200">
           <div className="p-8">
-          
             <div className="mt-4 text-gray-600">
-              <img
-                src={Lady}
-                alt="Make Money"
-                className="full"
-              />
+              <img src={Lady} alt="Make Money" className="full" />
             </div>
           </div>
         </div>
 
         {/* Right side with form */}
         <div className="md:w-1/2 flex flex-col">
-        
           <div className="p-8">
             <div className="text-lg font-semibold mb-4">Enter Phone number</div>
             <div className="text-gray-600 mb-8">
@@ -62,12 +56,9 @@ const VerifyPhoneNumber = () => {
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
-              <button
-                type="submit"
-                className="w-full mt-4 p-3 rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none"
-              >
-                Verify
-              </button>
+                <div className="mt-4">
+                <Button width={"385px"} text="Submit" height={"64px"} />
+              </div>
             </form>
           </div>
         </div>
