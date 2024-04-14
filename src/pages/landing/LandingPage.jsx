@@ -4,7 +4,6 @@ import Nav from "../../components/Header/Nav.jsx";
 function LandingPage() {
   return (
     <div>
-      <Nav />
       <Hero />
     </div>
   );
