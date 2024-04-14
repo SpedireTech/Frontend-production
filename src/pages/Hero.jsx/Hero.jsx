@@ -14,7 +14,7 @@ const Hero = () => {
           />
         </div>
         <div className="w-1/2 h-[779px]">
-          <div className="flex flex-col justify-center h-full">
+          <div className="flex flex-col justify-center h-full -mt-4">
             <p className="text-hero text-[20px] font-hg">
               Experience Fast Delivery
             </p>
@@ -22,14 +22,17 @@ const Hero = () => {
               Send Your Items
             </p>
             <p className="text-hero text-[60px] font-semibold font-hg">
-              Seamlessly
+              Seamlessly{" "}
+              <span className="text-active text-[60px] font-semibold font-hg">
+                P2P.
+              </span>
             </p>
-            <p className="text-hero text-[60px] font-semibold font-hg">P2P.</p>
+
             <p className="text-hero text-[20px] font-hg mt-4">
               We are a Fast, Reliable and a Trustworthy P2P delivery <br />{" "}
               service in town.
             </p>
-            <div className="mt-4">
+            <div className="mt-24">
               <Button width={"260px"} text="Get started" height={"64px"} />
             </div>
           </div>

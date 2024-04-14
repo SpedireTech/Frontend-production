@@ -16,6 +16,15 @@ export default {
         hero: "#041E40",
         inactive: "#4B4B4B",
       },
+      animation: {
+        "infinite-scroll": "infinite-scroll 25s linear infinite",
+      },
+      keyframes: {
+        "infinite-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
+      },
     },
     fontFamily: {
       hg: ["Hanken Grotesk"],
