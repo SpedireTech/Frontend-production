@@ -9,7 +9,17 @@ export default {
       xl: "1280px",
       "2xl": "1536px",
     },
-    extend: {},
+    extend: {
+      colors: {
+        button: "#08418A",
+        active: "#0B56B8",
+        hero: "#041E40",
+        inactive: "#4B4B4B",
+      },
+    },
+    fontFamily: {
+      hg: ["Hanken Grotesk"],
+    },
   },
   plugins: [],
 };
