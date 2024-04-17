@@ -8,12 +8,12 @@ export default function InputComponent({
 	info,
 }) {
 	return (
-		<div className="flex flex-col mb-4 w-full">
-			<label className="text-[#4B4B4B] text-sm font-medium mb-1">{label}</label>
+		<div className="flex flex-col w-full gap-2 ">
+			<label className="text-[#4B4B4B] text-sm font-semibold">{label}</label>
 			<input
 				type={type}
 				readOnly={readOnly}
-				className="w-full px-3 py-2 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-md"
+				className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
 				placeholder={placeholder}
 				value={value}
 				onChange={onChange}

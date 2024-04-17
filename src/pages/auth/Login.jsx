@@ -79,9 +79,9 @@ export default function Login() {
 					className="h-full w-full object-cover"
 				/>
 			</div>
-			<div className="flex-grow flex flex-col items-center justify-center py-8 px-4 gap-1">
-				<div className="flex flex-col items-start w-full md:w-4/5 lg:w-3/5 ">
-					<h2 className="text-xl font-semibold text-neutral-850 text-center">
+			<div className="flex-grow flex flex-col items-center justify-center">
+				<div className="flex flex-col items-start  w-full md:w-4/5 lg:w-3/5 ">
+					<h2 className="text-xl font-semibold text-neutral-850">
 						Welcome back
 					</h2>
 					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-sm">
@@ -120,7 +120,7 @@ export default function Login() {
 					</div>
 					<button
 						type="submit"
-						className="w-full mt-8 py-2 px-8 rounded-lg bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
+						className="w-full mt-8 py-2 px-8 font-[18px] font-hg rounded-lg bg-button text-white hover:bg-opacity-80 shadow-sm"
 						onClick={loginHandler}
 					>
 						Login

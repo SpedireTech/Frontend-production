@@ -6,19 +6,19 @@ export default function PasswordInput({ label, value, onChange }) {
 	const handleClick = () => setShow(!show);
 
 	return (
-		<div className="flex flex-col w-full">
-			<label className="text-[#4B4B4B] text-sm font-medium mb-1">{label}</label>
-			<div className="relative w-full border rounded-md shadow-sm">
+		<div className="flex flex-col w-full gap-2 mt-2 ">
+			<label className="text-[#4B4B4B] text-sm font-semibold">{label}</label>
+			<div className="relative w-full rounded-[14px] shadow-sm">
 				<input
 					type={show ? "text" : "password"}
-					className="w-full px-3 py-2 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-l-md"
+					className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
 					placeholder="Enter password"
 					value={value}
 					onChange={onChange}
 				/>
 				<button
 					type="button"
-					className="absolute right-3 top-3 rounded-r-md focus:outline-none"
+					className="absolute right-4 top-4 rounded-r-md focus:outline-none"
 					onClick={handleClick}
 				>
 					{!show ? <FaEyeSlash /> : <FaEye />}

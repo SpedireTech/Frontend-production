@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import InputComponent from "../../components/reusables/InputComponent";
 import PasswordImage from "../../assets/auth/PasswordImage.png";
-import ImageComponent from "../../components/reusables/Image";
+import PasswordInput from "../../components/reusables/PasswordInput";
 
-export default function ForgotPassword() {
+export default function ResetPassword() {
 	const [formData, setFormData] = useState({
-		email: "",
+		password: "",
+		confirmPassword: "",
 	});
 	async function resetHandler() {
-		if (!formData.email) {
+		if (formData.password !== formData.confirmPassword) {
 			// toast({
 			//     title: "Fill out your email to reset password",
 			//     description: "",
@@ -21,11 +22,11 @@ export default function ForgotPassword() {
 		}
 
 		const data = {
-			email: formData.email,
+			password: formData.password,
 		};
 
 		try {
-			await forgotPassword(data);
+			await resetPassword(data);
 			// toast({
 			//     title: `Password reset link sent to your mail`,
 			//     description: ``,
@@ -34,7 +35,7 @@ export default function ForgotPassword() {
 			//     isClosable: true,
 			//     position: "top-right",
 			// });
-			navigate("/verify-reset");
+			navigate("/dashboard");
 		} catch (error) {
 			// toast({
 			//     title: `${
@@ -51,33 +52,37 @@ export default function ForgotPassword() {
 	return (
 		<div className="flex h-screen">
 			<div className="hidden md:flex lg:flex md:w-1/2 h-screen items-center justify-center ">
-				<ImageComponent
+				<img
 					src={PasswordImage}
-					alt="Password image"
-					height={"full"}
-					width={"full"}
+					alt="Login image"
+					className="h-full w-full object-cover"
 				/>
 			</div>
-			<div className="flex-grow flex flex-col items-center justify-center h-screen ">
-				<div className="flex flex-col md:w-[505px] md:h-[283px] md:gap-[29px]">
-					<div className="flex flex-col md:w-[228px] md:h-[63px] items-start">
+			<div className="flex-grow flex flex-col items-center  justify-center h-screen ">
+				<div className="flex flex-col md:w-[505px] md:h-[390px]">
+					<div className="flex flex-col md:w-full md:h-[63px] items-start">
 						<h2 className="md:text-2xl font-semibold text-neutral-850 text-center">
-							Forgot Password
+							Reset Password
 						</h2>
 
-						<h4 className="text-[12px] text-[#4b4b4b] font-semibold text-neutral-850">
-							Kindly input your email
+						<h4 className="text-[14px] sm:text-[10px] text-[#4b4b4b] font-semibold text-neutral-850 text-center">
+							Kindly fill in the right details to continue with Spedire
 						</h4>
 					</div>
-					<div className="flex flex-col md:h-[191px] items-start md:gap-7">
-						<InputComponent
-							label="Email address"
-							placeholder="example@gmail.com"
-							type="email"
+					<div className="flex flex-col md:h-[298px] items-start md:gap-7">
+						<PasswordInput
+							label="Password"
 							onChange={(e) =>
-								setFormData({ ...formData, email: e.target.value })
+								setFormData({ ...formData, password: e.target.value })
 							}
-							value={formData.email}
+							value={formData.password}
+						/>
+						<PasswordInput
+							label="Confirm Password"
+							onChange={(e) =>
+								setFormData({ ...formData, confirmPassword: e.target.value })
+							}
+							value={formData.confirmPassword}
 						/>
 
 						<button
@@ -85,7 +90,7 @@ export default function ForgotPassword() {
 							className="w-full h-[54px] font-[18px] py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
 							onClick={resetHandler}
 						>
-							Verify
+							Submit
 						</button>
 					</div>
 				</div>
