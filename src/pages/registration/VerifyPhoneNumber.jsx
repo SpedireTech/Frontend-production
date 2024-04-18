@@ -60,6 +60,7 @@ const VerifyPhoneNumber = () => {
             We are requesting for phone number for verification
           </div>
           <form onSubmit={handleSubmit}>
+          <p className="font-semibold text-left mb-3 text-sm">Phone number</p>
             <input
               type="tel"
               className="w-full p-3 border border-gray-300 rounded-lg text-sm"

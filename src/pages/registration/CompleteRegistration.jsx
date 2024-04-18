@@ -55,7 +55,7 @@ const RegistrationForm = () => {
       </div>
 
     
-      <div className="flex-1 flex justify-center items-center bg-white p-2 overflow-scroll">
+      <div className="flex-1 flex justify-center items-center bg-white p-2">
         <div
           className="p-2 mt-10"
           style={{
@@ -83,7 +83,7 @@ const RegistrationForm = () => {
           </div>
           <form onSubmit={handleSubmit}>
             <div className="space-y-3 mt-4">
-              <p className="text-left mt-3 text-sm">Full name</p>
+              <p className="font-semibold text-left mt-3 text-sm">Full name</p>
               <input
                 type="text"
                 name="fullName"
@@ -92,7 +92,7 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.fullName}
               />
-              <p className="text-left mt-3 text-sm">Email Address</p>
+              <p className=" font-semibold text-left mt-3 text-sm">Email Address</p>
               <input
                 type="email"
                 name="email"
@@ -101,7 +101,7 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.email}
               />
-              <p className="text-left mt-3 text-sm">Home Address</p>
+              <p className=" font-semibold text-left mt-3 text-sm">Home Address</p>
 
               <input
                 type="text"
@@ -111,7 +111,16 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.location}
               />
-              <p className="text-left mt-3 text-sm">Password</p>
+              <p className=" font-semibold text-left mt-3 text-sm">Password</p>
+
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                onChange={handleInputChange}
+                value={formData.password}
+              />  <p className=" font-semibold text-left mt-3 text-sm">Confirm password</p>
 
               <input
                 type="password"

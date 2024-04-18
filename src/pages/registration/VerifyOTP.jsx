@@ -62,11 +62,14 @@ const PhoneVerification = () => {
             Phone number Verification
           </h1>
           <p  style={{ textAlign: 'left' }} className="text-gray-600 text-center mb-6">
-            Kindly enter the code sent to your phone number
+          Kindly check your email code has been sent to your email
           </p>
           <form onSubmit={handleSubmit} className="space-y-6">
+          <p className="font-semibold text-left mt-3 text-sm">Enter code</p>
             <div className="grid grid-cols-4 gap-4">
+           
               {code.map((_, index) => (
+                
                 <input
                   key={index}
                   type="text"
