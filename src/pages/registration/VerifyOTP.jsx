@@ -1,7 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../components/Button/Button";
+import logo from "../../assets/spedire.png";
+import Lady from "../../assets/VeryOtp.svg";
 const PhoneVerification = () => {
   const [code, setCode] = useState(["", "", "", ""]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleChange = (index) => (e) => {
     const newCode = [...code];
@@ -11,39 +25,63 @@ const PhoneVerification = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle the form submission here. This would involve
-    // concatenating the code array to a single string and sending it to a backend.
+  
     const verificationCode = code.join("");
     console.log("Submitted code:", verificationCode);
-    // Submit code
+    
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-xl font-semibold text-center mb-6">
-          Phone number Verification
-        </h1>
-        <p className="text-gray-600 text-center mb-6">
-          Kindly enter the code sent to your phone number
-        </p>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-4 gap-4">
-            {code.map((_, index) => (
-              <input
-                key={index}
-                type="text"
-                maxLength="1"
-                className="w-full h-12 border border-gray-300 rounded-lg text-center text-xl"
-                onChange={handleChange(index)}
-                value={code[index]}
-              />
-            ))}
-          </div>
-          <div className="mt-4">
-            <Button width={"385px"} text="Verify" height={"64px"} />
-          </div>
-        </form>
+    <div className="min-h-screen flex flex-row items-stretch bg-blue-100 overflow-hidden">
+      <div className="absolute top-0 left-0 p-4">
+        <img src={logo} alt="Company Logo" className="h-12" />
+      </div>
+      <div
+        className="flex-1 flex justify-center items-center bg-light-blue"
+        style={{ display: isMobile ? "none" : "flex" }}
+      >
+        <img
+          src={Lady}
+          alt="Person with a thumbs up"
+          style={{ maxWidth: "75%", transform: "translateY(60px)" }}
+        />
+      </div>
+
+      <div className="flex-1 flex justify-center items-center bg-white p-4">
+        <div
+          className=" p-2"
+          style={{
+            transform: "translateY(-100px)",
+            textAlign: "left",
+            width: "70%",
+            maxWidth: "550px",
+          }}
+          
+        >
+          <h1  style={{ textAlign: 'left' }} className="text-xl font-semibold text-center mb-6">
+            Phone number Verification
+          </h1>
+          <p  style={{ textAlign: 'left' }} className="text-gray-600 text-center mb-6">
+            Kindly enter the code sent to your phone number
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-4 gap-4">
+              {code.map((_, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  maxLength="1"
+                  className="w-full h-12 border border-gray-300 rounded-lg text-center text-xl"
+                  onChange={handleChange(index)}
+                  value={code[index]}
+                />
+              ))}
+            </div>
+            <div className="mt-6">
+                <Button width={"100%"} text="Register" height={"50px"} />
+              </div>
+          </form>
+        </div>
       </div>
     </div>
   );
