@@ -55,7 +55,7 @@ const VerifyPhoneNumber = () => {
             maxWidth: "550px",
           }}
         >
-          <div className="text-lg font-semibold mb-4">Enter Phone number</div>
+          <div className="text-lg font-bold mb-4">Enter Phone number</div>
           <div className="text-gray-600 mb-8">
             We are requesting for phone number for verification
           </div>

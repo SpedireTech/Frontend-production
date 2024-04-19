@@ -58,7 +58,7 @@ const PhoneVerification = () => {
           }}
           
         >
-          <h1  style={{ textAlign: 'left' }} className="text-xl font-semibold text-center mb-6">
+          <h1  style={{ textAlign: 'left' }} className="text-xl font-bold text-center mb-6">
             Phone number Verification
           </h1>
           <p  style={{ textAlign: 'left' }} className="text-gray-600 text-center mb-6">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaGoogle } from "react-icons/fa";
+import googleIcon from "../../assets/GoogleIcon.svg";
 import logo from "../../assets/spedire.png";
 import Lady from "../../assets/CompleteReg.svg";
 import Button from "../../components/Button/Button";
@@ -54,7 +54,6 @@ const RegistrationForm = () => {
         />
       </div>
 
-    
       <div className="flex-1 flex justify-center items-center bg-white p-2">
         <div
           className="p-2 mt-10"
@@ -63,17 +62,23 @@ const RegistrationForm = () => {
             textAlign: "left",
             width: "70%",
             maxWidth: "550px",
-          }} 
+          }}
         >
           <h2
+            className="text-sm md:text-xl lg:text-2xl font-bold text-center"
             style={{ textAlign: "left" }}
-            className="text-2xl font-semibold text-center"
           >
             Create an Account with Spediree
           </h2>
+
           <div className="my-2">
             <button className="flex items-center justify-center w-full p-4 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm">
-              <FaGoogle className="mr-2" /> Continue with Google
+              <img
+                src={googleIcon}
+                alt="Continue with Google"
+                className="mr-2 h-6"
+              />
+              Continue with Google
             </button>
           </div>
           <div className="relative flex py-3 items-center">
@@ -92,7 +97,9 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.fullName}
               />
-              <p className=" font-semibold text-left mt-3 text-sm">Email Address</p>
+              <p className=" font-semibold text-left mt-3 text-sm">
+                Email Address
+              </p>
               <input
                 type="email"
                 name="email"
@@ -101,8 +108,9 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.email}
               />
-              <p className=" font-semibold text-left mt-3 text-sm">Home Address</p>
-
+              <p className=" font-semibold text-left mt-3 text-sm">
+                Home Address
+              </p>
               <input
                 type="text"
                 name="location"
@@ -112,7 +120,6 @@ const RegistrationForm = () => {
                 value={formData.location}
               />
               <p className=" font-semibold text-left mt-3 text-sm">Password</p>
-
               <input
                 type="password"
                 name="password"
@@ -120,8 +127,10 @@ const RegistrationForm = () => {
                 className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                 onChange={handleInputChange}
                 value={formData.password}
-              />  <p className=" font-semibold text-left mt-3 text-sm">Confirm password</p>
-
+              />{" "}
+              <p className=" font-semibold text-left mt-3 text-sm">
+                Confirm password
+              </p>
               <input
                 type="password"
                 name="password"
