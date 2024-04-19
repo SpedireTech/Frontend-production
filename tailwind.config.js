@@ -15,6 +15,8 @@ export default {
         active: "#0B56B8",
         hero: "#041E40",
         inactive: "#4B4B4B",
+        lightBlue: "#DAE6F4",
+        gray: "#4B4B4B",
       },
       animation: {
         "infinite-scroll": "infinite-scroll 25s linear infinite",
