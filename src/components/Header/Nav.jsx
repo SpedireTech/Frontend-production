@@ -33,7 +33,7 @@ const Nav = () => {
               {item.name}
             </p>
           ))}
-          <Button text={"get started"} width={"168px"} height={"48px"} />
+          <Button text={"Get started"} width={"168px"} height={"48px"} />
         </div>
       </div>
     </nav>

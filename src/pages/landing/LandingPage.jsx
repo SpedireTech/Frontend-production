@@ -1,3 +1,5 @@
+import Carousel from "../../components/Carousel/Carousel.jsx";
+import CTA from "../Hero.jsx/CTA.jsx";
 import DescriptionPage from "../Hero.jsx/DescriptionPage.jsx";
 import Hero from "../Hero.jsx/Hero.jsx";
 import HowItWorksPage from "../Hero.jsx/HowItWorksPage.jsx";
@@ -38,6 +40,8 @@ function LandingPage() {
       </div>
       <DescriptionPage />
       <HowItWorksPage />
+      <Carousel />
+      <CTA />
     </div>
   );
 }

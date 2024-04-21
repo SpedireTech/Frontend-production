@@ -33,7 +33,7 @@ const HowItWorksPage = () => {
     <div className="w-full max-w-full">
       <div className="w-full h-full">
         <div className="mt-8 w-full flex flex-col items-center px-4 xl:px-8">
-          <h2 className="text-center lg:text-[44px] text-[60px] font-hg font-bold text-hero">
+          <h2 className="text-center lg:text-[44px] text-[70px] font-hg font-bold text-hero">
             How It Works
           </h2>
           <div className="w-[900px] xl:w-[1069px]  2xl:w-[1400px] flex justify-center items-center">
@@ -50,19 +50,24 @@ const HowItWorksPage = () => {
               logistics services in our region.
             </p>
           </div>
-          <div className="mt-32 bg-red-500 flex gap-x-4">
+          <div className="mt-32 flex gap-x-8">
             {dataToDisplay.map((item, i) => (
-              <div className="w-1/4 flex flex-col space-y-4" key={i}>
+              <div
+                className="w-1/4 flex flex-col items-center space-y-4"
+                key={i}
+              >
                 <img
                   src={item.image}
-                  className={`border lg:${
-                    i === 3 && "lg:h-[204px] lg:w-[204px]"
+                  className={`xl:h-[246px] xl:w-[284px] ${
+                    i === 3 && "xl:w-[246px] h-[212px]"
                   }`}
                 />
-                <p className="text-center text-[22px] text-active font-semibold">
+                <p className="text-center text-[22px] 2xl:text-[28px] text-active font-semibold">
                   {item.title}
                 </p>
-                <p className="text-center">{item.description}</p>
+                <p className="text-center text-[14px] xl:text-[16px] 2xl:text-[20px] text-button 2xl:w-[80%]">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
