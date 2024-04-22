@@ -1,75 +1,77 @@
-import React, { useState } from "react"; 
-import Lady from "../../assets/FirstLady.svg"
-
+import React, { useState, useEffect } from "react";
+import logo from "../../assets/spedire.png";
+import Lady from "../../assets/FirstLady.svg";
+import Button from "../../components/Button/Button";
 
 const VerifyPhoneNumber = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
     if (!phoneNumber) {
       alert("Please enter a phone number");
       return;
     }
-    try {
-      const response = await fetch("https://your-endpoint.com/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ phone: phoneNumber }),
-      });
-      const data = await response.json();
-      // Handle response data
-      console.log(data);
-      alert("Verification is sent!");
-    } catch (error) {
-      console.error("Error during verification:", error);
-      alert("Failed to verify. Please try again.");
-    }
+  
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100 p-4">
-      <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden md:flex">
-        {/* Left side with image and text */}
-        <div className="md:w-1/2 flex items-center bg-blue-200">
-          <div className="p-8">
-          
-            <div className="mt-4 text-gray-600">
-              <img
-                src={Lady}
-                alt="Make Money"
-                className="full"
-              />
-            </div>
-          </div>
-        </div>
+    <div className="min-h-screen flex flex-row items-stretch bg-blue-100">
+      <div className="absolute top-0 left-0 p-4">
+        <img src={logo} alt="Company Logo" className="h-12" />{" "}
+       
+      </div>
+      <div
+        className="flex-1 flex justify-center items-center bg-light-blue"
+        style={{ display: isMobile ? "none" : "flex" }}
+      >
+        <img
+          src={Lady}
+          alt="Person with a thumbs up"
+          style={{ maxWidth: "75%", transform: "translateY(60px)" }}
+        />
+      </div>
 
-        {/* Right side with form */}
-        <div className="md:w-1/2 flex flex-col">
-        
-          <div className="p-8">
-            <div className="text-lg font-semibold mb-4">Enter Phone number</div>
-            <div className="text-gray-600 mb-8">
-              We are requesting for phone number for verification
-            </div>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="tel"
-                className="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none"
-                placeholder="Phone number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="w-full mt-4 p-3 rounded bg-blue-600 text-white hover:bg-blue-700 focus:outline-none"
-              >
-                Verify
-              </button>
-            </form>
+     
+      <div className="flex-1 flex justify-center items-center bg-white p-4">
+        <div
+          className="p-2"
+          style={{
+            transform: "translateY(-100px)",
+            textAlign: "left",
+            width: "70%",
+            maxWidth: "550px",
+          }}
+        >
+          <div className="text-lg font-bold mb-4">Enter Phone number</div>
+          <div className="text-gray-600 mb-8">
+            We are requesting for phone number for verification
           </div>
+          <form onSubmit={handleSubmit}>
+          <p className="font-semibold text-left mb-3 text-sm">Phone number</p>
+            <input
+              type="tel"
+              className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+              placeholder="Phone number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+           <div className="mt-6">
+                <Button width={"100%"} text="Submit" height={"50px"} />
+              </div>
+          </form>
         </div>
       </div>
     </div>
