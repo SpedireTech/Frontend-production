@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import InputComponent from "../../components/reusables/InputComponent";
 import PasswordImage from "../../assets/auth/PasswordImage.png";
 import PasswordInput from "../../components/reusables/PasswordInput";
+import ImageComponent from "../../components/reusables/Image";
 
 export default function ResetPassword() {
 	const [formData, setFormData] = useState({
@@ -52,10 +52,11 @@ export default function ResetPassword() {
 	return (
 		<div className="flex h-screen">
 			<div className="hidden md:flex lg:flex md:w-1/2 h-screen items-center justify-center ">
-				<img
+				<ImageComponent
 					src={PasswordImage}
-					alt="Login image"
-					className="h-full w-full object-cover"
+					alt="Password image"
+					height={"full"}
+					width={"full"}
 				/>
 			</div>
 			<div className="flex-grow flex flex-col items-center  justify-center h-screen ">

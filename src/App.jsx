@@ -11,8 +11,6 @@ import ResetPassword from "./pages/auth/ResetPassword";
 function App() {
 	return (
 		<div className="App">
-			<Nav />
-
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<LandingPage />} />

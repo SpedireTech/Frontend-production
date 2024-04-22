@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoginImage from "../../assets/auth/login.jpg";
+import LoginImage from "../../assets/auth/login.svg";
 import { FaGoogle } from "react-icons/fa";
 import InputComponent from "../../components/reusables/InputComponent";
 import PasswordInput from "../../components/reusables/PasswordInput";
+import ImageComponent from "../../components/reusables/Image";
 
 export default function Login() {
 	// const toast = useToast();
@@ -11,17 +12,10 @@ export default function Login() {
 		email: "",
 		password: "",
 	});
+	const [info, setInfo] = useState("");
 	async function loginHandler() {
 		if (!formData.email || !formData.password) {
-			// toast({
-			// 	title: "Fill out all fields to login",
-			// 	description: "",
-			// 	status: "warning",
-			// 	position: "top-left",
-			// 	duration: 9000,
-			// 	isClosable: true,
-			// });
-
+			setInfo("Fill out all fields to login");
 			return;
 		}
 
@@ -73,10 +67,16 @@ export default function Login() {
 	return (
 		<div className="flex h-screen">
 			<div className="hidden md:flex lg:flex lg:w-1/2 h-screen items-center justify-center ">
-				<img
+				{/* <img
 					src={LoginImage}
 					alt="Login image"
 					className="h-full w-full object-cover"
+				/> */}
+				<ImageComponent
+					src={LoginImage}
+					alt="Login image"
+					height={"full"}
+					width={"full"}
 				/>
 			</div>
 			<div className="flex-grow flex flex-col items-center justify-center">
@@ -95,7 +95,7 @@ export default function Login() {
 						<div className="flex-grow border-t border-gray-300"></div>
 					</div>
 					<InputComponent
-						label="Email address"
+						label={"Email"}
 						placeholder="example@gmail.com"
 						type="email"
 						onChange={(e) =>
@@ -103,6 +103,7 @@ export default function Login() {
 						}
 						value={formData.email}
 					/>
+
 					<PasswordInput
 						label="Password"
 						onChange={(e) =>
