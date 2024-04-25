@@ -10,21 +10,27 @@ function LandingPage() {
       <div className="w-full relative">
         <Hero />
         <div
-          className="absolute flex items-center gap-x-6 -bottom-2 h-[68px] w-full bg-button"
+          className="absolute h-[24px] flex items-center gap-x-6 -bottom-2 md:h-[48px] md:-bottom-4 lg:h-[68px] w-full bg-button"
           id="slider"
         >
-          <p className="text-white font-hg uppercase text-[32px]">
+          <p className="text-white font-hg uppercase text-[10px] md:text-[16px] lg:text-[32px]">
             become a courier
           </p>
-          <p className="text-white font-hg uppercase text-[32px]">|</p>
-          <p className="text-white font-hg uppercase text-[32px]">
+          <p className="text-white font-hg uppercase text-[10px] md:text-[16px] lg:text-[32px]">
+            |
+          </p>
+          <p className="text-white font-hg uppercase text-[10px] md:text-[16px] lg:text-[32px]">
             fast and secure
           </p>
-          <p className="text-white font-hg uppercase text-[32px]">|</p>
-          <p className="text-white font-hg uppercase text-[32px]">
+          <p className="text-white font-hg uppercase text-[10px] md:text-[16px] lg:text-[32px]">
+            |
+          </p>
+          <p className="text-white font-hg uppercase text-[10px] md:text-[16px] lg:text-[32px]">
             p2p delivery
           </p>
-          <p className="text-white font-hg uppercase text-[32px]">|</p>
+          <p className="text-white font-hg uppercase text-[10px] md:text-[16px] lg:text-[32px]">
+            |
+          </p>
           {/* <p className="text-white font-hg uppercase text-[32px]">|</p>
         <p className="text-white font-hg uppercase text-[32px]">
           become a courier

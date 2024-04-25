@@ -31,7 +31,8 @@ const data = [
 const CTA = () => {
   return (
     <div className="max-w-screen w-full">
-      <div className="flex flex-col items-center px-8">
+      {/* desktop */}
+      <div className="hidden lg:flex flex-col items-center px-8">
         <div className="fixed bottom-60 right-20">
           <img
             src={widget}

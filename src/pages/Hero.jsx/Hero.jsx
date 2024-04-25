@@ -5,7 +5,8 @@ import Button from "../../components/Button/Button";
 const Hero = () => {
   return (
     <div className="p-4 w-full">
-      <div className="flex items-center w-full">
+      {/* styling for desktop */}
+      <div className="hidden lg:flex items-center w-full">
         <div className="w-1/2 flex items-center justify-center ">
           <img
             src={carrier}
@@ -36,6 +37,33 @@ const Hero = () => {
               <Button width={"260px"} text="Get started" height={"64px"} />
             </div>
           </div>
+        </div>
+      </div>
+      {/* styling for mobile and tab */}
+      <div className="flex flex-col h-full lg:hidden">
+        <p className="text-sm md:text-2xl font-hg text-hero">
+          Experience Fast Delivery
+        </p>
+        <h4 className="text-4xl font-hg md:text-7xl font-semibold leading-loose md:mt-4 text-hero">
+          Send Your Items Seamlessly{" "}
+          <span className="text-active font-hg">P2P</span>
+        </h4>
+        <p className="mt-4 text-hero md:mt-8 md:text-3xl text-md font-hg">
+          We are a Fast, Reliable and a Trustworthy P2P delivery service in
+          town.
+        </p>
+        <div className="mt-4 md:hidden">
+          <Button width={"144px"} text="Get started" height={"40px"} />
+        </div>
+        <div className="hidden md:flex mt-8">
+          <Button width={"288px"} text="Get started" height={"60px"} />
+        </div>
+        <div className="mt-16 flex flex-col justify-center items-center">
+          <img
+            src={carrier}
+            alt="carrier"
+            className="w-[274px] h-[326.08px] md:w-[304px] md:h-[356.08]"
+          />
         </div>
       </div>
     </div>

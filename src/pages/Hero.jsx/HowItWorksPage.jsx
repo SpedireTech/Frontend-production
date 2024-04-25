@@ -32,7 +32,8 @@ const HowItWorksPage = () => {
   return (
     <div className="w-full max-w-full">
       <div className="w-full h-full">
-        <div className="mt-8 w-full flex flex-col items-center px-4 xl:px-8">
+        {/* desktop */}
+        <div className="hidden lg:mt-8 w-full flex flex-col items-center px-4 xl:px-8">
           <h2 className="text-center lg:text-[44px] text-[70px] font-hg font-bold text-hero">
             How It Works
           </h2>
