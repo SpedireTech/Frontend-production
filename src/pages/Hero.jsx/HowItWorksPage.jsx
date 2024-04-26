@@ -73,6 +73,42 @@ const HowItWorksPage = () => {
             ))}
           </div>
         </div>
+        {/* mobile styling */}
+        <div className="flex mt-36 flex-col p-4 lg:hidden">
+          <h1 className="mt-36 text-2xl text-center text-hero font-hg font-bold">
+            How It Works
+          </h1>
+          <p className="mt-4 text-gray text-[16px] font-normal">
+            Our objective is to develop a cutting-edge peer-to-peer logistics
+            platform in Lagos, Nigeria, that stands out for its unparalleled
+            efficiency and reliability. This platform will not only facilitate
+            seamless deliveries but also cultivate a sense of community where
+            geographical distances seem minimized, and shipments are entrusted
+            to individuals journeying along the same route as the recipient.
+            Through this innovative approach, we aim to revolutionize the
+            logistics landscape by merging convenience with communal
+            collaboration, thereby enhancing the overall experience of logistics
+            services in our region.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-x-8 justify-center items-center">
+            {dataToDisplay.map((item, i) => (
+              <div className="w-[150px] mt-4" key={i}>
+                <img
+                  src={item.image}
+                  className={`xl:h-[246px] xl:w-[284px] ${
+                    i === 3 && "xl:w-[246px] h-[140px]"
+                  }`}
+                />
+                <p className="text-center text-[22px] 2xl:text-[28px] text-active font-semibold">
+                  {item.title}
+                </p>
+                <p className="text-center text-[14px] xl:text-[16px] 2xl:text-[20px] text-button 2xl:w-[80%]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

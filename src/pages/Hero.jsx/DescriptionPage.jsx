@@ -31,7 +31,7 @@ const DescriptionPage = () => {
       </div>
       {/* mobile and tab style */}
       <div className="flex flex-col w-full bg-lightBlue px-4 lg:hidden">
-        <div className="mt-8 flex flex-col">
+        <div className="mt-8 flex flex-col md:h-full">
           <h4 className="text-hero text-[26px] md:text-[32px] text-left font-hg font-bold">
             Make Money While You Move.
           </h4>
@@ -50,10 +50,10 @@ const DescriptionPage = () => {
           <div className="hidden md:flex mt-8">
             <Button width={"288px"} text="Get started" height={"60px"} />
           </div>
-          <div className="mt-8 md:mt-12 mb-4 flex justify-center">
+          <div className="mt-8 md:mt-12 flex justify-center">
             <img
               src={biker}
-              className="w-[386px] h-[322px] md:w-[480px] md:h-[360px]"
+              className="h-[260px] w-[386px] sm:h-[322px] md:w-[480px] md:h-[360px]"
             />
           </div>
         </div>

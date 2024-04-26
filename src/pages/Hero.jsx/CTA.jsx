@@ -75,6 +75,42 @@ const CTA = () => {
           ))}
         </div>
       </div>
+      {/* mobile and tab */}
+      <div className="p-6 flex flex-col">
+        <h4 className="mt-4 text-hero text-center font-bold text-xl">
+          The Most Preferred and Trusted
+        </h4>
+        <p className="mt-4 text-gray text-[16px]">
+          Our P2p Logistics, we pride ourselves on being the most preferred and
+          trusted logistics company for several reasons. Firstly, our commitment
+          to efficiency and reliability ensures that every delivery is completed
+          on time and with utmost accuracy. Secondly, our innovative
+          peer-to-peer model allows deliveries to be handled by individuals
+          traveling along the same route, reducing costs and environmental
+          impact. Additionally, our advanced tracking and communication systems
+          keep our clients informed every step of the way, providing peace of
+          mind and trust in our services. With a focus on customer satisfaction
+          and cutting-edge technology, P2p Logistics remains the top choice for
+          all your logistical needs.
+        </p>
+        <div className="mt-16 flex justify-between gap-x-12 items-center md:gap-x-20">
+          {data.map((item) => (
+            <div className="w-1/2 flex flex-col items-start md:items-center gap-y-6">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-[46px] h-[46px] md:w-[92px] md:h-[92px]"
+              />
+              <p className="text-xl md:text-2xl font-hg font-bold text-active">
+                {item.value}
+              </p>
+              <p className="text-[10px] md:text-[14px] font-hg font-semibold text-hero">
+                {item.topic}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
