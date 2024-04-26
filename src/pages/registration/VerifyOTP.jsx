@@ -25,14 +25,13 @@ const PhoneVerification = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const verificationCode = code.join("");
     console.log("Submitted code:", verificationCode);
-    
   };
 
   return (
-    <div className="min-h-screen flex flex-row items-stretch bg-blue-100 overflow-hidden">
+    <div className="min-h-screen flex flex-row items-stretch bg-blue-100 overflow-hidden font-hg">
       <div className="absolute top-0 left-0 p-4">
         <img src={logo} alt="Company Logo" className="h-12" />
       </div>
@@ -51,38 +50,47 @@ const PhoneVerification = () => {
         <div
           className=" p-2"
           style={{
-            transform: "translateY(-100px)",
+            transform: "translateY(-40px)",
             textAlign: "left",
-            width: "70%",
+            width: "90%",
             maxWidth: "550px",
           }}
-          
         >
-          <h1  style={{ textAlign: 'left' }} className="text-xl font-bold text-center mb-6">
+          <div className="text-2xl md:text-3xl text-gray-600 font-semibold">
+            Get Verified
+          </div>
+          <div className="text-gray-600 mb-6 font-semibold text-base">
+            Fill your information below
+          </div>
+          <h1
+            style={{ textAlign: "left" }}
+            className="text-2xl md:text-3xl font-semibold text-center"
+          >
             Phone number Verification
           </h1>
-          <p  style={{ textAlign: 'left' }} className="text-gray-600 text-center mb-6">
-          Kindly check your email code has been sent to your email
+          <p
+            style={{ textAlign: "left" }}
+            className="text-gray-600 text-center mb-6 text-base"
+          >
+            Kindly check your email code has been sent to your email
           </p>
-          <form onSubmit={handleSubmit} className="space-y-6">
-          <p className="font-semibold text-left mt-3 text-sm">Enter code</p>
+          <form onSubmit={handleSubmit} className="space-y-2">
+            <p className="font-semibold text-gray-600 text-left text-base">Enter code</p>
             <div className="grid grid-cols-4 gap-4">
-           
               {code.map((_, index) => (
-                
                 <input
                   key={index}
                   type="text"
                   maxLength="1"
-                  className="w-full h-12 border border-gray-300 rounded-lg text-center text-xl"
+                  className="w-full h-15 border border-gray-300 rounded-lg text-center text-xl"
                   onChange={handleChange(index)}
                   value={code[index]}
                 />
               ))}
             </div>
             <div className="mt-6">
-                <Button width={"100%"} text="Register" height={"50px"} />
-              </div>
+              <Button width={"100%"} text="Verify" height={"50px"} />
+            </div>
           </form>
         </div>
       </div>

@@ -39,7 +39,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-row items-stretch bg-blue-100 overflow-hidden">
+    <div className="min-h-screen flex flex-row items-stretch bg-blue-100 overflow-hidden font-hg">
       <div className="absolute top-0 left-0 p-4">
         <img src={logo} alt="Company Logo" className="h-12" />
       </div>
@@ -58,17 +58,17 @@ const RegistrationForm = () => {
         <div
           className="p-2 mt-10"
           style={{
-            transform: "translateY(20px)",
+            transform: "translateY(50px)",
             textAlign: "left",
-            width: "70%",
+            width: "90%",
             maxWidth: "550px",
           }}
         >
           <h2
-            className="text-sm md:text-xl lg:text-2xl font-bold text-center"
+            className="text-2xl md:text-3xl font-bold text-center"
             style={{ textAlign: "left" }}
           >
-            Create an Account with Spediree
+            Create an Account with Spedire
           </h2>
 
           <div className="my-2">
@@ -76,7 +76,7 @@ const RegistrationForm = () => {
               <img
                 src={googleIcon}
                 alt="Continue with Google"
-                className="mr-2 h-6"
+                className="mr-2 h-6 text-gray-600 font-semibold"
               />
               Continue with Google
             </button>
@@ -87,8 +87,8 @@ const RegistrationForm = () => {
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="space-y-3 mt-4">
-              <p className="font-semibold text-left mt-3 text-sm">Full name</p>
+            <div className="space-y-6 mt-4">
+              <p className="font-semibold text-left mt-3 text-gray-600 text-base">Full name</p>
               <input
                 type="text"
                 name="fullName"
@@ -97,7 +97,7 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.fullName}
               />
-              <p className=" font-semibold text-left mt-3 text-sm">
+              <p className=" font-semibold text-left mt-4 text-gray-600 text-base">
                 Email Address
               </p>
               <input
@@ -108,7 +108,7 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.email}
               />
-              <p className=" font-semibold text-left mt-3 text-sm">
+              <p className=" font-semibold text-left mt-4 text-base text-gray-600">
                 Home Address
               </p>
               <input
@@ -119,16 +119,16 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.location}
               />
-              <p className=" font-semibold text-left mt-3 text-sm">Password</p>
+              <p className=" font-semibold text-left mt-4 text-base text-gray-600">Password</p>
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
-                className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                className="w-full p-3 border border-gray-300 rounded-lg text-base"
                 onChange={handleInputChange}
                 value={formData.password}
               />{" "}
-              <p className=" font-semibold text-left mt-3 text-sm">
+              {/* <p className=" font-semibold text-left mt-3 text-sm">
                 Confirm password
               </p>
               <input
@@ -138,15 +138,15 @@ const RegistrationForm = () => {
                 className="w-full p-3 border border-gray-300 rounded-lg text-sm"
                 onChange={handleInputChange}
                 value={formData.password}
-              />
-              <div className="mt-6">
+              /> */}
+              <div className="mt-10">
                 <Button width={"100%"} text="Register" height={"50px"} />
               </div>
             </div>
           </form>
-          <div className="text-center mt-3 mb-6 text-lg">
-            Already have an account?
-            <a href="#login" className="text-blue-600 hover:underline">
+          <div className="text-center mt-3 mb-20 text-base  text-gray-600 font-semibold" >
+            Already have an account? {" "}
+            <a href="#login" className="text-blue-600 hover:underline text-base">
               Login
             </a>
           </div>
