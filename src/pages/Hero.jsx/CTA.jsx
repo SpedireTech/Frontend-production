@@ -76,7 +76,14 @@ const CTA = () => {
         </div>
       </div>
       {/* mobile and tab */}
-      <div className="p-6 flex flex-col">
+      <div className="p-6 flex flex-col lg:hidden">
+        <div className="fixed bottom-60 right-8">
+          <img
+            src={widget}
+            alt="widget"
+            className="cursor-pointer w-[30px] h-[30px]"
+          />
+        </div>
         <h4 className="mt-4 text-hero text-center font-bold text-xl">
           The Most Preferred and Trusted
         </h4>

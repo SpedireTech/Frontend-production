@@ -22,10 +22,18 @@ const Hero = () => {
             <p className="text-hero text-[60px] font-semibold font-hg">
               Send Your Items
             </p>
-            <p className="text-hero text-[60px] font-semibold font-hg">
+            <p className="text-hero text-[60px] font-semibold font-hg flex gap-x-2">
               Seamlessly{" "}
-              <span className="text-active text-[60px] font-semibold font-hg">
-                P2P.
+              <span className="holder">
+                <span className="text-active text-[60px] font-semibold font-hg item">
+                  P2P
+                </span>
+                <span className="text-active text-[60px] font-semibold font-hg item">
+                  Reliable
+                </span>
+                <span className="text-active text-[60px] font-semibold font-hg item">
+                  Fast
+                </span>
               </span>
             </p>
 
