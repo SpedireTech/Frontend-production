@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import users from "./../../assets/active-users.png";
 import verified from "./../../assets/verified.png";
 import safe from "./../../assets/safe.png";
 import widget from "./../../assets/widget.png";
+import cancel from "./../../assets/cancel.png";
 
 const data = [
   {
@@ -29,16 +30,36 @@ const data = [
 ];
 
 const CTA = () => {
+  const [open, setOpen] = useState(false);
+  const handleToggle = () => {
+    setOpen((previous) => !previous);
+  };
+
+  useEffect(() => {
+    setOpen(true);
+  }, []);
   return (
     <div className="max-w-screen w-full">
       {/* desktop */}
       <div className="hidden lg:flex flex-col items-center px-8">
-        <div className="fixed bottom-60 right-20">
-          <img
-            src={widget}
-            alt="widget"
-            className="cursor-pointer w-[30px] h-[30px]"
-          />
+        <div className="fixed bottom-10 right-20" onClick={handleToggle}>
+          {open ? (
+            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+              <img
+                src={widget}
+                alt="widget"
+                className="cursor-pointer w-[40px] h-[40px]"
+              />
+            </div>
+          ) : (
+            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+              <img
+                src={cancel}
+                alt="cancel"
+                className="cursor-pointer w-[40px] h-[40px]"
+              />
+            </div>
+          )}
         </div>
         <div className="mx-auto container flex flex-col w-[76%]">
           <h1 className="text-center text-hero lg:text-[44px] xl:text-[58px] 2xl:text-[70px] font-hg font-semibold mt-16 xl:mt-24 2xl:mt-32">
@@ -77,12 +98,24 @@ const CTA = () => {
       </div>
       {/* mobile and tab */}
       <div className="p-6 flex flex-col lg:hidden">
-        <div className="fixed bottom-60 right-8">
-          <img
-            src={widget}
-            alt="widget"
-            className="cursor-pointer w-[30px] h-[30px]"
-          />
+        <div className="fixed bottom-10 right-8" onClick={handleToggle}>
+          {open ? (
+            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+              <img
+                src={widget}
+                alt="widget"
+                className="cursor-pointer w-[40px] h-[40px]"
+              />
+            </div>
+          ) : (
+            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+              <img
+                src={cancel}
+                alt="cancel"
+                className="cursor-pointer w-[40px] h-[40px]"
+              />
+            </div>
+          )}
         </div>
         <h4 className="mt-4 text-hero text-center font-bold text-xl">
           The Most Preferred and Trusted

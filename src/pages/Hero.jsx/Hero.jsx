@@ -6,32 +6,28 @@ const Hero = () => {
   return (
     <div className="p-4 w-full">
       {/* styling for desktop */}
-      <div className="hidden lg:flex items-center w-full">
+      <div className="hidden lg:flex items-center flex-row-reverse w-full">
         <div className="w-1/2 flex items-center justify-center ">
-          <img
-            src={carrier}
-            alt="carrier"
-            className="w-[689px] h-[779px] xl:-ml-40 -ml-10"
-          />
+          <img src={carrier} alt="carrier" className="w-[689px] h-[779px]" />
         </div>
         <div className="w-1/2 h-[779px]">
-          <div className="flex flex-col justify-center h-full -mt-4">
+          <div className="flex flex-col justify-center h-full -mt-4 ml-28 2xl:ml-60">
             <p className="text-hero text-[20px] font-hg">
               Experience Fast Delivery
             </p>
-            <p className="text-hero text-[60px] font-semibold font-hg">
+            <p className="text-hero text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg">
               Send Your Items
             </p>
-            <p className="text-hero text-[60px] font-semibold font-hg flex gap-x-2">
+            <p className="text-hero text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg flex gap-x-2">
               Seamlessly{" "}
               <span className="holder">
-                <span className="text-active text-[60px] font-semibold font-hg item">
+                <span className="text-active text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg item">
                   P2P
                 </span>
-                <span className="text-active text-[60px] font-semibold font-hg item">
+                <span className="text-active text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg item">
                   Reliable
                 </span>
-                <span className="text-active text-[60px] font-semibold font-hg item">
+                <span className="text-active text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg item">
                   Fast
                 </span>
               </span>
@@ -49,14 +45,25 @@ const Hero = () => {
       </div>
       {/* styling for mobile and tab */}
       <div className="flex flex-col h-full lg:hidden">
-        <p className="text-sm md:text-2xl font-hg text-hero">
+        <p className="text-sm md:text-xl font-hg text-hero">
           Experience Fast Delivery
         </p>
-        <h4 className="text-4xl font-hg md:text-7xl font-semibold leading-loose md:mt-4 text-hero">
-          Send Your Items Seamlessly{" "}
-          <span className="text-active font-hg">P2P</span>
+        <h4 className="text-4xl font-hg md:text-5xl font-semibold leading-loose md:mt-4 text-hero">
+          Send Your Items <br />
+          Seamlessly &nbsp;
+          <span className="holder">
+            <span className="text-active text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg item">
+              P2P
+            </span>
+            <span className="text-active text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg item">
+              Reliable
+            </span>
+            <span className="text-active text-[40px] xl:text-[56px] 2xl:text-[60px] font-semibold font-hg item">
+              Fast
+            </span>
+          </span>
         </h4>
-        <p className="mt-4 text-hero md:mt-8 md:text-3xl text-md font-hg">
+        <p className="mt-4 text-hero md:mt-8 md:text-xl text-md font-hg">
           We are a Fast, Reliable and a Trustworthy P2P delivery service in
           town.
         </p>

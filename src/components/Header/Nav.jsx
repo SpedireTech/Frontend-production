@@ -31,7 +31,7 @@ const Nav = () => {
         <div className="flex justify-center items-center h-full w-[20%]">
           <img src={logo} alt="logo" className="h-full" />
         </div>
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full 2xl:w-[64%]">
           {navData.map((item) => (
             <p
               key={item.id}

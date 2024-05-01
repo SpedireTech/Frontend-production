@@ -5,7 +5,7 @@ const Button = ({ width, text, height }) => {
     <div>
       <button
         style={{ width: width, height: height }}
-        className={`text-md font-hk md:text-[24px] lg:text-[20px] xl:text-[24px] bg-button text-white rounded-lg flex justify-center items-center outline-none`}
+        className={`text-md font-hk md:text-[24px] lg:text-[20px] xl:text-[20px] bg-button text-white rounded-lg flex justify-center items-center outline-none`}
       >
         {text}
       </button>

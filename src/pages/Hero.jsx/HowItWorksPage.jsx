@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import sendItemImage from "../../assets/sendItem.png";
 import makePayment from "../../assets/makePayment.png";
 import getPeered from "../../assets/getPeered.png";
@@ -33,7 +33,7 @@ const HowItWorksPage = () => {
     <div className="w-full max-w-full">
       <div className="w-full h-full">
         {/* desktop */}
-        <div className="hidden lg:mt-8 w-full flex flex-col items-center px-4 xl:px-8">
+        <div className="hidden lg:flex lg:mt-8 w-full flex-col items-center px-4 xl:px-8">
           <h2 className="text-center lg:text-[44px] text-[70px] font-hg font-bold text-hero">
             How It Works
           </h2>
@@ -74,8 +74,8 @@ const HowItWorksPage = () => {
           </div>
         </div>
         {/* mobile styling */}
-        <div className="flex mt-36 flex-col p-4 lg:hidden">
-          <h1 className="mt-36 text-2xl text-center text-hero font-hg font-bold">
+        <div className="flex flex-col p-4 lg:hidden">
+          <h1 className="mt-12 text-2xl text-center text-hero font-hg font-bold">
             How It Works
           </h1>
           <p className="mt-4 text-gray text-[16px] font-normal">
