@@ -19,10 +19,7 @@ export default {
     },
     fontFamily: {
       hg: ["Hanken Grotesk"],
-    },
-    height: {
-      15: "3.75rem", 
-    },
+    },    
   },
   plugins: [],
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import googleIcon from "../../assets/GoogleIcon.svg";
 import logo from "../../assets/spedire.png";
 import Lady from "../../assets/CompleteReg.svg";
+import BackIcon from "../../assets/BackIcon.svg";
 import Button from "../../components/Button/Button";
 
 const RegistrationForm = () => {
@@ -21,6 +22,7 @@ const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
+    phone: "",
     location: "",
     password: "",
   });
@@ -50,33 +52,53 @@ const RegistrationForm = () => {
         <img
           src={Lady}
           alt="Person with a thumbs up"
-          style={{ maxWidth: "75%", transform: "translateY(60px)" }}
+          style={{ maxWidth: "75%", transform: "translateY(40px)" }}
         />
       </div>
 
       <div className="flex-1 flex justify-center items-center bg-white p-2">
         <div
-          className="p-2 mt-10"
+          className="absolute top-0 left-0 p-4"
           style={{
-            transform: "translateY(50px)",
+            transform: isMobile ? "translateX(0)" : "translateX(-310px)",
+          }}
+        >
+          <a href="/" style={{ cursor: "pointer" }}>
+            <img
+              src={BackIcon}
+              alt="Back Icon"
+              className="h-12"
+              style={{ width: "24px", height: "24px" }}
+            />
+          </a>
+        </div>
+
+        <div
+          className="p-2 mt-6"
+          style={{
+            transform: `translateY(50px) ${
+              !isMobile ? "translateX(-40px)" : "translateX(0)"
+            }`,
+            width: isMobile ? "90%" : "75%",
+
             textAlign: "left",
-            width: "90%",
+
             maxWidth: "550px",
           }}
         >
           <h2
-            className="text-2xl md:text-3xl font-bold text-center"
+            className="text-xl md:text-3xl font-bold text-center"
             style={{ textAlign: "left" }}
           >
             Create an Account with Spedire
           </h2>
 
-          <div className="my-2">
+          <div className="my-2 mt-4">
             <button className="flex items-center justify-center w-full p-4 rounded-lg bg-gray-100 hover:bg-gray-200 text-sm">
               <img
                 src={googleIcon}
                 alt="Continue with Google"
-                className="mr-2 h-6 text-gray-600 font-semibold"
+                className="mt-2 h-4 text-gray-600 font-semibold"
               />
               Continue with Google
             </button>
@@ -87,24 +109,40 @@ const RegistrationForm = () => {
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="space-y-6 mt-4">
-              <p className="font-semibold text-left mt-3 text-gray-600 text-base">Full name</p>
+            <div className=" mt-3">
+              <p className="font-semibold text-left mt-3 text-gray-600 text-base">
+                Kindly fill in the right details to get started with spedire
+              </p>
+              <p className="font-semibold text-left mt-3 text-gray-600 text-base">
+                Full name
+              </p>
               <input
                 type="text"
                 name="fullName"
-                placeholder="Full name"
-                className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                placeholder="Jane Deo"
+                className="w-full p-3 border mt-1 border-gray-300 rounded-lg text-sm"
                 onChange={handleInputChange}
                 value={formData.fullName}
               />
-              <p className=" font-semibold text-left mt-4 text-gray-600 text-base">
+              <p className=" font-semibold mt-4 text-left text-gray-600 text-base">
                 Email Address
               </p>
               <input
                 type="email"
                 name="email"
-                placeholder="Email address"
-                className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                placeholder="example@gmail.com "
+                className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm"
+                onChange={handleInputChange}
+                value={formData.email}
+              />
+              <p className=" font-semibold text-left mt-4 text-gray-600 text-base">
+                Phone number
+              </p>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="234xxxxxxxxx"
+                className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm"
                 onChange={handleInputChange}
                 value={formData.email}
               />
@@ -115,16 +153,18 @@ const RegistrationForm = () => {
                 type="text"
                 name="location"
                 placeholder="Location"
-                className="w-full p-3 border border-gray-300 rounded-lg text-sm"
+                className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm"
                 onChange={handleInputChange}
                 value={formData.location}
               />
-              <p className=" font-semibold text-left mt-4 text-base text-gray-600">Password</p>
+              <p className=" font-semibold text-left mt-4 text-base text-gray-600">
+                Password
+              </p>
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
-                className="w-full p-3 border border-gray-300 rounded-lg text-base"
+                className="w-full mt-1 p-3 border border-gray-300 rounded-lg text-base"
                 onChange={handleInputChange}
                 value={formData.password}
               />{" "}
@@ -139,14 +179,17 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.password}
               /> */}
-              <div className="mt-10">
+              <div className="mt-8">
                 <Button width={"100%"} text="Register" height={"50px"} />
               </div>
             </div>
           </form>
-          <div className="text-center mt-3 mb-20 text-base  text-gray-600 font-semibold" >
-            Already have an account? {" "}
-            <a href="#login" className="text-blue-600 hover:underline text-base">
+          <div className="text-center mt-3 mb-20 text-base  text-gray-600 font-semibold">
+            Already have an account?{" "}
+            <a
+              href="#login"
+              className="text-blue-600 hover:underline text-base"
+            >
               Login
             </a>
           </div>

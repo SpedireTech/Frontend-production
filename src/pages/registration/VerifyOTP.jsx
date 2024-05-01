@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../components/Button/Button";
 import logo from "../../assets/spedire.png";
+import BackIcon from "../../assets/BackIcon.svg";
 import Lady from "../../assets/VeryOtp.svg";
 const PhoneVerification = () => {
   const [code, setCode] = useState(["", "", "", ""]);
@@ -47,21 +48,34 @@ const PhoneVerification = () => {
       </div>
 
       <div className="flex-1 flex justify-center items-center bg-white p-4">
+      <div
+  className="absolute top-0 p-4"
+  style={{
+    left: isMobile ? '0' : '900px',  
+    // transform: isMobile ? 'translateX(0)' : 'translateX(-310px)',
+    transform: isMobile ? "translateY(80px)" : "translateY(0)",
+  }}
+>
+  <a href="/" style={{ cursor: "pointer" }}>
+    <img
+      src={BackIcon}
+      alt="Back Icon"
+      className="h-12"
+      style={{ width: "24px", height: "24px" }}
+    />
+  </a>
+</div>
+
+
         <div
           className=" p-2"
           style={{
             transform: "translateY(-40px)",
             textAlign: "left",
-            width: "90%",
+            width: "100%",
             maxWidth: "550px",
           }}
         >
-          <div className="text-2xl md:text-3xl text-gray-600 font-semibold">
-            Get Verified
-          </div>
-          <div className="text-gray-600 mb-6 font-semibold text-base">
-            Fill your information below
-          </div>
           <h1
             style={{ textAlign: "left" }}
             className="text-2xl md:text-3xl font-semibold text-center"
@@ -70,26 +84,36 @@ const PhoneVerification = () => {
           </h1>
           <p
             style={{ textAlign: "left" }}
-            className="text-gray-600 text-center mb-6 text-base"
+            className="text-gray-600 text-center mb-4 mt-4 text-base"
           >
-            Kindly check your email code has been sent to your email
+            Kindly check your phone for a code has been sent to you
           </p>
-          <form onSubmit={handleSubmit} className="space-y-2">
-            <p className="font-semibold text-gray-600 text-left text-base">Enter code</p>
-            <div className="grid grid-cols-4 gap-4">
+          <form onSubmit={handleSubmit} className="">
+            <p className="font-semibold text-gray-600 mb-4 text-left text-base">
+              Enter code
+            </p>
+            <div className="grid grid-cols-4 gap-5">
               {code.map((_, index) => (
                 <input
                   key={index}
                   type="text"
                   maxLength="1"
-                  className="w-full h-15 border border-gray-300 rounded-lg text-center text-xl"
+                  style={{
+                    width: isMobile ? "70px" : "112px",
+                    height: isMobile ? "70px" : "112px",
+                    borderRadius: "8px",
+                    border: "1px solid #b0b0b0",
+                    textAlign: "center",
+                    fontSize: isMobile ? "16px" : "24px",
+                    marginBottom: "8px",
+                  }}
                   onChange={handleChange(index)}
                   value={code[index]}
                 />
               ))}
             </div>
             <div className="mt-6">
-              <Button width={"100%"} text="Verify" height={"50px"} />
+              <Button width={"100%"} text="Verify" height={"46px"} />
             </div>
           </form>
         </div>
