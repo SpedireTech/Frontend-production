@@ -17,11 +17,50 @@ const RegistrationForm = () => {
     }));
   };
 
+  const GoogleAuthLogin = () => {
+		window.location.href = `http://localhost:8080/login/oauth2/autorcode/google`
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form Data Submitted', formData);
-    // Add logic to handle form submission, such as sending data to an API.
-  };
+
+    const requestBody = {
+        email: formData.email,
+        fullName: formData.fullName,
+        password: formData.password,
+        location: formData.location
+    };
+
+    fetch('http://localhost:8080/api/v1/user/sign-up', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to register user');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const token = data.token;
+        window.location.href = `http://localhost:5173/verify-number?token=${token}&oauth=false`;
+    })
+    .catch(error => {
+        console.error('Registration failed', error);
+    });
+};
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('Form Data Submitted', formData);
+  //   // Add logic to handle form submission, such as sending data to an API.
+  // };
 
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen bg-blue-100 p-4">
@@ -37,7 +76,7 @@ const RegistrationForm = () => {
       <div className="bg-white rounded-lg shadow-md p-8 w-full lg:max-w-md">
         <h2 className="text-xl font-semibold text-center">Create an Account with Spediree</h2>
         <div className="my-4">
-          <button className="flex items-center justify-center w-full p-3 rounded-lg bg-gray-100 hover:bg-gray-200">
+          <button className="flex items-center justify-center w-full p-3 rounded-lg bg-gray-100 hover:bg-gray-200" onClick={GoogleAuthLogin}>
             <FaGoogle className="mr-2" /> Continue with Google
           </button>
         </div>
