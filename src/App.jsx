@@ -9,17 +9,17 @@ import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <div className="App">
-      {/* <Nav /> */}
+  
 
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/verify-number" element={<VerifyPhoneNumber />} />
           <Route path="/verify-otp" element={<PhoneVerification />} />
-          <Route path="/complete-registration" element={<RegistrationForm />} />
+          <Route path="/register" element={<RegistrationForm />} />
         </Routes>
       </BrowserRouter>
-      <Footer />
+     
     </div>
   );
 }

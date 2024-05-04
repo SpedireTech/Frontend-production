@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/spedire.png";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 const navData = [
   { id: 1, name: "home" },
@@ -25,8 +26,8 @@ const Nav = () => {
   //   setOpen("");
   // }, [navigate]);
   return (
-    <nav className="p-4 lg:p-8 w-full max-h-[100px]">
-      {/* styling for desktop */}
+    <nav className="sticky top-0 z-50 bg-white shadow p-4 lg:p-8 w-full max-h-[100px]">
+    {/* styling for desktop */}
       <div className="hidden md:hidden lg:flex w-full h-[60px] items-center gap-x-20 xl:gap-x-48">
         <div className="flex justify-center items-center h-full w-[20%]">
           <img src={logo} alt="logo" className="h-full" />
@@ -43,7 +44,9 @@ const Nav = () => {
               {item.name}
             </p>
           ))}
-          <Button text={"Get started"} width={"168px"} height={"48px"} />
+          <Link to="/register">
+            <Button text={"Get started"} width={"168px"} height={"48px"} />
+          </Link>
         </div>
       </div>
       {/* styling for mobile and tab */}

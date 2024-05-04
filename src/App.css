@@ -1,1 +1,24 @@
-
+.input-box {
+    width: 498px;
+    height: 56px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    display: flex; 
+    align-items: center; 
+    background-color: "#F9F9F9";
+  }
+  
+  .input-box button {
+    height: 100%; 
+    background-color: #F9F9F9; 
+    border: none; 
+    border-radius: 15px;
+    flex-grow: 1;
+    cursor: pointer; 
+  }
+  
+  .input-box img {
+    height: 22.96px; 
+    width: 22.96px; 
+  }

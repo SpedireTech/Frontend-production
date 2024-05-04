@@ -3,11 +3,14 @@ import CTA from "../Hero.jsx/CTA.jsx";
 import DescriptionPage from "../Hero.jsx/DescriptionPage.jsx";
 import Hero from "../Hero.jsx/Hero.jsx";
 import HowItWorksPage from "../Hero.jsx/HowItWorksPage.jsx";
+import Nav from "../../components/Header/Nav.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 function LandingPage() {
   return (
     <div className="max-w-full">
       <div className="w-full relative">
+      <Nav/>
         <Hero />
         <div
           className="absolute h-[24px] flex items-center gap-x-6 -bottom-2 md:h-[48px] md:-bottom-4 lg:h-[68px] w-full bg-button"
@@ -48,6 +51,7 @@ function LandingPage() {
       <HowItWorksPage />
       <Carousel />
       <CTA />
+      <Footer />
     </div>
   );
 }
