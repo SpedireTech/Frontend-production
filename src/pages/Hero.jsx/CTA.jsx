@@ -4,27 +4,31 @@ import verified from "./../../assets/verified.png";
 import safe from "./../../assets/safe.png";
 import widget from "./../../assets/widget.png";
 import cancel from "./../../assets/cancel.png";
+import CountUp from "react-countup";
 
 const data = [
   {
     id: 1,
     name: "active users",
     image: `${users}`,
-    value: "300k",
+    value: 300,
+    unit: "k",
     topic: "Active Users",
   },
   {
     id: 2,
     name: "verified",
     image: `${verified}`,
-    value: "700k",
+    value: 700,
+    unit: "k",
     topic: "Verified Delivery",
   },
   {
     id: 3,
     name: "safe",
     image: `${safe}`,
-    value: "99%",
+    value: 99,
+    unit: "%",
     topic: "Safe and Reliable",
   },
 ];
@@ -39,12 +43,12 @@ const CTA = () => {
     setOpen(true);
   }, []);
   return (
-    <div className="max-w-screen w-full">
+    <div className="max-w-screen w-full" data-aos="zoom-in">
       {/* desktop */}
       <div className="hidden lg:flex flex-col items-center px-8">
         <div className="fixed bottom-10 right-20" onClick={handleToggle}>
           {open ? (
-            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+            <div className="w-[80px] h-[80px] pb-4 flex justify-center items-end">
               <img
                 src={widget}
                 alt="widget"
@@ -52,7 +56,7 @@ const CTA = () => {
               />
             </div>
           ) : (
-            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+            <div className="w-[80px] h-[80px] pb-4 flex justify-center items-end">
               <img
                 src={cancel}
                 alt="cancel"
@@ -84,11 +88,26 @@ const CTA = () => {
         </div>
         <div className="mt-32 flex justify-between items-center full px-2 w-[88%]">
           {data.map((item) => (
-            <div className="w-1/2 flex flex-col items-center gap-y-12">
+            <div
+              className="w-1/2 flex flex-col items-center gap-y-12"
+              key={item.id}
+            >
               <img src={item.image} alt={item.name} />
-              <p className="text-[60px] font-hg font-bold text-active">
-                {item.value}
-              </p>
+              <div className="flex gap-x-1">
+                <CountUp start={0} end={item.value} duration={5} delay={10}>
+                  {({ countUpRef }) => (
+                    <p
+                      className="text-[60px] font-hg font-bold text-active"
+                      ref={countUpRef}
+                    >
+                      {item.value}
+                    </p>
+                  )}
+                </CountUp>
+                <p className="text-[60px] font-hg font-bold text-active">
+                  {item.unit}
+                </p>
+              </div>
               <p className="text-[20px] font-hg font-semibold text-hero">
                 {item.topic}
               </p>
@@ -100,7 +119,7 @@ const CTA = () => {
       <div className="p-6 flex flex-col lg:hidden">
         <div className="fixed bottom-10 right-8" onClick={handleToggle}>
           {open ? (
-            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+            <div className="w-[80px] h-[80px] pb-4 flex justify-center items-end">
               <img
                 src={widget}
                 alt="widget"
@@ -108,7 +127,7 @@ const CTA = () => {
               />
             </div>
           ) : (
-            <div className="w-[80px] h-[80  px] pb-4 flex justify-center items-end">
+            <div className="w-[80px] h-[80px] pb-4 flex justify-center items-end">
               <img
                 src={cancel}
                 alt="cancel"
@@ -135,15 +154,31 @@ const CTA = () => {
         </p>
         <div className="mt-16 flex justify-between gap-x-12 items-center md:gap-x-20">
           {data.map((item) => (
-            <div className="w-1/2 flex flex-col items-start md:items-center gap-y-6">
+            <div
+              className="w-1/2 flex flex-col items-start md:items-center gap-y-6"
+              key={item.id}
+            >
               <img
                 src={item.image}
                 alt={item.name}
                 className="w-[46px] h-[46px] md:w-[92px] md:h-[92px]"
               />
-              <p className="text-xl md:text-2xl font-hg font-bold text-active">
-                {item.value}
-              </p>
+
+              <div className="flex gap-x-1">
+                <CountUp start={0} end={item.value} duration={5} delay={10}>
+                  {({ countUpRef }) => (
+                    <p
+                      ref={countUpRef}
+                      className="text-xl md:text-2xl font-hg font-bold text-active"
+                    >
+                      {item.value}
+                    </p>
+                  )}
+                </CountUp>
+                <p className="text-xl md:text-2xl font-hg font-bold text-active">
+                  {item.unit}
+                </p>
+              </div>
               <p className="text-[10px] md:text-[14px] font-hg font-semibold text-hero">
                 {item.topic}
               </p>

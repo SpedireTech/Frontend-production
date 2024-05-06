@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 
 const Hero = () => {
   return (
-    <div className="p-4 w-full">
+    <div className="p-4 w-full" data-aos="zoom-in">
       {/* styling for desktop */}
       <div className="hidden lg:flex items-center flex-row-reverse w-full">
         <div className="w-1/2 flex items-center justify-center ">

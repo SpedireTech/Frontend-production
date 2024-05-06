@@ -18,14 +18,28 @@ const Nav = () => {
   const handleClick = (name) => {
     setActive(name);
   };
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   // const navigate = useNavigate();
 
   // useEffect(() => {
   //   setOpen("");
   // }, [navigate]);
   return (
-    <nav className="p-4 lg:p-8 w-full max-h-[100px]">
+    <nav
+      className={`p-4 lg:p-8 w-full max-h-[100px] bg-white ${
+        isScrolled ? "fixed top-0 shadow-lg z-50" : ""
+      }`}
+    >
       {/* styling for desktop */}
       <div className="hidden md:hidden lg:flex w-full h-[60px] items-center gap-x-20 xl:gap-x-48">
         <div className="flex justify-center items-center h-full w-[20%]">

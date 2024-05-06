@@ -30,7 +30,7 @@ const dataToDisplay = [
 
 const HowItWorksPage = () => {
   return (
-    <div className="w-full max-w-full">
+    <div className="w-full max-w-full" data-aos="zoom-in">
       <div className="w-full h-full">
         {/* desktop */}
         <div className="hidden lg:flex lg:mt-8 w-full flex-col items-center px-4 xl:px-8">
@@ -74,7 +74,7 @@ const HowItWorksPage = () => {
           </div>
         </div>
         {/* mobile styling */}
-        <div className="flex flex-col p-4 lg:hidden">
+        <div className="flex flex-col p-4 lg:hidden ">
           <h1 className="mt-12 text-2xl text-center text-hero font-hg font-bold">
             How It Works
           </h1>
