@@ -147,7 +147,7 @@ export default function Login() {
 					</div>
 					<button
 						type="submit"
-						className="w-full h-[54px] mt-4 py-2 px-8 font-[18px] font-hg rounded-lg bg-button text-white hover:bg-opacity-80 shadow-sm"
+						className=" w-full h-[54px] mt-4 py-2 px-8 font-[18px] font-hg rounded-lg bg-button text-white hover:bg-opacity-80 shadow-sm"
 						onClick={loginHandler}
 					>
 						Login

@@ -20,7 +20,7 @@ function App() {
 					<Route path="/complete-registration" element={<RegistrationForm />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
-					<Route path="/verify-reset" element={<ResetPassword />} />
+					<Route path="/reset-password" element={<ResetPassword />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

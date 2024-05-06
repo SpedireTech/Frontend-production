@@ -63,13 +63,13 @@ export default function ResetPassword() {
 				/>
 			</div>
 			<div className="flex-grow flex flex-col items-center  justify-center h-screen ">
-				<div className="flex flex-col  lg:ml-[-10rem] w-4/5 lg:w-3/5 gap-1 ">
-					<div className="flex flex-col md:w-full md:h-[63px] items-start gap-1">
+				<div className="flex flex-col  lg:ml-[-10rem] w-4/5 lg:w-3/5 gap-6 md:gap-1 ">
+					<div className="flex flex-col md:w-full md:h-[63px] items-start md:gap-1">
 						<h2 className="md:text-2xl font-semibold text-neutral-850 text-center">
 							Reset Password
 						</h2>
 
-						<h4 className="text-[14px] sm:text-[10px] text-[#4b4b4b] font-normal text-neutral-850 text-center">
+						<h4 className="text-[10px] text-[#4b4b4b] font-normal text-neutral-850 text-center">
 							Kindly input your password
 						</h4>
 					</div>
@@ -93,7 +93,7 @@ export default function ResetPassword() {
 
 						<button
 							type="submit"
-							className="w-full h-[54px] font-[18px] py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
+							className="mt-4 md:mt-0 w-full h-[54px] font-[18px] py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
 							onClick={resetHandler}
 						>
 							Submit
