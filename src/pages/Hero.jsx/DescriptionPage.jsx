@@ -4,7 +4,7 @@ import biker from "../../assets/biker.png";
 
 const DescriptionPage = () => {
   return (
-    <div className="w-full max-h-screen mt-12">
+    <div className="w-full mt-12" data-aos="zoom-in">
       {/* desktop styling */}
       <div className="hidden lg:flex px-4 xl:px-8 2xl:px-24 h-full w-full items-center bg-lightBlue">
         <div className="w-[46%] h-full inline-flex flex-col justify-center">
@@ -30,8 +30,8 @@ const DescriptionPage = () => {
         </div>
       </div>
       {/* mobile and tab style */}
-      <div className="flex flex-col w-full bg-lightBlue px-4 lg:hidden">
-        <div className="mt-8 flex flex-col md:h-full">
+      <div className="flex flex-col w-full justify-between items-center bg-lightBlue px-4 lg:hidden">
+        <div className="mt-8 h-full flex flex-col md:h-full">
           <h4 className="text-hero text-[26px] md:text-[32px] text-left font-hg font-bold">
             Make Money While You Move.
           </h4>
@@ -50,12 +50,13 @@ const DescriptionPage = () => {
           <div className="hidden md:flex mt-8">
             <Button width={"288px"} text="Get started" height={"60px"} />
           </div>
-          <div className="mt-8 md:mt-12 flex justify-center">
-            <img
-              src={biker}
-              className="h-[260px] w-[386px] sm:h-[322px] md:w-[480px] md:h-[360px]"
-            />
-          </div>
+        </div>
+
+        <div className="mt-8 h-full md:mt-12 flex justify-center">
+          <img
+            src={biker}
+            className="h-[260px] w-[386px] sm:h-[322px] md:w-[480px] md:h-[360px]"
+          />
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import VerifyPhoneNumber from "../src/pages/registration/VerifyPhoneNumber";
 import PhoneVerification from "../src/pages/registration/VerifyOTP";
 import RegistrationForm from "../src/pages/registration/CompleteRegistration";
 import LandingPage from "./pages/landing/LandingPage";
-import Nav from "./components/Header/Nav";
 import Footer from "./components/Footer/Footer";
 
 function App() {
