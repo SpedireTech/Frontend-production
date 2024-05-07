@@ -139,7 +139,7 @@ export default function Login() {
 					/>
 					<div className="flex w-full justify-end items-end">
 						<Link
-							href="/forgot-password"
+							to="/forgot-password"
 							className="text-button text-xs font-normal"
 						>
 							Forgot Password?
@@ -156,7 +156,7 @@ export default function Login() {
 					<div className="flex w-full justify-center items-center mt-8 ">
 						<span className="text-[#4B4B4B] text-xs">
 							Don't have an account?{" "}
-							<Link href="/signup" className="text-button">
+							<Link to="/signup" className="text-button">
 								Register
 							</Link>
 						</span>
