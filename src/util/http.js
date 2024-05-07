@@ -9,7 +9,7 @@ export async function login(data) {
 			"Content-Type": "application/json",
 		},
 	});
-
+	console.log(response);
 	return response.data;
 }
 export async function initializeUser(TOKEN) {
