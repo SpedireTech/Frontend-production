@@ -58,7 +58,7 @@ const Nav = () => {
               {item.name}
             </p>
           ))}
-          <Link to="/register">
+          <Link to="/signup">
             <Button text={"Get started"} width={"168px"} height={"48px"} />
           </Link>
         </div>
