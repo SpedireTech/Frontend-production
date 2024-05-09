@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import Button from "../../components/Button/Button";
 import logo from "../../assets/spedire.png";
 import BackIcon from "../../assets/BackIcon.svg";
-import axios from 'axios';
+import axios from "axios";
 import Lady from "../../assets/VeryOtp.svg";
-import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const PhoneVerification = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
@@ -22,7 +23,8 @@ const PhoneVerification = () => {
   }, []);
   const handleChange = (index) => (e) => {
     const newCode = [...code];
-    if (e.target.validity.valid) { // Ensures only numeric input
+    if (e.target.validity.valid) {
+      // Ensures only numeric input
       newCode[index] = e.target.value;
       setCode(newCode);
       // Auto-focus to the next input box
@@ -34,35 +36,51 @@ const PhoneVerification = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); 
     const verificationCode = code.join("");
-    const token = localStorage.getItem('userToken');
+    const token = localStorage.getItem("userToken");
     console.log("Submitted code:", verificationCode);
 
     try {
-      const response = await axios.post('http://54.235.37.244:8080/api/v1/otp/verifyOtp', {
-        otp: verificationCode,
-      }, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        "http://54.235.37.244:8080/api/v1/otp/verifyOtp",
+        {
+          otp: verificationCode,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
-      });
-      console.log('Verification successful:', response.data);
-      toast.success('Verification Successful, kindly login');
+      );
+      console.log("Verification successful:", response.data);
+      setIsLoading(false); 
+      toast.success("Verification Successful, kindly login");
       setTimeout(() => {
-        window.location.href = '/';
-      }, 5000); 
-     
+        window.location.href = "/";
+      }, 5000);
     } catch (error) {
-      console.error('Verification error');
-      toast.error('Verification failed');
+      console.error("Verification error");
+      setIsLoading(false); 
+      toast.error("Verification failed");
     }
   };
 
   return (
     <div className="min-h-screen flex flex-row items-stretch bg-blue-100 overflow-hidden font-hg">
-       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <div className="absolute top-0 left-0 p-4">
         <img src={logo} alt="Company Logo" className="h-12" />
       </div>
@@ -78,7 +96,7 @@ const PhoneVerification = () => {
       </div>
 
       <div className="flex-1 flex justify-center items-center bg-white p-4">
-        <div
+        {/* <div
           className="absolute top-0 p-4"
           style={{
             left: isMobile ? "0" : "900px",
@@ -94,7 +112,7 @@ const PhoneVerification = () => {
               style={{ width: "24px", height: "24px" }}
             />
           </a>
-        </div>
+        </div> */}
 
         <div
           className=" p-2"
@@ -146,7 +164,13 @@ const PhoneVerification = () => {
               ))}
             </div>
             <div className="mt-6">
-              <Button width={"100%"} text="Verify" height={"46px"} />
+              <Button
+                width="480px"
+                height="58px"
+                text="Verify"
+                loading={isLoading}
+                loadingText="Verify..."
+              />
             </div>
           </form>
         </div>

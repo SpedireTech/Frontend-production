@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import googleIcon from "../../assets/GoogleIcon.svg";
 import logo from "../../assets/spedire.png";
-import Lady from "../../assets/transparent_man.png";
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
-
+import Lady from "../../assets/FirstLady.svg";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ImageComponent from "../../components/reusables/Image";
 import BackIcon from "../../assets/BackIcon.svg";
 import Button from "../../components/Button/Button";
+import "../../App.css";
+import PasswordInput from "../../components/reusables/PasswordInput";
 import "../../App.css";
 
 const RegistrationForm = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
@@ -41,65 +44,78 @@ const RegistrationForm = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted", formData);
-  
-    try {
-      const response = await axios.post('http://54.235.37.244:8080/api/v1/user/sign-up', {
-        fullName: formData.fullName,
-        email: formData.email,
-        phoneNumber: formData.phoneNumber,
-        password: formData.password,
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+    setIsLoading(true); 
 
-      const { token, otp } = response.data;
-      console.log('Registration successful:');
-      toast.success('Registration successful! OTP Code: ' + otp);
-  
-     
+    console.log("Form Data Submitted", formData);
+
+    try {
+      const response = await axios.post(
+        "http://54.235.37.244:8080/api/v1/user/sign-up",
+        {
+          fullName: formData.fullName,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber,
+          password: formData.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const otp = response.data.otp;
+      const token = response.data.token;
+      console.log("Registration successful:" + response.data);
+      toast.success("Registration successful! OTP Code: " + otp);
+
       if (token) {
-        localStorage.setItem('userToken', token); 
-        console.log('Token stored:', token);
+        localStorage.setItem("userToken", token);
+        console.log("Token stored:", token);
 
         setTimeout(() => {
-          window.location.href = '/verify-otp';
-        }, 5000); 
-
+          window.location.href = "/verify-otp";
+        }, 5000);
+        setIsLoading(false); // Reset loading to false when the process is complete
       } else {
-        console.log('No token received from the API');
+        console.log("No token received from the API");
+        setIsLoading(false); // Reset loading to false when the process is complete
       }
     } catch (error) {
-      console.error('Registration error');
+      console.error("Registration error");
       // const errorMessage = error.response && error.response.data && error.response.data.error ? error.response.data.error : 'Unknown error';
-      toast.error('Registration failed');
+      toast.error("Registration failed");
+      setIsLoading(false); // Reset loading to false when the process is complete
     }
   };
-  
+
   return (
     <div className="min-h-screen flex flex-row items-stretch bg-blue-100 overflow-hidden font-hg">
-       <ToastContainer position="top-right" autoClose={10000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer
+        position="top-right"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="absolute top-0 left-0 p-4 h-full w-[20%]">
-        <img src={logo} alt="Company Logo" className="h-15 mt-6 ml-8" />
+        <a href="/" style={{ cursor: "pointer" }}>
+          <img src={logo} alt="Company Logo" className="h-15 mt-6 ml-8" />
+        </a>
       </div>
+
       <div
-        className="flex-1 flex flex-col justify-center items-center bg-light-blue"
-        style={{ display: isMobile ? "none" : "flex",  transform: "translateY(-30px)", }}
+        className="flex lg:w-1/2 h-screen bg-[#E7EEF8] items-center justify-center "
+        style={{ display: isMobile ? "none" : "flex" }}
       >
-        {/* <h1 style={{ fontSize: "36px", fontWeight: "bold" }}>
-          Make Money While <br /> Your move
-        </h1>
-        <img
-          src={Lady}
-          alt="Person with a thumbs up"
-          style={{
-            maxWidth: "75%",
-            transform: "translateY(20px)",
-            borderRadius: "30px",
-          }} 
-        /> */}
+        {/* <div className="absolute top-0 left-0 p-4">
+					<img src={logo} alt="Company Logo" className="h-12" />
+				</div>
+			 */}
       </div>
 
       <div className="flex-1 flex justify-center items-center bg-white p-2">
@@ -112,14 +128,14 @@ const RegistrationForm = () => {
           //   transform: isMobile ? "translateX(0)" : "translateX(-310px)",
           // }}
         >
-          <a href="/" style={{ cursor: "pointer" }}>
+          {/* <a href="/" style={{ cursor: "pointer" }}>
             <img
               src={BackIcon}
               alt="Back Icon"
               className="h-12"
               style={{ width: "24px", height: "24px" }}
             />
-          </a>
+          </a> */}
         </div>
 
         <div
@@ -192,7 +208,7 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.fullName}
               />
-               {/* <p
+              {/* <p
                 style={{ color: "#808080" }}
                 className="font-semibold text-left mt-4 mb-1 text-base"
               >
@@ -234,44 +250,29 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.phoneNumber}
               />
-              {/* <p className=" font-semibold text-left mt-4 text-base text-gray-600">
-                Home Address
-              </p>
-              <input
-                type="text"
-                name="location"
-                placeholder="Location"
-                className="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm"
-                onChange={handleInputChange}
-                value={formData.location}
-              /> */}
+
               <p
                 style={{ color: "#808080" }}
                 className=" font-semibold text-left mt-4 text-base mb-1"
               >
                 Password
               </p>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="input-box"
-                onChange={handleInputChange}
+              <PasswordInput
+                placeholder="Enter Password"
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 value={formData.password}
-              />{" "}
-              {/* <p className=" font-semibold text-left mt-3 text-sm">
-                Confirm password
-              </p>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="w-full p-3 border border-gray-300 rounded-lg text-sm"
-                onChange={handleInputChange}
-                value={formData.password}
-              /> */}
-              <div className="mt-8">
-                <Button width={"499px"} text="Register" height={"59px"} />
+              />
+
+              <div className="mt-6">
+                <Button
+                  width="480px"
+                  height="58px"
+                  text="Register"
+                  loading={isLoading}
+                  loadingText="Registering..."
+                />
               </div>
             </div>
           </form>

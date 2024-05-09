@@ -11,7 +11,7 @@ export default function PasswordInput({ label, value, placeholder, onChange }) {
 			<div className="relative w-full rounded-[14px] shadow-sm">
 				<input
 					type={show ? "text" : "password"}
-					className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
+					className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[15px] border border-solid border-[#ccc]"
 					placeholder={placeholder}
 					value={value}
 					onChange={onChange}
