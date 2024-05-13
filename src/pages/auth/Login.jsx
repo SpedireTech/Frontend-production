@@ -26,6 +26,11 @@ export default function Login() {
 		};
 	}, []);
 
+	const googleAuthLogin = () => {
+		window.location.href =
+			"http://localhost:8080/login/oauth2/autorcode/google";
+	};
+
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -52,16 +57,17 @@ export default function Login() {
 				navigate("/verify-number");
 				return;
 			}
-			const res = await initializeUser(response?.accessToken);
+			const res = await initializeUser(response?.access_token);
 			console.log("res: " + res);
-			setUser(res?.data?.user?.id);
-			storeItem("token", response?.accessToken, 86400000);
+			setUser(res?.data);
+			storeItem("token", response?.access_token, 86400000);
 			storeItem(
 				"user",
 				{
-					id: response?.data?.user?.id,
-					name: response?.data?.user?.fullName,
-					role: response?.data?.user?.role,
+					name: res?.data?.fullName,
+					email: res?.data?.email,
+					phoneNumber: res?.data?.phoneNumber,
+					profileImage: res?.data?.profileImage,
 				},
 				86400000
 			);
@@ -69,7 +75,7 @@ export default function Login() {
 				duration: 3000,
 				position: "top-right",
 			});
-			navigate("/");
+			navigate("/dashboard");
 		} catch (error) {
 			toast.error(
 				`${error?.response?.data.message || "something went wrong"}`,
@@ -104,7 +110,10 @@ export default function Login() {
 						Welcome back
 					</h2>
 					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-sm">
-						<button className="flex items-center w-full justify-center  p-3 ">
+						<button
+							className="flex items-center w-full justify-center  p-3 "
+							onClick={googleAuthLogin}
+						>
 							<img
 								src={googleIcon}
 								alt="Continue with Google"

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://54.235.37.244:8080";
+const URL = "http://54.221.158.2:8080";
 const USER_API_URL = URL + "/api/v1/user";
 
 export async function login(data) {
@@ -13,16 +13,12 @@ export async function login(data) {
 	return response.data;
 }
 export async function initializeUser(TOKEN) {
-	const response = await axios.get(
-		`${USER_API_URL}/profile`,
-		{},
-		{
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${TOKEN}`,
-			},
-		}
-	);
+	const response = await axios.get(`${USER_API_URL}/profile`, {
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${TOKEN}`,
+		},
+	});
 	console.log(response);
 	return response.data;
 }

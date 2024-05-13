@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import LandingPage from "./pages/landing/LandingPage";
 import ResetPassword from "./pages/auth/ResetPassword";
+import DashBoard from "./pages/DashBoard";
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
 					<Route path="/reset-password" element={<ResetPassword />} />
+					<Route path="/dashboard" element={<DashBoard />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
