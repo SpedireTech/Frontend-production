@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaGoogle } from 'react-icons/fa'; // You'll need to install react-icons using npm or yarn
+import { FaGoogle } from 'react-icons/fa'; 
 import Man from "../../assets/Man.svg"
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
