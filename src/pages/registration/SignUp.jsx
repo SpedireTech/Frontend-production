@@ -50,7 +50,7 @@ const RegistrationForm = () => {
 
     try {
       const response = await axios.post(
-        "http://54.235.37.244:8080/api/v1/user/sign-up",
+        "http://54.221.158.2:8080/api/v1/user/sign-up",
         {
           fullName: formData.fullName,
           email: formData.email,
@@ -76,10 +76,10 @@ const RegistrationForm = () => {
         setTimeout(() => {
           window.location.href = "/verify-otp";
         }, 5000);
-        setIsLoading(false); // Reset loading to false when the process is complete
+        setIsLoading(false); 
       } else {
         console.log("No token received from the API");
-        setIsLoading(false); // Reset loading to false when the process is complete
+        setIsLoading(false); 
       }
     } catch (error) {
       console.error("Registration error");

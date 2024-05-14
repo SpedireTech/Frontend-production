@@ -43,9 +43,9 @@ const PhoneVerification = () => {
 
     try {
       const response = await axios.post(
-        "http://54.235.37.244:8080/api/v1/otp/verifyOtp",
+        "http://54.221.158.2:8080/api/v1/otp/verifyOtp",
         {
-          otp: verificationCode,
+          verificationCode: verificationCode,
         },
         {
           headers: {
