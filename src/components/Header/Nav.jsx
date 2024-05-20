@@ -37,7 +37,7 @@ const Nav = () => {
   return (
     <nav
       className={`p-4 lg:p-8 w-full max-h-[100px] bg-white ${
-        isScrolled ? "fixed top-0 shadow-lg z-50" : ""
+        isScrolled ? "sticky top-0 shadow-lg z-50" : ""
       }`}
     >
       {/* styling for desktop */}

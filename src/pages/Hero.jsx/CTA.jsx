@@ -46,7 +46,7 @@ const CTA = () => {
     <div className="max-w-screen w-full" data-aos="zoom-in">
       {/* desktop */}
       <div className="hidden lg:flex flex-col items-center px-8">
-        <div className="fixed bottom-10 right-20" onClick={handleToggle}>
+        {/* <div className="fixed z-40 bottom-10 right-20" onClick={handleToggle}>
           {open ? (
             <div className="w-[80px] h-[80px] pb-4 flex justify-center items-end">
               <img
@@ -64,7 +64,7 @@ const CTA = () => {
               />
             </div>
           )}
-        </div>
+        </div> */}
         <div className="mx-auto container flex flex-col w-[76%]">
           <h1 className="text-center text-hero lg:text-[44px] xl:text-[58px] 2xl:text-[70px] font-hg font-semibold mt-16 xl:mt-24 2xl:mt-32">
             The Most Preferred and Trusted
@@ -117,7 +117,7 @@ const CTA = () => {
       </div>
       {/* mobile and tab */}
       <div className="p-6 flex flex-col lg:hidden">
-        <div className="fixed bottom-10 right-8" onClick={handleToggle}>
+        {/* <div className="fixed bottom-10 right-8" onClick={handleToggle}>
           {open ? (
             <div className="w-[80px] h-[80px] pb-4 flex justify-center items-end">
               <img
@@ -135,7 +135,7 @@ const CTA = () => {
               />
             </div>
           )}
-        </div>
+        </div> */}
         <h4 className="mt-4 text-hero text-center font-bold text-xl">
           The Most Preferred and Trusted
         </h4>

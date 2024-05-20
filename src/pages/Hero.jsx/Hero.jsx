@@ -1,6 +1,7 @@
 import React from "react";
 import carrier from "../../assets/carrier1.png";
 import Button from "../../components/Button/Button";
+import Slider from "../../components/TextSlider/Slider";
 
 const Hero = () => {
   return (
