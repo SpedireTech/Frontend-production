@@ -147,6 +147,9 @@ import logo from "../../assets/spedire.png";
 import Lady from "../../assets/CompleteReg.svg";
 import Button from "../../components/Button/Button";
 
+// import { FaGoogle } from 'react-icons/fa'; 
+// import Man from "../../assets/Man.svg"
+
 const libraries = ["places"];
 
 const RegistrationForm = () => {
