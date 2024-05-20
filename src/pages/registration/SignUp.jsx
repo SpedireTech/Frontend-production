@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ImageComponent from "../../components/reusables/Image";
 import BackIcon from "../../assets/BackIcon.svg";
+import LoginImage from "../../assets/auth/login.svg";
 import Button from "../../components/Button/Button";
 import "../../App.css";
 import PasswordInput from "../../components/reusables/PasswordInput";
@@ -29,7 +30,6 @@ const RegistrationForm = () => {
 
   const [formData, setFormData] = useState({
     fullName: "",
-    // lastName: "",
     email: "",
     phoneNumber: "",
     password: "",
@@ -45,12 +45,11 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); 
-
     console.log("Form Data Submitted", formData);
 
     try {
       const response = await axios.post(
-        "http://54.221.158.2:8080/api/v1/user/sign-up",
+        "http://44.223.68.243:8080/api/v1/user/sign-up",
         {
           fullName: formData.fullName,
           email: formData.email,
@@ -64,28 +63,19 @@ const RegistrationForm = () => {
         }
       );
 
-      const otp = response.data.otp;
-      const token = response.data.token;
-      console.log("Registration successful:" + response.data);
-      toast.success("Registration successful! OTP Code: " + otp);
-
-      if (token) {
+      const otp = response.data.data.otp;
+      const token = response.data.data.token;
+      console.log("Registration successful:" + response.data.data);
         localStorage.setItem("userToken", token);
-        console.log("Token stored:", token);
-
-        setTimeout(() => {
-          window.location.href = "/verify-otp";
-        }, 5000);
-        setIsLoading(false); 
-      } else {
-        console.log("No token received from the API");
-        setIsLoading(false); 
-      }
+      setIsLoading(false);
+      toast.success("Registration successful! OTP Code: " + otp);
+      setTimeout(() => {
+        window.location.href = "/verify-otp";
+      }, 5000);
     } catch (error) {
       console.error("Registration error");
-      // const errorMessage = error.response && error.response.data && error.response.data.error ? error.response.data.error : 'Unknown error';
       toast.error("Registration failed");
-      setIsLoading(false); // Reset loading to false when the process is complete
+      setIsLoading(false); 
     }
   };
 
@@ -112,10 +102,14 @@ const RegistrationForm = () => {
         className="flex lg:w-1/2 h-screen bg-[#E7EEF8] items-center justify-center "
         style={{ display: isMobile ? "none" : "flex" }}
       >
-        {/* <div className="absolute top-0 left-0 p-4">
-					<img src={logo} alt="Company Logo" className="h-12" />
-				</div>
-			 */}
+       <ImageComponent
+					src={LoginImage}
+					alt="Login image"
+					height={"full"}
+					width={"full"}
+					fit={"center"}
+					style={{ transform: "scale(1)" }}
+				/>
       </div>
 
       <div className="flex-1 flex justify-center items-center bg-white p-2">
@@ -208,20 +202,7 @@ const RegistrationForm = () => {
                 onChange={handleInputChange}
                 value={formData.fullName}
               />
-              {/* <p
-                style={{ color: "#808080" }}
-                className="font-semibold text-left mt-4 mb-1 text-base"
-              >
-                Last name
-              </p>
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Deo"
-                className="input-box"
-                onChange={handleInputChange}
-                value={formData.lastName}
-              /> */}
+             
               <p
                 style={{ color: "#808080" }}
                 className=" font-semibold mt-4 text-left mb-1 text-base"
