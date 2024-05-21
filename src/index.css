@@ -70,6 +70,53 @@ span.item:nth-child(3) {
   animation: flipUp 6s cubic-bezier(0.68, -0.55, 0.26, 1.55) 3s both infinite;
 }
 
+.scroller {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 12px 0;
+}
+
+.inner {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+}
+
+.inner span {
+  margin: 0 20px;
+  font-size: 16px; /* default font size for mobile */
+}
+
+/* Larger font size for tablets and small desktops */
+@media (min-width: 768px) {
+  .inner span {
+    font-size: 24px;
+  }
+}
+
+/* Larger font size for large desktops */
+@media (min-width: 1024px) {
+  .inner span {
+    font-size: 32px;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1; /* fade in */
+  }
+
+  95% {
+    opacity: 1; /* stay visible */
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+}
 /* ANIMATION */
 
 @keyframes flipUp {
@@ -87,5 +134,25 @@ span.item:nth-child(3) {
     opacity: 0;
     margin-top: 0;
     transform: rotateX(90deg);
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+    opacity: 0; /* start from transparent */
+  }
+
+  10% {
+    opacity: 1; /* fade in */
+  }
+
+  90% {
+    opacity: 1; /* stay visible */
+  }
+
+  100% {
+    transform: translateX(-100%);
+    opacity: 0; /* fade out */
   }
 }

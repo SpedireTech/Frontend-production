@@ -15,7 +15,7 @@ const Nav = () => {
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate(); // React Router's navigate hook
+  const navigate = useNavigate(); 
 
   const handleClick = (name) => {
     setActive(name);
@@ -38,7 +38,7 @@ const Nav = () => {
   return (
     <nav
       className={`p-4 lg:p-8 w-full max-h-[100px] bg-white ${
-        isScrolled ? "fixed top-0 shadow-lg z-50" : ""
+        isScrolled ? "sticky top-0 shadow-lg z-50" : ""
       }`}
     >
       {/* Desktop view */}
