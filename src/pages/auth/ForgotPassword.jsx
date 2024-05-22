@@ -57,13 +57,13 @@ export default function ForgotPassword() {
 				/>
 			</div>
 			<div className="flex-grow flex flex-col items-center justify-center h-screen ">
-				<div className="flex flex-col lg:ml-[-10rem] w-4/5 lg:w-3/5 gap-6 md:gap-1">
-					<div className="flex flex-col md:w-full md:h-[63px] items-start md:gap-1">
-						<h2 className="md:text-2xl font-semibold text-neutral-850 text-center">
+				<div className="flex flex-col w-4/5 lg:w-[505px] gap-5 md:gap-8">
+					<div className="flex flex-col md:w-full md:h-[63px] items-start ">
+						<h2 className="text-[20px] md:text-[30px] font-semibold text-neutral-850 text-center">
 							Forgot Password
 						</h2>
 
-						<h4 className="text-[10px] text-[#4b4b4b] font-normal text-neutral-850">
+						<h4 className="text-base text-[#4b4b4b] font-normal text-neutral-850">
 							Kindly input your email address
 						</h4>
 					</div>
@@ -80,7 +80,7 @@ export default function ForgotPassword() {
 
 						<button
 							type="submit"
-							className=" w-full h-[54px] font-[18px] py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
+							className=" w-full h-[54px] font-semibold py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white text-base hover:bg-opacity-80 shadow-sm"
 							onClick={resetHandler}
 						>
 							Submit

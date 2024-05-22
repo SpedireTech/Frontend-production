@@ -57,6 +57,7 @@ export default function Login() {
 				navigate("/verify-number");
 				return;
 			}
+			console.log(response?.access_token);
 			const res = await initializeUser(response?.access_token);
 			console.log("res: " + res);
 			setUser(res?.data);
@@ -105,11 +106,11 @@ export default function Login() {
 				/>
 			</div>
 			<div className="flex-grow flex flex-col items-center justify-center">
-				<div className="flex flex-col items-start lg:ml-[-10rem] w-4/5 lg:w-3/5 ">
-					<h2 className="text-xl font-semibold text-neutral-850">
+				<div className="flex flex-col items-start  w-4/5 lg:w-[505px] ">
+					<h2 className="text-[20px] md:text-[30px] font-semibold text-neutral-850">
 						Welcome back
 					</h2>
-					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-sm">
+					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-base">
 						<button
 							className="flex items-center w-full justify-center  p-3 "
 							onClick={googleAuthLogin}
@@ -149,21 +150,21 @@ export default function Login() {
 					<div className="flex w-full justify-end items-end">
 						<Link
 							to="/forgot-password"
-							className="text-button text-xs font-normal"
+							className="text-button text-base font-normal"
 						>
 							Forgot Password?
 						</Link>
 					</div>
 					<button
 						type="submit"
-						className=" w-full h-[54px] mt-4 py-2 px-8 font-[18px] font-hg rounded-lg bg-button text-white hover:bg-opacity-80 shadow-sm"
+						className=" w-full h-[54px] mt-4 py-2 px-8 font-semibold font-hg rounded-lg bg-button text-white text-base hover:bg-opacity-80 shadow-sm"
 						onClick={loginHandler}
 					>
 						Login
 					</button>
 
 					<div className="flex w-full justify-center items-center mt-8 ">
-						<span className="text-[#4B4B4B] text-xs">
+						<span className="text-[#4B4B4B] text-base">
 							Don't have an account?{" "}
 							<Link to="/signup" className="text-button">
 								Register
