@@ -50,7 +50,7 @@ export default function ResetPassword() {
 	}
 	return (
 		<div className="flex h-screen">
-			<div className="hidden md:flex lg:flex md:w-1/2 h-screen bg-[#E7EEF8] items-center justify-center ">
+			<div className="hidden md:flex md:w-1/2 h-screen bg-[#E7EEF8] items-center justify-center ">
 				<div className="absolute top-0 left-0 p-4">
 					<img src={logo} alt="Company Logo" className="h-12" />
 				</div>
@@ -63,17 +63,17 @@ export default function ResetPassword() {
 				/>
 			</div>
 			<div className="flex-grow flex flex-col items-center  justify-center h-screen ">
-				<div className="flex flex-col  lg:ml-[-10rem] w-4/5 lg:w-3/5 gap-1 ">
-					<div className="flex flex-col md:w-full md:h-[63px] items-start gap-1">
-						<h2 className="md:text-2xl font-semibold text-neutral-850 text-center">
+				<div className="flex flex-col w-4/5 lg:w-[505px] gap-5 md:gap-8 ">
+					<div className="flex flex-col md:w-full md:h-[63px] items-start gap-1 md:gap-0 ">
+						<h2 className="text-[20px] md:text-[30px] font-semibold text-neutral-850 text-center">
 							Reset Password
 						</h2>
 
-						<h4 className="text-[14px] sm:text-[10px] text-[#4b4b4b] font-normal text-neutral-850 text-center">
+						<h4 className="text-base text-[#4b4b4b] font-normal text-neutral-850 text-center">
 							Kindly input your password
 						</h4>
 					</div>
-					<div className="flex flex-col md:h-[298px] items-start md:gap-7">
+					<div className="flex flex-col md:h-[298px] items-start md:gap-7 text-base">
 						<PasswordInput
 							label="Password"
 							placeholder="Enter Password"
@@ -93,7 +93,7 @@ export default function ResetPassword() {
 
 						<button
 							type="submit"
-							className="w-full h-[54px] font-[18px] py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
+							className="mt-4 md:mt-0 w-full h-[54px] font-semibold py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-base text-white hover:bg-opacity-80 shadow-sm"
 							onClick={resetHandler}
 						>
 							Submit

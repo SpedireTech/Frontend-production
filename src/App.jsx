@@ -7,11 +7,13 @@ import Login from "./pages/auth/Login";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import LandingPage from "./pages/landing/LandingPage";
 import ResetPassword from "./pages/auth/ResetPassword";
-import AboutPage from "./pages/About/Story&Values";
+import AboutPage from "./pages/About";
 import widget from "./assets/widget.png";
 import cancel from "./assets/cancel.png";
 import { useEffect, useState } from "react";
 import { AiOutlineWhatsApp } from "react-icons/ai";
+import DashBoard from "./pages/DashBoard";
+import About from "./pages/About";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -57,8 +59,9 @@ function App() {
 					<Route path="/signup" element={<RegistrationForm />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
-					<Route path="/verify-reset" element={<ResetPassword />} />
-					<Route path="/about" element={<AboutPage />} />
+					<Route path="/reset-password" element={<ResetPassword />} />
+					<Route path="/dashboard" element={<DashBoard />} />
+					<Route path="/about" element={<About />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

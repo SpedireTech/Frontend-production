@@ -26,6 +26,11 @@ export default function Login() {
 		};
 	}, []);
 
+	const googleAuthLogin = () => {
+		window.location.href =
+			"http://localhost:8080/login/oauth2/autorcode/google";
+	};
+
 	const [formData, setFormData] = useState({
 		email: "",
 		password: "",
@@ -52,16 +57,18 @@ export default function Login() {
 				navigate("/verify-number");
 				return;
 			}
-			const res = await initializeUser(response?.accessToken);
+			console.log(response?.access_token);
+			const res = await initializeUser(response?.access_token);
 			console.log("res: " + res);
-			setUser(res?.data?.user?.id);
-			storeItem("token", response?.accessToken, 86400000);
+			setUser(res?.data);
+			storeItem("token", response?.access_token, 86400000);
 			storeItem(
 				"user",
 				{
-					id: response?.data?.user?.id,
-					name: response?.data?.user?.fullName,
-					role: response?.data?.user?.role,
+					name: res?.data?.fullName,
+					email: res?.data?.email,
+					phoneNumber: res?.data?.phoneNumber,
+					profileImage: res?.data?.profileImage,
 				},
 				86400000
 			);
@@ -69,7 +76,7 @@ export default function Login() {
 				duration: 3000,
 				position: "top-right",
 			});
-			navigate("/");
+			navigate("/dashboard");
 		} catch (error) {
 			toast.error(
 				`${error?.response?.data.message || "something went wrong"}`,
@@ -99,12 +106,15 @@ export default function Login() {
 				/>
 			</div>
 			<div className="flex-grow flex flex-col items-center justify-center">
-				<div className="flex flex-col items-start lg:ml-[-10rem] w-4/5 lg:w-3/5 ">
-					<h2 className="text-xl font-semibold text-neutral-850">
+				<div className="flex flex-col items-start  w-4/5 lg:w-[505px] ">
+					<h2 className="text-[20px] md:text-[30px] font-semibold text-neutral-850">
 						Welcome back
 					</h2>
 					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-base">
-						<button className="flex items-center w-full justify-center  p-3 ">
+						<button
+							className="flex items-center w-full justify-center  p-3 "
+							onClick={googleAuthLogin}
+						>
 							<img
 								src={googleIcon}
 								alt="Continue with Google"
@@ -149,7 +159,7 @@ export default function Login() {
 					</div>
 					<button
 						type="submit"
-						className="w-full h-[54px] mt-4 py-2 px-8 font-[18px] font-hg rounded-lg bg-button text-white hover:bg-opacity-80 shadow-sm"
+						className=" w-full h-[54px] mt-4 py-2 px-8 font-semibold font-hg rounded-lg bg-button text-white text-base hover:bg-opacity-80 shadow-sm"
 						onClick={loginHandler}
 					>
 						Login
