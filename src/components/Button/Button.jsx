@@ -19,13 +19,13 @@ const Button = ({ width, text, height, loading, loadingText }) => {
       </button>
       <style jsx>{`
         .spinner {
-          border: 2px solid rgba(255, 255, 255, 0.3); // Lighter border color for spinner
+          border: 2px solid rgba(255, 255, 255, 0.3);
           border-radius: 50%;
-          border-top-color: white; // White border color for spinner top
+          border-top-color: white;
           width: 16px;
           height: 16px;
           animation: spin 0.8s linear infinite;
-          margin-right: 8px; // Space between spinner and text
+          margin-right: 8px; 
         }
         @keyframes spin {
           0% {

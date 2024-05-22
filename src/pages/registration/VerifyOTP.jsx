@@ -130,9 +130,9 @@ const PhoneVerification = () => {
                 />
               ))}
             </div>
-            <div className="ml-8 mt-6 flex justify-center">
+            <div className="mt-6">
               <Button
-               width="530px"
+               width="100%"
                height="58px"
               
                 textAlign="center"

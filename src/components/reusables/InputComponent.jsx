@@ -9,7 +9,7 @@ export default function InputComponent({
 }) {
 	return (
 		<div className="flex flex-col w-full gap-2 ">
-			<label className="text-[#4B4B4B] text-sm font-semibold">{label}</label>
+			<label className="text-[#4B4B4B] text-base font-semibold">{label}</label>
 			<input
 				type={type}
 				readOnly={readOnly}

@@ -103,7 +103,7 @@ export default function Login() {
 					<h2 className="text-xl font-semibold text-neutral-850">
 						Welcome back
 					</h2>
-					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-sm">
+					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-base">
 						<button className="flex items-center w-full justify-center  p-3 ">
 							<img
 								src={googleIcon}
@@ -142,7 +142,7 @@ export default function Login() {
 					<div className="flex w-full justify-end items-end">
 						<Link
 							to="/forgot-password"
-							className="text-button text-xs font-normal"
+							className="text-button text-base font-normal"
 						>
 							Forgot Password?
 						</Link>
@@ -156,7 +156,7 @@ export default function Login() {
 					</button>
 
 					<div className="flex w-full justify-center items-center mt-8 ">
-						<span className="text-[#4B4B4B] text-xs">
+						<span className="text-[#4B4B4B] text-base">
 							Don't have an account?{" "}
 							<Link to="/signup" className="text-button">
 								Register
