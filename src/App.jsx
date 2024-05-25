@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <div className="" onClick={handleToggle}>
         {open ? (
-          <div className="fixed bottom-10 z-50 right-20 w-[80px] h-[80px] pb-4 flex justify-center items-end">
+          <div className="fixed bottom-10 z-50 right-1 w-[80px] h-[80px] pb-4 flex justify-center items-end">
             <img
               src={widget}
               alt="widget"
@@ -30,8 +30,8 @@ function App() {
             />
           </div>
         ) : (
-          <div className="fixed bottom-10 right-12 md:right-20 z-50 w-[80px] h-[80px] pb-4 flex flex-col justify-center gap-y-4 items-end">
-            <div>
+          <div className="fixed bottom-10 right-1 z-50 w-[80px] h-[80px] pb-4 flex justify-center items-end">
+            <div className="absolute bottom-20">
               <a href="https://wa.me/+2348102661150">
                 <AiOutlineWhatsApp className="cursor-pointer w-[40px] h-[40px]" />
               </a>

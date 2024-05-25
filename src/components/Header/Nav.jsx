@@ -84,20 +84,19 @@ const Nav = () => {
           id="menu"
           className={`${
             open ? "" : "hidden"
-          } absolute z-10 flex flex-col items-center self-end py-16 mt-4 space-y-10 font-bold bg-black sm:w-auto sm:self-center left-6 right-6 drop-shadow-md text-gold`}
+          } absolute z-10 flex flex-col items-center self-end py-16 mt-4 space-y-10 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md text-gold`}
         >
-          <p
-            className="hover:text-darkGrayishBlue"
-            onClick={() => navigate("about")}
-          >
-            About
-          </p>
-          <p className="hover:text-darkGrayishBlue"> Capabilities</p>
-          <p className="hover:text-darkGrayishBlue">Work</p>
-          <p className="hover:text-darkGrayishBlue">Careers</p>
-          <p className="md:hidden block p-3 px-6 h-12 flex justify-center items-center pt-2 bg-buttonBackground text-black font-clash font-medium bg-brightRed rounded-full baseline">
-            Get in Touch
-          </p>
+          {navData.map((item) => (
+            <p
+              key={item.id}
+              className={`font-hg text-[20px] xl:text-[24px] capitalize cursor-pointer ${
+                active === item.name ? "text-active" : "text-inactive"
+              } hover:text-active`}
+              onClick={() => handleClick(item.name)}
+            >
+              {item.name}
+            </p>
+          ))}
         </div>
       </div>
     </nav>

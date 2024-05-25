@@ -47,7 +47,7 @@ const Slider = () => {
     //     </p>
     //   </div>
     // </div>
-    <div className="scroller absolute -bottom-2 md:-bottom-4 h-[24px] md:h-[48px] lg:h-[68px] w-full bg-button">
+    <div className="scroller absolute h-10 -bottom-2 md:-bottom-4 h-[24px] md:h-[48px] lg:h-[68px] w-full bg-button">
       <div className="inner">
         <span className="text-white font-hg uppercase text-[8px] sm:text-[10px] md:text-[16px] lg:text-[32px]">
           Become a courier
