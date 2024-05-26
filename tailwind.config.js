@@ -33,7 +33,7 @@ export default {
     },
     fontFamily: {
       hg: ["Hanken Grotesk"],
-    },
+    },    
   },
   plugins: [],
 };

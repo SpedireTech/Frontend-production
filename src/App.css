@@ -1,1 +1,49 @@
+.input-box {
+    width: 480px;
+    height: 58px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    display: flex; 
+    align-items: center; 
+    background-color: #F9F9F9;
+    ;
+  }
 
+  .button {
+    background-color: #3498db; 
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; 
+}
+
+
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  
+  .input-box button {
+    height: 100%; 
+    background-color: #F9F9F9; 
+    border: none; 
+    border-radius: 15px;
+    flex-grow: 1;
+    cursor: pointer; 
+  }
+  
+  .input-box img {
+    height: 22.96px; 
+    width: 22.96px; 
+  }

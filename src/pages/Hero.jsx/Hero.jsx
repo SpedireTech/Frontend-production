@@ -1,6 +1,7 @@
 import React from "react";
 import carrier from "../../assets/carrier1.png";
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 import Slider from "../../components/TextSlider/Slider";
 
 const Hero = () => {
@@ -39,7 +40,9 @@ const Hero = () => {
               service in town.
             </p>
             <div className="mt-24">
-              <Button width={"260px"} text="Get started" height={"64px"} />
+            <Link to="/register">
+            <Button text={"Get started"} width={"260px"} height={"64px"} />
+          </Link>
             </div>
           </div>
         </div>

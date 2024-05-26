@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/spedire.png";
 import Button from "../Button/Button";
+import { Link, useNavigate } from "react-router-dom";
 
 const navData = [
   { id: 1, name: "home" },
@@ -12,13 +13,17 @@ const navData = [
 
 const Nav = () => {
   const [active, setActive] = useState("home");
-
-  const [open, setOpen] = React.useState("");
+  const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = (name) => {
     setActive(name);
+    // Navigate to specific routes when certain nav items are clicked
+    if (name === "login") {
+      navigate("/login");
+    }
   };
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,18 +34,14 @@ const Nav = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  // const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setOpen("");
-  // }, [navigate]);
   return (
     <nav
       className={`p-4 lg:p-8 w-full max-h-[100px] bg-white ${
         isScrolled ? "sticky top-0 shadow-lg z-50" : ""
       }`}
     >
-      {/* styling for desktop */}
+      {/* Desktop view */}
       <div className="hidden md:hidden lg:flex w-full h-[60px] items-center gap-x-20 xl:gap-x-48">
         <div className="flex justify-center items-center h-full w-[20%]">
           <img src={logo} alt="logo" className="h-full" />
@@ -57,17 +58,20 @@ const Nav = () => {
               {item.name}
             </p>
           ))}
-          <Button text={"Get started"} width={"168px"} height={"48px"} />
+          <Link to="/signup">
+            <Button text={"Get started"} width={"168px"} height={"48px"} />
+          </Link>
         </div>
       </div>
-      {/* styling for mobile and tab */}
+
+      {/* Mobile and tablet view */}
       <div className="flex w-full justify-between items-center lg:hidden h-16">
         <img src={logo} alt="logo" />
         <div className="bg-lightBlue w-[48px] flex justify-center items-center h-[48px] rounded-full">
           <button
             id="menu-btn"
             className={`flex mt-2 justify-center items-center hamburger focus:outline-none ${
-              open ? "open" : !open
+              open ? "open" : ""
             }`}
             onClick={() => {
               setOpen(!open);
