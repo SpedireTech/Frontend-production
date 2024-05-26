@@ -11,7 +11,7 @@ import AboutPage from "./pages/About";
 import widget from "./assets/widget.png";
 import cancel from "./assets/cancel.png";
 import { useEffect, useState } from "react";
-import { AiOutlineWhatsApp } from "react-icons/ai";
+import { AiOutlineMail, AiOutlineWhatsApp } from "react-icons/ai";
 import DashBoard from "./pages/DashBoard";
 import About from "./pages/About";
 
@@ -24,9 +24,9 @@ function App() {
   useEffect(() => {
     setOpen(true);
   }, []);
-	return (
-		<div className="App">
-			<Toaster position="top-center" />
+  return (
+    <div className="App">
+      <Toaster position="top-center" />
       <div className="" onClick={handleToggle}>
         {open ? (
           <div className="fixed bottom-10 z-50 right-1 w-[80px] h-[80px] pb-4 flex justify-center items-end">
@@ -38,9 +38,12 @@ function App() {
           </div>
         ) : (
           <div className="fixed bottom-10 right-1 z-50 w-[80px] h-[80px] pb-4 flex justify-center items-end">
-            <div className="absolute bottom-20">
+            <div className="absolute bottom-20 flex flex-col gap-y-6">
               <a href="https://wa.me/+2348102661150">
-                <AiOutlineWhatsApp className="cursor-pointer w-[40px] h-[40px]" />
+                <AiOutlineWhatsApp className="cursor-pointer w-[40px] h-[40px] text-green-500" />
+              </a>
+              <a href="mailto:enubiakjoseph@gmail.com">
+                <AiOutlineMail className="cursor-pointer w-[40px] h-[40px] text-red-500" />
               </a>
             </div>
             <img
@@ -51,21 +54,21 @@ function App() {
           </div>
         )}
       </div>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<LandingPage />} />
-					<Route path="/verify-number" element={<VerifyPhoneNumber />} />
-					<Route path="/verify-otp" element={<PhoneVerification />} />
-					<Route path="/signup" element={<RegistrationForm />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/forgot-password" element={<ForgotPassword />} />
-					<Route path="/reset-password" element={<ResetPassword />} />
-					<Route path="/dashboard" element={<DashBoard />} />
-					<Route path="/about" element={<About />} />
-				</Routes>
-			</BrowserRouter>
-		</div>
-	);
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/verify-number" element={<VerifyPhoneNumber />} />
+          <Route path="/verify-otp" element={<PhoneVerification />} />
+          <Route path="/signup" element={<RegistrationForm />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

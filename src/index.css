@@ -80,7 +80,11 @@ span.item:nth-child(3) {
   display: inline-block;
   animation: scroll 20s linear infinite;
 }
-
+#topPage {
+  background-image: url("./../src/assets/aboutbg-desktop.png");
+  background-size: cover;
+  width: 100%;
+}
 .inner span {
   margin: 0 20px;
   font-size: 16px; /* default font size for mobile */
