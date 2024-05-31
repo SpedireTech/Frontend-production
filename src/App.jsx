@@ -9,6 +9,8 @@ import LandingPage from "./pages/landing/LandingPage";
 import ResetPassword from "./pages/auth/ResetPassword";
 import DashBoard from "./pages/DashBoard";
 import CompleteRegistration from "./pages/registration/CompleteRegistration"
+import SendItem from "./pages/backend/SendItem";
+import DeliverItem from "./pages/backend/DeliverItem";
 
 function App() {
 	return (
@@ -26,6 +28,8 @@ function App() {
 					<Route path="/dashboard" element={<DashBoard />} />
 					<Route path="/dashboard" element={<DashBoard />} />
 					<Route path="/complete-registration" element={<CompleteRegistration />} />
+					<Route path="/send" element={<SendItem />} />
+					<Route path="/deliver" element={<DeliverItem />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

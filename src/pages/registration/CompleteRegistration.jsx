@@ -194,7 +194,7 @@ const RegistrationForm = () => {
         (predictions, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             const filteredPredictions = predictions.filter((prediction) =>
-              prediction.description.includes("Lagos")
+              prediction.description.includes("Osun")
             );
             setPredictions(filteredPredictions);
           } else {
