@@ -108,13 +108,21 @@ const SendItem = () => {
       receiverPhoneNumber: '07087544331',
       receiverLocation,
       itemDescription: 'Bag of Clothes',
-      price: '89,000',
+      price: '89000',
       dueDate: '24/09/2024',
       dueTime: '07:00AM',
       picture: 'null',
     };
 
     console.log("Payload == ", payload);
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/order/createOrder', payload);
+      console.log('Order created successfully:', response.data);
+    } catch (error) {
+      console.error('Error creating order:', error);
+    }
+
   };
 
   const handleIconClick = () => {

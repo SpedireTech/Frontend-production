@@ -96,7 +96,7 @@ const DeliverItem = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+ 
     const payload = {
         destination,
         currentLocation,
@@ -104,6 +104,13 @@ const DeliverItem = () => {
     };
 
     console.log("Payload == ", payload);
+
+    try {
+        const response = await axios.get('http://localhost:8080/api/v1/order/matchOrder', payload);
+        console.log('Order created successfully:', response.data);
+      } catch (error) {
+        console.error('Error creating order:', error);
+      }
   };
 
   const handleIconClick = () => {
