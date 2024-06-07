@@ -6,7 +6,7 @@ const DashBoard = () => {
     return (
         <div className="min-h-screen flex flex-col">
             <Navbar />
-            <div className="flex-grow flex flex-col md:flex-row items-start p-4 md:p-8">
+            <div className="flex-grow flex flex-col md:flex-row items-start p-4 md:p-1">
                 <TotalAmountCard className="w-full md:w-auto" />
               
             </div>

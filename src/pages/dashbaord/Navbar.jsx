@@ -5,6 +5,7 @@ import {
   faUserCircle,
   faCalendarAlt,
   faSearch,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { getStoredItem } from "../../util/lib";
 
@@ -18,7 +19,7 @@ const Navbar = () => {
 
   return (
     <div className="flex flex-col p-4 bg-white">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-4 space-y-4 md:space-y-0">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-2 md:mb-4 space-y-1 md:space-y-0">
         <div
           className="flex flex-col text-center md:text-left"
           style={{ color: "#434040" }}
@@ -28,17 +29,17 @@ const Navbar = () => {
             Here’s what is happening in your Spidire account
           </p>
         </div>
-        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2">
+        <div className="flex items-center space-x-10 ml-auto">
           <div className="relative" style={{ color: "#434040" }}>
             <input
               type="text"
               placeholder="Search"
-              className="bg-gray-200 p-2 pl-8 rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+              className="bg-gray-200 p-1 pl-8 pr-4 rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
               style={{ borderColor: "#7C8FAC" }}
             />
             <FontAwesomeIcon
               icon={faSearch}
-              className="text-gray-400 absolute left-2 top-2.5"
+              className="text-gray-400 absolute left-2 top-1.5 m-1"
             />
           </div>
           <div className="flex items-center space-x-2">
@@ -55,30 +56,30 @@ const Navbar = () => {
               <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
             </label>
           </div>
-        </div>
-        <div className="relative">
-          <FontAwesomeIcon
-            icon={faBell}
-            className="w-6 h-6"
-            style={{ color: "#627891" }}
-          />
-          <span className="absolute top-0 right-0 inline-block w-3 h-3 bg-red-500 rounded-full"></span>
-        </div>
-        <div
-          className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center"
-          style={{ backgroundColor: "#627891" }}
-        >
-          {user.image ? (
-            <img
-              src={user.image}
-              alt="User"
-              className="w-full h-full object-cover"
+          <div className="relative">
+            <FontAwesomeIcon
+              icon={faBell}
+              className="w-6 h-6"
+              style={{ color: "#627891" }}
             />
-          ) : (
-            <span className="text-white text-lg">
-              {user.name.charAt(0).toUpperCase()}
-            </span>
-          )}
+            <span className="absolute top-0 right-0 inline-block w-3 h-3 bg-red-500 rounded-full"></span>
+          </div>
+          <div
+            className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center"
+            style={{ backgroundColor: "#627891" }}
+          >
+            {user.image ? (
+              <img
+                src={user.image}
+                alt="User"
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-white text-lg">
+                {user.name.charAt(0).toUpperCase()}
+              </span>
+            )}
+          </div>
         </div>
       </div>
       <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
@@ -89,14 +90,18 @@ const Navbar = () => {
           Dashboard
         </div>
         <div
-          className="flex items-center space-x-2 bg-light-blue-500 p-2 rounded-md"
+          className="flex items-center space-x-4 bg-light-blue-500 p-2 rounded-md relative"
           style={{ backgroundColor: "#cce7ff", color: "#434040" }}
         >
           <FontAwesomeIcon
             icon={faCalendarAlt}
             className="w-5 h-5 text-gray-500"
           />
-          <span className="text-gray-700">Monthly</span>
+          <span className="text-gray-700 mr-4">Monthly</span>
+          <FontAwesomeIcon
+            icon={faChevronDown}
+            className="w-3 h-3 text-gray-500 mt-3 right-2 top-1/2 transform -translate-y-1/2 ml-1"
+          />
         </div>
       </div>
     </div>

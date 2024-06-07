@@ -4,7 +4,7 @@ import { faPlus, faWifi } from "@fortawesome/free-solid-svg-icons";
 
 const TotalAmountCard = () => {
     return (
-        <div className="bg-blue-800 text-white rounded-lg shadow-md p-2 flex flex-col justify-between w-64 h-56 md:h-64 m-2">
+        <div className="bg-blue-800 text-white rounded-lg shadow-md p-2 flex flex-col justify-between w-96 h-56 md:h-64 m-2">
             <div className="flex justify-between items-start mt-5">
                 <div className="text-xs">Total amount</div>
                 <FontAwesomeIcon icon={faWifi} className="w-3 h-3" />
