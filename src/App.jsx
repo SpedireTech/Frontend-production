@@ -12,7 +12,7 @@ import widget from "./assets/widget.png";
 import cancel from "./assets/cancel.png";
 import { useEffect, useState } from "react";
 import { AiOutlineMail, AiOutlineWhatsApp } from "react-icons/ai";
-import DashBoard from "./pages/DashBoard";
+import DashBoard from "./pages/dashbaord/DashBoard";
 import About from "./pages/About";
 
 function App() {
