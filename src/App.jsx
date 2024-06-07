@@ -11,6 +11,7 @@ import DashBoard from "./pages/DashBoard";
 import CompleteRegistration from "./pages/registration/CompleteRegistration"
 import SendItem from "./pages/backend/SendItem";
 import DeliverItem from "./pages/backend/DeliverItem";
+import Payment from "./pages/backend/Payment";
 
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 					<Route path="/complete-registration" element={<CompleteRegistration />} />
 					<Route path="/send" element={<SendItem />} />
 					<Route path="/deliver" element={<DeliverItem />} />
+					<Route path="/pay" element={<Payment />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
