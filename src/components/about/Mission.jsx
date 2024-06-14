@@ -3,8 +3,8 @@ import mission from "../../assets/about/mission.svg";
 
 const Mission = () => {
 	return (
-		<div className="flex-grow flex flex-col md:flex-row md:w-[1280px] md:h-[500px] p-5 md:m-[6.25rem] md:gap-[130px] ">
-			<div className="flex-grow flex flex-col h-[379px] gap-[4px] md:w-[597px] md:h-[412px] md:gap-[16px]">
+		<div className="flex-grow flex flex-col md:flex-row p-5 md:px-10 md:py-10  ">
+			<div className="flex-grow flex flex-col h-[379px] md:mr-8 md:w-2/5 md:gap-4">
 				<div className=" text-base lg:text-[32px] text-[#4B4B4B] font-hg font-medium">
 					Our Mission
 				</div>
@@ -24,7 +24,7 @@ const Mission = () => {
 					positive impact.
 				</div>
 			</div>
-			<div className=" md:w-1/2 ">
+			<div className="flex items-end justify-end md:w-1/2">
 				<img src={mission} alt="mission" className="" />
 			</div>
 		</div>

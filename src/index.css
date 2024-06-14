@@ -2,90 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 #desc {
-  font-weight: 300;
-  color: #4b4b4b;
+	font-weight: 300;
+	color: #4b4b4b;
 }
 .hamburger {
-  width: 24px;
-  height: 24px;
-  transition: all 0.5s;
-  cursor: pointer;
-  position: relative;
+	width: 24px;
+	height: 24px;
+	transition: all 0.5s;
+	cursor: pointer;
+	position: relative;
 }
 
 .hamburger-top,
 .hamburger-middle,
 .hamburger-bottom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 2px;
-  transform: rotate(0);
-  transition: all 0.5s;
-  background-color: #000000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 2px;
+	transform: rotate(0);
+	transition: all 0.5s;
+	background-color: #000000;
 }
 .hamburger-middle {
-  transform: translateY(7px);
+	transform: translateY(7px);
 }
 .hamburger-bottom {
-  transform: translateY(14px);
+	transform: translateY(14px);
 }
 
 .open {
-  transform: rotate(90deg);
-  transform: translateY(0px);
+	transform: rotate(90deg);
+	transform: translateY(0px);
 }
 .open .hamburger-top {
-  transform: rotate(45deg) translateY(6px) translate(6px);
+	transform: rotate(45deg) translateY(6px) translate(6px);
 }
 
 .open .hamburger-middle {
-  display: none;
+	display: none;
 }
 .open .hamburger-bottom {
-  transform: rotate(-45deg) translateY(6px) translate(-6px);
+	transform: rotate(-45deg) translateY(6px) translate(-6px);
 }
 span.holder {
-  position: relative;
-  width: 220px;
+	position: relative;
+	width: 220px;
 
-  overflow: hidden;
+	overflow: hidden;
 }
 
 span.item {
-  position: absolute;
-  font-size: 1em;
-  transform-origin: 50% 70%;
+	position: absolute;
+	font-size: 1em;
+	transform-origin: 50% 70%;
 }
 
 span.item:nth-child(1) {
-  animation: flipUp 6s cubic-bezier(0.68, -0.55, 0.26, 1.55) 0s both infinite;
+	animation: flipUp 6s cubic-bezier(0.68, -0.55, 0.26, 1.55) 0s both infinite;
 }
 
 span.item:nth-child(2) {
-  animation: flipUp 6s cubic-bezier(0.68, -0.55, 0.26, 1.55) 1.5s both infinite;
+	animation: flipUp 6s cubic-bezier(0.68, -0.55, 0.26, 1.55) 1.5s both infinite;
 }
 span.item:nth-child(3) {
-  animation: flipUp 6s cubic-bezier(0.68, -0.55, 0.26, 1.55) 3s both infinite;
+	animation: flipUp 6s cubic-bezier(0.68, -0.55, 0.26, 1.55) 3s both infinite;
 }
-
+.group:hover .group-focus:block {
+	display: block;
+}
 /* ANIMATION */
 
 @keyframes flipUp {
-  0% {
-    opacity: 0;
-    margin-top: -100px;
-  }
-  13.2% {
-    opacity: 1;
-    margin-top: 0;
-    transform: rotateX(0deg);
-  }
-  33%,
-  100% {
-    opacity: 0;
-    margin-top: 0;
-    transform: rotateX(90deg);
-  }
+	0% {
+		opacity: 0;
+		margin-top: -100px;
+	}
+	13.2% {
+		opacity: 1;
+		margin-top: 0;
+		transform: rotateX(0deg);
+	}
+	33%,
+	100% {
+		opacity: 0;
+		margin-top: 0;
+		transform: rotateX(90deg);
+	}
 }
