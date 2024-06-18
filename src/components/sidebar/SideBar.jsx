@@ -3,7 +3,7 @@ import SideBarData from "./SideBarData";
 
 const SideBar = () => {
   return (
-    <div className="w-full flex justify-center bg-hero h-screen xl:h-full">
+    <div className="w-full flex justify-center bg-hero h-screen xl:h-[854px]">
       <SideBarData />
     </div>
   );

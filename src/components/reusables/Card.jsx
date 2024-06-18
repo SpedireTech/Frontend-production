@@ -4,21 +4,28 @@ import PropTypes from "prop-types";
 const Card = ({
   text,
   amount,
-  chartIcon,
-  background,
+  icon: Icon,
+  backgroundColor,
   buttonBg,
   textColor,
-  icon,
+  chartIcon: IconChart,
+  iconColor,
+  iconColor2,
 }) => {
   return (
     <div
       className="max-w-[302px] h-[151px] rounded-xl shadow-bottomCustom"
-      style={{ backgroundColor: `${background}` }}
+      style={{ backgroundColor }}
     >
       <div className="w-full h-full rounded-lg p-3">
         <div className="flex items-center gap-x-4">
           <div className="bg-greyLight w-[27.61px] h-[27.61px] rounded-full flex justify-center items-center">
-            {icon}
+            {Icon && (
+              <Icon
+                className="w-[16.56px] h-[16.56px]"
+                style={{ color: iconColor }}
+              />
+            )}
           </div>
           <p className="text-gray capitalize text-[16px] font-hg font-semibold">
             {text}
@@ -38,8 +45,18 @@ const Card = ({
               last week
             </p>
             <div className="bg-greyLight w-[58px] h-[20.66px] gap-x-0.5 rounded-full flex justify-center items-center">
-              {chartIcon}
-              <p className="text-[10px] font-hg font-normal">+10%</p>
+              {IconChart && (
+                <IconChart
+                  className="w-[16.56px] h-[16.56px]"
+                  style={{ color: iconColor2 }}
+                />
+              )}
+              <p
+                className="text-[10px] font-hg font-normal"
+                style={{ color: iconColor2 }}
+              >
+                +10%
+              </p>
             </div>
           </div>
           <button
