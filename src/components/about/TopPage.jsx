@@ -5,6 +5,7 @@ import Slider from "../TextSlider/Slider";
 const TopPage = () => {
   return (
     <div
+      data-aos="zoom-in"
       className="relative max-w-screen w-full h-[320px] lg:h-[760px] bg-greyLight"
       id="topPage"
     >
