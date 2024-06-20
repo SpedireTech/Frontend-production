@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineMail, AiOutlineWhatsApp } from "react-icons/ai";
 import DashBoard from "./pages/dashbaord/DashBoard";
 import About from "./pages/About";
+import DeliveryForm from "./pages/sendItem/DeliveryForm"
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -65,6 +66,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/about" element={<About />} />
+          <Route path="/deliver-item" element={<DeliveryForm />} />
         </Routes>
       </BrowserRouter>
     </div>

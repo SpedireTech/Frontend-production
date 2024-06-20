@@ -1,0 +1,107 @@
+import React from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FaSearch } from 'react-icons/fa';
+
+const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
+  return (
+    <div className="p-4">
+      <h2 className="text-xl mb-4">Sender</h2>
+      <div className="relative mb-4">
+        <FaSearch className="absolute top-4 left-3 text-gray-500" />
+        <input
+          type="text"
+          name="searchDetails"
+          placeholder="Search saved details"
+          className="pl-10 mt-1 block w-[815px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Address</label>
+        <input
+          type="text"
+          name="senderAddress"
+          value={formData.senderAddress}
+          onChange={handleChange}
+          className="mt-1 block w-[815px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Phone Number</label>
+        <input
+          type="text"
+          name="senderPhoneNumber"
+          value={formData.senderPhoneNumber}
+          onChange={handleChange}
+          className="mt-1 block w-[815px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+        />
+      </div>
+      <div className="mb-4 flex space-x-3">
+        <div>
+          <label className="block text-gray-700">First Name</label>
+          <input
+            type="text"
+            name="senderFirstName"
+            value={formData.senderFirstName}
+            onChange={handleChange}
+            className="mt-1 block w-[406px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+          />
+        </div>
+        <div>
+          <label className="block text-gray-700">Last Name</label>
+          <input
+            type="text"
+            name="senderLastName"
+            value={formData.senderLastName}
+            onChange={handleChange}
+            className="mt-1 block w-[406px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+          />
+        </div>
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Pick Up Note</label>
+        <input
+          type="text"
+          name="pickUpNote"
+          value={formData.pickUpNote}
+          onChange={handleChange}
+          className="mt-1 block w-[816px] h-[96px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Due Date</label>
+        <DatePicker
+          selected={formData.dueDate}
+          onChange={(date) => handleDateChange(date, 'dueDate')}
+          className="mt-1 block w-[815px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Due Time</label>
+        <input
+          type="time"
+          name="dueTime"
+          value={formData.dueTime}
+          onChange={handleChange}
+          className="mt-1 block w-[815px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-md"
+        />
+      </div>
+      <div className="flex items-center mb-4">
+        <input
+          type="checkbox"
+          name="saveAddress"
+          id="saveAddress"
+          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+        />
+        <label htmlFor="saveAddress" className="ml-2 block text-sm text-gray-900">
+          Save this address
+        </label>
+      </div>
+      <button onClick={nextStep} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md">
+        Next
+      </button>
+    </div>
+  );
+};
+
+export default SenderForm;
