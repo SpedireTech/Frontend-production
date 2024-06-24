@@ -4,7 +4,7 @@ import axios from "axios";
 import SenderForm from "../sendItem/SenderForm";
 import ReceiverForm from "../sendItem/RecieverForm";
 import ConfirmationModal from "../sendItem/ConfirmationModal";
-
+import logo from "../../assets/spedire.png";
 import { getStoredItem } from "../../util/lib";
 
 const DeliveryForm = () => {
@@ -77,28 +77,40 @@ const DeliveryForm = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
-      <div className="w-full max-w-2xl p-4">
-        <div className="flex justify-end mb-4">
-          <button
-            onClick={() => navigate("/dashboard")}
-            className="text-gray-500 hover:text-gray-700"
+      <div className="fixed top-4 left-4">
+        <img src={logo} alt="Logo" />
+      </div>
+      <div className="fixed top-4 right-8 flex justify-end mb-4">
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div className="mt-4 flex space-x-4  top-4 ">
+        <span className={`text-lg font-semibold ${step === 1 ? 'text-blue-500' : 'text-gray-500'}`}>
+          Sender
+        </span>
+        <p>-</p>
+        <span className={`text-lg font-semibold ${step === 2 ? 'text-blue-500' : 'text-gray-500'}`}>
+          Receiver
+        </span>
+      </div>
+      <div className="w-full max-w-2xl p-4 mt-8">
         {step === 1 && (
           <SenderForm
             formData={formData}

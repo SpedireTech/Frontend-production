@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import NavbarDesktop from "./NavbarDesktop";
 import NavBarMobile from "./NavbarMobile";
 import TotalAmountCard from "./TotalAmountCard";
-
+import SideBar from "../../components/sidebar/SideBar";
+import Cards from "../../components/reusables/Cards";
 import { useNavigate } from "react-router-dom";
 
 const DashBoard = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -20,18 +19,23 @@ const DashBoard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {isDesktop ? <NavbarDesktop /> : <NavBarMobile />}
-      <div className="flex-grow flex flex-col md:flex-row items-start p-4 md:p-1">
-        <TotalAmountCard />
+    <div className="flex w-full h-screen">
+      <div className="w-[20%] bg-blue-500">
+        <SideBar />
       </div>
-      <div className="flex-grow flex flex-col md:flex-row items-start p-4 md:p-1">
-        <button
-          onClick={() => navigate("/deliver-item")}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md"
-        >
-          Open Delivery Form
-        </button>
+      <div className="w-[80%] flex flex-col">
+        {isDesktop ? <NavbarDesktop /> : <NavBarMobile />}
+        <div className="p-4 w-full gap-8 flex flex-col">
+          <div className="flex w-full justify-between items-center">
+            <div>
+              <TotalAmountCard />
+            </div>
+            <div className="  flex flex-wrap">
+              <Cards />
+              
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
