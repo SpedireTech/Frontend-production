@@ -5,11 +5,11 @@ import Footer from "../../components/Footer/Footer.jsx";
 
 const StoryValues = () => {
   return (
-    <div>
+    <div data-aos="zoom-in">
       <div className="flex px-10 flex-col items-center">
         <div className="w-full rounded-lg bg-button shadow-lg">
-        <div className="flex flex-col-reverse md:flex-row items-center">
-          <div className="w-full h-full md:w-1/2 flex justify-center md:justify-start">
+          <div className="flex flex-col-reverse md:flex-row items-center">
+            <div className="w-full h-full md:w-1/2 flex justify-center md:justify-start">
               <img
                 src={OurTeam}
                 alt="Our Story"

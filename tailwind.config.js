@@ -20,6 +20,7 @@ export default {
         gray: "#4B4B4B",
         greyLight: "#FBFBFB",
         lightBlue: "#DAE6F4",
+        sendPurple: "#792FF3",
       },
       animation: {
         "infinite-scroll": "infinite-scroll 25s linear infinite",
@@ -33,7 +34,8 @@ export default {
     },
     fontFamily: {
       hg: ["Hanken Grotesk"],
-    },    
+      inter: ["Inter"],
+    },
   },
   plugins: [],
 };
