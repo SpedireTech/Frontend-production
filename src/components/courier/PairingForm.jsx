@@ -1,20 +1,69 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import spedire from "../../assets/spedire.png";
 import InputComponent from "../../components/reusables/InputComponent";
+import { pairCourier } from "../../util/http";
 
 const PairingForm = () => {
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		currentLocation: "",
 		destination: "",
+		weight: "",
+		category: "",
 	});
+	async function submitHandler() {
+		const currentToastId = toast.loading("Loading...");
+		if (
+			!formData.currentLocation ||
+			!formData.destination ||
+			!formData.weight ||
+			!formData.category
+		) {
+			toast.error("Kindly fill out all fields", {
+				id: currentToastId,
+				position: "top-right",
+				duration: 9000,
+			});
+			return;
+		}
+
+		const data = {
+			currentLocation: formData.currentLocation,
+			destination: formData.destination,
+			weight: formData.weight,
+			category: formData.category,
+		};
+
+		try {
+			const res = await pairCourier(data);
+			toast.success(`${res?.message || "Successfully Paired"}`, {
+				id: currentToastId,
+				duration: 3000,
+				position: "top-right",
+			});
+		} catch (error) {
+			toast.error(
+				`${error?.response?.data.message || "something went wrong"}`,
+				{
+					id: currentToastId,
+					duration: 3000,
+					position: "top-right",
+				}
+			);
+		}
+	}
 
 	return (
 		<div className="min-h-screen relative flex items-center justify-center bg-gray-100">
-			<div className="absolute top-4 left-4">
+			<div className="top-4 left-4 fixed">
 				<img src={spedire} alt="Spedire" className="h-10" />
 			</div>
-			<div className=" bg-white p-8 rounded-lg shadow-lg lg:max-w-[38rem] max-w-md md:w-full overflow-y-hidden">
-				<button className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+			<div className=" bg-white p-8 rounded-lg shadow-lg lg:max-w-[42rem] max-w-md md:w-full md:mt-16">
+				<button
+					className="fixed top-4 right-4"
+					onClick={() => navigate("/dashboard")}
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -35,34 +84,37 @@ const PairingForm = () => {
 					Kindly enter the following details.
 				</p>
 				<form>
-					<InputComponent
-						label="Current Location"
-						placeholder="Enter current location"
-						type="text"
-						onChange={(e) =>
-							setFormData({ ...formData, currentLocation: e.target.value })
-						}
-						value={formData.currentLocation}
-					/>
-					<InputComponent
-						label="Destination"
-						placeholder="Enter Destination"
-						type="text"
-						onChange={(e) =>
-							setFormData({ ...formData, destination: e.target.value })
-						}
-						value={formData.destination}
-					/>
-
 					<div className="mb-4">
-						<label
-							className="block text-base font-semibold text-[#4B4B4B] mb-2"
-							htmlFor="category"
-						>
+						<InputComponent
+							label="Current Location"
+							placeholder="Enter current location"
+							type="text"
+							onChange={(e) =>
+								setFormData({ ...formData, currentLocation: e.target.value })
+							}
+							value={formData.currentLocation}
+						/>
+					</div>
+					<div className="mb-4">
+						<InputComponent
+							label="Destination"
+							placeholder="Enter Destination"
+							type="text"
+							onChange={(e) =>
+								setFormData({ ...formData, destination: e.target.value })
+							}
+							value={formData.destination}
+						/>
+					</div>
+					<div className="mb-4">
+						<label className="block text-base font-semibold text-[#4B4B4B] mb-2">
 							Category
 						</label>
 						<select
-							id="category"
+							onChange={(e) =>
+								setFormData({ ...formData, category: e.target.value })
+							}
+							value={formData.category}
 							className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
 						>
 							<option>Electronics</option>
@@ -72,14 +124,14 @@ const PairingForm = () => {
 						</select>
 					</div>
 					<div className="mb-4">
-						<label
-							className="block text-[#4B4B4B] text-base font-semibold mb-2"
-							htmlFor="weight"
-						>
+						<label className="block text-[#4B4B4B] text-base font-semibold mb-2">
 							Preferred Item Weight
 						</label>
 						<select
-							id="weight"
+							onChange={(e) =>
+								setFormData({ ...formData, weight: e.target.value })
+							}
+							value={formData.weight}
 							className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
 						>
 							<option>0-5kg</option>
@@ -90,6 +142,7 @@ const PairingForm = () => {
 					</div>
 					<button
 						type="submit"
+						onClick={submitHandler}
 						className="w-full bg-[#08418A] text-white px-2.5 py-3.5 rounded-[14px] hover:bg-opacity-80 transition duration-300"
 					>
 						Submit

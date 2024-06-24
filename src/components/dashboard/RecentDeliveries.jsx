@@ -53,7 +53,7 @@ const RecentDeliveries = () => {
 	const getStatusClasses = (status) => {
 		switch (status) {
 			case "Successful":
-				return "bg-green-100 text-green-600 my-2 mx-2 rounded-md h-1/2";
+				return "bg-green-100 text-green-600";
 			case "Pending":
 				return "bg-blue-100 text-blue-800";
 			case "Failed":
@@ -64,7 +64,7 @@ const RecentDeliveries = () => {
 	};
 
 	return (
-		<div className="max-w-[70%] mx-auto p-4  border-2 border-slate-500 rounded-md">
+		<div className="max-w-[70%] mx-auto p-4 rounded-lg shadow">
 			<div className="flex justify-between items-center">
 				<h2 className="text-xl font-bold">Recent Deliveries</h2>
 				<button className="text-blue-600">See All</button>
@@ -88,7 +88,7 @@ const RecentDeliveries = () => {
 					}`}
 					onClick={() => setCurrentTab("Successful")}
 				>
-					Successful ({" "}
+					Successful (
 					{
 						deliveries.filter((delivery) => delivery.status === "Successful")
 							.length
@@ -103,7 +103,7 @@ const RecentDeliveries = () => {
 					}`}
 					onClick={() => setCurrentTab("Pending")}
 				>
-					Pending ({" "}
+					Pending (
 					{
 						deliveries.filter((delivery) => delivery.status === "Pending")
 							.length
@@ -127,40 +127,60 @@ const RecentDeliveries = () => {
 				<table className="min-w-full bg-white">
 					<thead>
 						<tr>
-							<th className="py-2 px-4 border-b">Customer</th>
-							<th className="py-2 px-4 border-b">Order ID</th>
-							<th className="py-2 px-4 border-b whitespace-nowrap">Pick Up</th>
-							<th className="py-2 px-4 border-b">Destination</th>
-							<th className="py-2 px-4 border-b">Date</th>
-							<th className="py-2 px-4 border-b">Amount</th>
-							<th className="py-2 px-4 border-b">Weight</th>
-							<th className="py-2 px-4 border-b">Status</th>
-							<th className="py-2 px-4 border-b">Action</th>
+							<th className="py-2 px-4 border-b border-zinc-400">Customer</th>
+							<th className="py-2 px-4 border-b border-zinc-400">Order ID</th>
+							<th className="py-2 px-4 border-b border-zinc-400 whitespace-nowrap">
+								Pick Up
+							</th>
+							<th className="py-2 px-4 border-b border-zinc-400">
+								Destination
+							</th>
+							<th className="py-2 px-4 border-b border-zinc-400">Date</th>
+							<th className="py-2 px-4 border-b border-zinc-400">Amount</th>
+							<th className="py-2 px-4 border-b border-zinc-400">Weight</th>
+							<th className="py-2 px-4 border-b border-zinc-400">Status</th>
+							<th className="py-2 px-4 border-b border-zinc-400">Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						{getFilteredDeliveries().map((delivery) => (
 							<tr key={delivery.orderId} className="text-center">
-								<td className="py-2 px-4 border-b">{delivery.customer}</td>
-								<td className="py-2 px-4 border-b">{delivery.orderId}</td>
-								<td className="py-2 px-4 border-b">{delivery.pickup}</td>
-								<td className="py-2 px-4 border-b">{delivery.destination}</td>
-								<td className="py-2 px-4 border-b">{delivery.date}</td>
-								<td className="py-2 px-4 border-b">{delivery.amount}</td>
-								<td className="py-2 px-4 border-b">{delivery.weight}</td>
-								<td
-									className={`py-2 px-4 border-b ${getStatusClasses(
-										delivery.status
-									)}`}
-								>
-									{delivery.status}
+								<td className="py-2 px-4 border-b border-zinc-400 whitespace-nowrap">
+									{delivery.customer}
 								</td>
-								<td className="py-2 px-4 border-b relative group">
+								<td className="py-2 px-4 border-b border-zinc-400">
+									{delivery.orderId}
+								</td>
+								<td className="py-2 px-4 border-b border-zinc-400">
+									{delivery.pickup}
+								</td>
+								<td className="py-2 px-4 border-b border-zinc-400">
+									{delivery.destination}
+								</td>
+								<td className="py-2 px-4 border-b border-zinc-400">
+									{delivery.date}
+								</td>
+								<td className="py-2 px-4 border-b border-zinc-400">
+									{delivery.amount}
+								</td>
+								<td className="py-2 px-4 border-b border-zinc-400">
+									{delivery.weight}
+								</td>
+								<td className="py-2 px-4 border-b border-zinc-400">
+									<div
+										className={`w-full h-full py-1 px-1 rounded-lg ${getStatusClasses(
+											delivery.status
+										)}`}
+									>
+										{delivery.status}
+									</div>
+								</td>
+								<td className="py-2 px-4 border-b border-zinc-400 relative group">
 									<button className="focus:outline-none">
 										<div className="flex flex-col space-y-1">
-											<div className="w-1 h-1 bg-gray-600 rounded-full"></div>
-											<div className="w-1 h-1 bg-gray-600 rounded-full"></div>
-											<div className="w-1 h-1 bg-gray-600 rounded-full"></div>
+											<div className="w-1 h-1 bg-black rounded-full"></div>
+											<div className="w-1 h-1 bg-black rounded-full"></div>
+											<div className="w-1 h-1 bg-black rounded-full"></div>
 										</div>
 									</button>
 									<div className="absolute top-0 right-0 mt-8 w-32 bg-white shadow-lg rounded-lg hidden group-focus:block group-hover:block">

@@ -41,3 +41,12 @@ export async function resetPassword(data) {
 	console.log(response);
 	return response.data;
 }
+export async function pairCourier(data) {
+	const response = await axios.post(`${USER_API_URL}/forgotPassword`, data, {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+	console.log(response);
+	return response.data;
+}
