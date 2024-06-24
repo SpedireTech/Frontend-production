@@ -10,7 +10,7 @@ const DashBoard = () => {
 			<div className="flex-grow flex flex-col items-center justify-center">
 				DashBoard
 			</div>
-			<div className="flex flex-row w-full gap-2">
+			<div className="flex flex-col md:flex-row w-full gap-2">
 				<RecentDeliveries />
 				<Map />
 			</div>

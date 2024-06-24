@@ -43,7 +43,6 @@ const RecentDeliveries = () => {
 			weight: "10kg",
 			status: "Successful",
 		},
-		// Add more deliveries as needed
 	];
 
 	const getFilteredDeliveries = () => {
@@ -54,7 +53,7 @@ const RecentDeliveries = () => {
 	const getStatusClasses = (status) => {
 		switch (status) {
 			case "Successful":
-				return "bg-green-100 text-green-600";
+				return "bg-green-100 text-green-600 my-2 mx-2 rounded-md h-1/2";
 			case "Pending":
 				return "bg-blue-100 text-blue-800";
 			case "Failed":

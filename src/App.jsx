@@ -9,6 +9,7 @@ import LandingPage from "./pages/landing/LandingPage";
 import ResetPassword from "./pages/auth/ResetPassword";
 import DashBoard from "./pages/DashBoard";
 import About from "./pages/About";
+import PairingForm from "./components/courier/PairingForm";
 
 function App() {
 	return (
@@ -23,7 +24,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
 					<Route path="/reset-password" element={<ResetPassword />} />
-					<Route path="/dashboard" element={<DashBoard />} />
+					<Route path="/dashboard" element={<PairingForm />} />
 					<Route path="/about" element={<About />} />
 				</Routes>
 			</BrowserRouter>
