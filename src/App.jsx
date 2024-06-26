@@ -7,7 +7,6 @@ import Login from "./pages/auth/Login";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import LandingPage from "./pages/landing/LandingPage";
 import ResetPassword from "./pages/auth/ResetPassword";
-import AboutPage from "./pages/About";
 import widget from "./assets/widget.png";
 import cancel from "./assets/cancel.png";
 import { useEffect, useState } from "react";
