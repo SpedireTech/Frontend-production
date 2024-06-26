@@ -20,7 +20,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
           <p>Search from your saved addresses or create a new one</p>
         </div>
         <div className="relative mb-4">
-          <FaSearch className="absolute top-4 left-3 text-gray-500" />
+          <FaSearch className="absolute top-4 left-3 text-gray-500 mt-2" style={{ color: "#ccc" }} />
           <input
             type="text"
             name="searchDetails"
