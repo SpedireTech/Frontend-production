@@ -10,6 +10,11 @@
     ;
   }
 
+
+.input-box:focus {
+  border-color: #add8e6; 
+}
+
   .button {
     background-color: #3498db; 
     color: white; 
