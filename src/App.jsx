@@ -10,6 +10,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import DashBoard from "./pages/DashBoard";
 import About from "./pages/About";
 import PairingForm from "./components/courier/PairingForm";
+import OnboardingForm from "./components/courier/OnboardingForm";
 
 function App() {
 	return (
@@ -24,7 +25,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
 					<Route path="/reset-password" element={<ResetPassword />} />
-					<Route path="/dashboard" element={<DashBoard />} />
+					<Route path="/dashboard" element={<OnboardingForm />} />
 					<Route path="/about" element={<About />} />
 				</Routes>
 			</BrowserRouter>
