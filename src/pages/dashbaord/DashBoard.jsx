@@ -4,7 +4,8 @@ import NavBarMobile from "./NavbarMobile";
 import TotalAmountCard from "./TotalAmountCard";
 import SideBar from "../../components/sidebar/SideBar";
 import Cards from "../../components/reusables/Cards";
-import { useNavigate } from "react-router-dom";
+import Map from "./Map";
+import RecentDeliveries from "./RecentDeliveries";
 
 const DashBoard = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
@@ -30,10 +31,13 @@ const DashBoard = () => {
             <div>
               <TotalAmountCard />
             </div>
-            <div className="  flex flex-wrap">
+            <div className="flex flex-wrap">
               <Cards />
-              
             </div>
+          </div>
+          <div className="flex flex-col md:flex-row w-full gap-2">
+            <RecentDeliveries />
+            <Map />
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ import { AiOutlineMail, AiOutlineWhatsApp } from "react-icons/ai";
 import DashBoard from "./pages/dashbaord/DashBoard";
 import About from "./pages/About";
 import DeliveryForm from "./pages/sendItem/DeliveryForm"
+import PairingForm from "./components/courier/PairingForm";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -67,6 +68,7 @@ function App() {
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/about" element={<About />} />
           <Route path="/deliver-item" element={<DeliveryForm />} />
+          <Route path="/request-item" element={<PairingForm />} />
         </Routes>
       </BrowserRouter>
     </div>

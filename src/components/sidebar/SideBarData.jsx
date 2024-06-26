@@ -40,6 +40,9 @@ const SideBarData = () => {
     if (id === 2) {
       navigate("/deliver-item");
     }
+    if (id === 3) {
+      navigate("/request-item");
+    }
   };
 
   useEffect(() => {

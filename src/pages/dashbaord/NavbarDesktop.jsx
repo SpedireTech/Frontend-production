@@ -34,11 +34,12 @@ const Navbar = () => {
               type="text"
               placeholder="Search"
               className="bg-gray-200 p-1 pl-8 pr-4 rounded-md border focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-              style={{ borderColor: "#7C8FAC" }}
+              style={{ color: "#ccc" }}
             />
             <FontAwesomeIcon
               icon={faSearch}
-              className="text-gray-400 absolute left-2 top-1.5 m-1"
+              className=" absolute left-2 top-1.5 m-1"
+              style={{ color: "#ccc" }}
             />
           </div>
           <div className="flex items-center space-x-2">

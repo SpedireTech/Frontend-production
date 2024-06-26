@@ -2,6 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaSearch } from "react-icons/fa";
+import flag from "../../assets/NIGIcon.svg";
 
 const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
   const handleSubmit = (event) => {
@@ -16,8 +17,8 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
     >
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
         <div className="mb-4">
-          <h2 className="text-xl">Sender</h2>
-          <p>Search from your saved addresses or create a new one</p>
+          <h2 className="text-2xl font-semibold">Sender</h2>
+          <p className="text-xm text-[#4B4B4B]"> Search from your saved addresses or create a new one</p>
         </div>
         <div className="relative mb-4">
           <FaSearch className="absolute top-4 left-3 text-gray-500 mt-2" style={{ color: "#ccc" }} />
@@ -29,7 +30,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Address</label>
+          <label className="block text-base font-semibold text-[#4B4B4B]">Address</label>
           <input
             type="text"
             name="senderAddress"
@@ -39,18 +40,22 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Phone Number</label>
-          <input
-            type="text"
-            name="senderPhoneNumber"
-            value={formData.senderPhoneNumber}
-            onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-          />
+          <label className="block text-base font-semibold text-[#4B4B4B]">Phone Number</label>
+          <div className="relative mt-1">
+            <img src={flag} alt="Nigerian Flag" className="absolute top-1/2 transform -translate-y-1/2 left-3 w-6 h-6" />
+            {/* <span className="absolute top-1/2 transform -translate-y-1/2 left-12">+234</span> */}
+            <input
+              type="text"
+              name="senderPhoneNumber"
+              value={formData.senderPhoneNumber}
+              onChange={handleChange}
+              className="input-box pl-20 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            />
+          </div>
         </div>
         <div className="mb-4 flex space-x-3">
           <div className="w-1/2">
-            <label className="block text-gray-700">First Name</label>
+            <label className="block text-base font-semibold text-[#4B4B4B]">First Name</label>
             <input
               type="text"
               name="senderFirstName"
@@ -60,7 +65,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             />
           </div>
           <div className="w-1/2">
-            <label className="block text-gray-700">Last Name</label>
+            <label className="block text-base font-semibold text-[#4B4B4B]">Last Name</label>
             <input
               type="text"
               name="senderLastName"
@@ -72,7 +77,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
         </div>
         <div className="mb-4 flex space-x-3">
           <div className="w-1/2">
-            <label className="block text-gray-700">Due Date</label>
+            <label className="block text-base font-semibold text-[#4B4B4B]">Due Date</label>
             <DatePicker
               selected={formData.dueDate}
               onChange={(date) => handleDateChange(date, "dueDate")}
@@ -80,7 +85,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             />
           </div>
           <div className="w-1/2">
-            <label className="block text-gray-700">Due Time</label>
+            <label className="block text-base font-semibold text-[#4B4B4B]">Due Time</label>
             <input
               type="time"
               name="dueTime"
@@ -91,7 +96,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
           </div>
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Pick Up Note</label>
+          <label className="block text-base font-semibold text-[#4B4B4B]">Pick Up Note</label>
           <input
             type="text"
             name="pickUpNote"
@@ -109,7 +114,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
           />
           <label
             htmlFor="saveAddress"
-            className="ml-2 block text-sm text-gray-900"
+            className="ml-2 block text-sm  font-semibold text-[#4B4B4B]"
           >
             Save this address
           </label>
