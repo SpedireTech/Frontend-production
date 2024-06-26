@@ -21,11 +21,38 @@ const OnboardingForm = () => {
 						<p className="text-gray-600 mb-2">
 							Upload your best photo so customers can recognize you
 						</p>
-						<input
-							type="file"
-							accept="image/png, image/jpeg, application/pdf"
-							className="w-full p-2 border rounded"
-						/>
+						<div className="mb-4">
+							<label className="block text-base font-semibold text-[#4B4B4B] mb-4">
+								Upload a clear item picture (Optional)
+							</label>
+							<div className="flex items-center justify-center w-full ">
+								<label
+									className="input-box flex flex-col items-center justify-center w-[400px] h-[200px]  rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+									style={{ border: "1px solid #ccc" }}
+								>
+									<div className="flex flex-col items-center justify-center pt-5 pb-6">
+										<img
+											src={UploadImage}
+											alt="Upload"
+											className="w-15 h-15 mb-3"
+										/>
+										<p className="mb-2 text-sm text-gray-500">
+											<span className="font-semibold">Upload</span>
+										</p>
+										<p className="text-xs text-gray-500">
+											PNG, JPG, PDF (MAX. 800x400px)
+										</p>
+									</div>
+									<input
+										type="file"
+										className="hidden"
+										name="itemImage"
+										accept="image/png, image/jpeg, application/pdf"
+										onChange={handleImageChange}
+									/>
+								</label>
+							</div>
+						</div>
 					</div>
 					<div className="mb-6">
 						<h2 className="text-xl font-semibold mb-2">ID identification</h2>
