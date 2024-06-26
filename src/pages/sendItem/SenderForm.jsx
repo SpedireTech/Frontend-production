@@ -39,11 +39,11 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-base font-semibold text-[#4B4B4B]">Phone Number</label>
           <div className="relative mt-1">
             <img src={flag} alt="Nigerian Flag" className="absolute top-1/2 transform -translate-y-1/2 left-3 w-6 h-6" />
-            {/* <span className="absolute top-1/2 transform -translate-y-1/2 left-12">+234</span> */}
+            <span className="absolute top-1/2 transform -translate-y-1/2 left-12">+234</span>
             <input
               type="text"
               name="senderPhoneNumber"
@@ -74,7 +74,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
               className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             />
           </div>
-        </div>
+        </div> */}
         <div className="mb-4 flex space-x-3">
           <div className="w-1/2">
             <label className="block text-base font-semibold text-[#4B4B4B]">Due Date</label>

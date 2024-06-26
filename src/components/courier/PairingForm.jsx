@@ -59,7 +59,7 @@ const PairingForm = () => {
 			<div className="top-4 left-4 fixed">
 				<img src={spedire} alt="Spedire" className="h-10" />
 			</div>
-			<div className=" bg-white p-8 rounded-lg shadow-lg lg:max-w-[42rem] max-w-md md:w-full md:mt-16">
+			<div className=" bg-white p-8 rounded-lg lg:max-w-[42rem] max-w-md md:w-full md:mt-16"  style={{ border: "1px solid #ccc" }}>
 				<button
 					className="fixed top-4 right-4"
 					onClick={() => navigate("/dashboard")}
@@ -106,7 +106,7 @@ const PairingForm = () => {
 							value={formData.destination}
 						/>
 					</div>
-					<div className="mb-4">
+					{/* <div className="mb-4">
 						<label className="block text-base font-semibold text-[#4B4B4B] mb-2">
 							Category
 						</label>
@@ -122,8 +122,8 @@ const PairingForm = () => {
 							<option>Books</option>
 							<option>Other</option>
 						</select>
-					</div>
-					<div className="mb-4">
+					</div> */}
+					{/* <div className="mb-4">
 						<label className="block text-[#4B4B4B] text-base font-semibold mb-2">
 							Preferred Item Weight
 						</label>
@@ -139,7 +139,7 @@ const PairingForm = () => {
 							<option>10-15kg</option>
 							<option>15-20kg</option>
 						</select>
-					</div>
+					</div> */}
 					<button
 						type="submit"
 						onClick={submitHandler}

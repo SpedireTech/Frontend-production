@@ -1,6 +1,7 @@
 import React from "react";
 import UploadImage from "../../assets/UploadImageIcon.svg";
 import flag from "../../assets/NIGIcon.svg";
+import { FaSearch } from "react-icons/fa";
 
 const ReceiverForm = ({
   formData,
@@ -20,16 +21,17 @@ const ReceiverForm = ({
       style={{ border: "1px solid #ccc" }}
     >
       <form onSubmit={onSubmit} className="max-w-4xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4">Add Receiver</h2>
-        <div className="mb-4">
-          <label className="block text-base font-semibold text-[#4B4B4B]">Name</label>
+      <div className="mb-4">
+          <h2 className="text-2xl font-semibold">Add Reciever</h2>
+          <p className="text-xm text-[#4B4B4B]"> Search from your saved addresses or create a new one</p>
+        </div>
+        <div className="relative mb-4">
+          <FaSearch className="absolute top-4 left-3 text-gray-500 mt-2" style={{ color: "#ccc" }} />
           <input
             type="text"
-            name="receiverName"
-            value={formData.receiverName}
-            onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
+            name="searchDetails"
+            placeholder="Search saved details"
+            className="input-box pl-10 mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
         </div>
         <div className="mb-4">
@@ -43,6 +45,18 @@ const ReceiverForm = ({
             style={{ borderColor: "#ccc" }}
           />
         </div>
+        <div className="mb-4">
+          <label className="block text-base font-semibold text-[#4B4B4B]">Name</label>
+          <input
+            type="text"
+            name="receiverName"
+            value={formData.receiverName}
+            onChange={handleChange}
+            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            style={{ borderColor: "#ccc" }}
+          />
+        </div>
+       
         <div className="mb-4">
           <label className="block text-base font-semibold text-[#4B4B4B]">Phone Number</label>
           <div className="relative mt-1">
@@ -90,7 +104,7 @@ const ReceiverForm = ({
             style={{ borderColor: "#ccc" }}
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-base font-semibold text-[#4B4B4B]">Package Weight (kg)</label>
           <input
             type="text"
@@ -100,7 +114,7 @@ const ReceiverForm = ({
             className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
-        </div>
+        </div> */}
         <div className="mb-4">
           <label className="block text-base font-semibold text-[#4B4B4B] mb-4">
             Upload a clear item picture (Optional)
@@ -143,6 +157,20 @@ const ReceiverForm = ({
             className="input-box mt-1 block w-full h-[96px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
+        </div>
+        <div className="flex items-center mb-8">
+          <input
+            type="checkbox"
+            name="saveAddress"
+            id="saveAddress"
+            className="input-box h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          />
+          <label
+            htmlFor="saveAddress"
+            className="ml-2 block text-sm  font-semibold text-[#4B4B4B]"
+          >
+            Save this address
+          </label>
         </div>
         <div className="flex justify-between">
           <button
