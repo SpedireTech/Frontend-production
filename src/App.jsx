@@ -25,7 +25,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
 					<Route path="/reset-password" element={<ResetPassword />} />
-					<Route path="/dashboard" element={<OnboardingForm />} />
+					<Route path="/dashboard" element={<DashBoard />} />
 					<Route path="/about" element={<About />} />
 				</Routes>
 			</BrowserRouter>

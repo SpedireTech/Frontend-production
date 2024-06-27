@@ -13,7 +13,7 @@ export default function InputComponent({
 			<input
 				type={type}
 				readOnly={readOnly}
-				className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
+				className="w-full px-2.5 py-3.5 bg-[#F9F9F9] border border-[#ccc] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-[#ccc] rounded-[14px]"
 				placeholder={placeholder}
 				value={value}
 				onChange={onChange}
