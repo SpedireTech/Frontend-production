@@ -32,7 +32,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             type="text"
             name="searchDetails"
             placeholder="Search saved details"
-            className="input-box pl-10 mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box pl-10 mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
         </div>
         <div className="mb-4">
@@ -44,7 +44,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             name="senderAddress"
             value={formData.senderAddress}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
         </div>
         <div className="mb-4 flex space-x-3">
@@ -55,7 +55,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             <DatePicker
               selected={formData.dueDate}
               onChange={(date) => handleDateChange(date, "dueDate")}
-              className="input-box mt-1 block w-[270px] h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+              className="input-box mt-1 block w-[270px] h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             />
           </div>
           <div className="w-1/2">
@@ -67,7 +67,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
               name="dueTime"
               value={formData.dueTime}
               onChange={handleChange}
-              className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+              className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             />
           </div>
         </div>
@@ -80,7 +80,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             name="pickUpNote"
             value={formData.pickUpNote}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[96px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 block w-full h-[96px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
         </div>
         <div className="flex items-center mb-8">
@@ -88,7 +88,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             type="checkbox"
             name="saveAddress"
             id="saveAddress"
-            className="input-box h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            className="input-box h-4 w-4 text-blue-600 focus:outline-none focus:ring-1 focus:ring-[#ccc] border-gray-300 rounded"
           />
           <label
             htmlFor="saveAddress"

@@ -31,7 +31,7 @@ const ReceiverForm = ({
             type="text"
             name="searchDetails"
             placeholder="Search saved details"
-            className="input-box pl-10 mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box pl-10 mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
         </div>
         <div className="mb-4">
@@ -41,7 +41,7 @@ const ReceiverForm = ({
             name="receiverAddress"
             value={formData.receiverAddress}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
         </div>
@@ -52,7 +52,7 @@ const ReceiverForm = ({
             name="receiverName"
             value={formData.receiverName}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
         </div>
@@ -67,7 +67,7 @@ const ReceiverForm = ({
               name="senderPhoneNumber"
               value={formData.senderPhoneNumber}
               onChange={handleChange}
-              className="input-box pl-20 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+              className="input-box pl-20 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             />
           </div>
         </div>
@@ -78,18 +78,18 @@ const ReceiverForm = ({
             name="itemName"
             value={formData.itemName}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
         </div>
         <div className="mb-4">
-          <label className="block text-base font-semibold text-[#4B4B4B]">Description</label>
+          <label className="block text-base  font-semibold text-[#4B4B4B]">Description</label>
           <input
             type="text"
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 focus:outline-none focus:ring-1 focus:ring-[#ccc] block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
         </div>
@@ -100,7 +100,7 @@ const ReceiverForm = ({
             name="itemValue"
             value={formData.itemValue}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
         </div>
@@ -119,12 +119,12 @@ const ReceiverForm = ({
           <label className="block text-base font-semibold text-[#4B4B4B] mb-4">
             Upload a clear item picture (Optional)
           </label>
-          <div className="flex items-center justify-center w-full ">
+          <div className="flex items-center  justify-center w-full ">
             <label
-              className="input-box flex flex-col items-center justify-center w-[400px] h-[200px]  rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+              className="input-box flex flex-col hover:bg-[#d3d2d2] items-center justify-center w-[400px] h-[200px]  rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
               style={{ border: "1px solid #ccc" }}
             >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+              <div className="flex flex-col items-center  justify-center pt-5 pb-6">
                 <img
                   src={UploadImage}
                   alt="Upload"
@@ -154,7 +154,7 @@ const ReceiverForm = ({
             name="dropOffNote"
             value={formData.dropOffNote}
             onChange={handleChange}
-            className="input-box mt-1 block w-full h-[96px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            className="input-box mt-1 block w-full h-[96px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
           />
         </div>
@@ -163,7 +163,7 @@ const ReceiverForm = ({
             type="checkbox"
             name="saveAddress"
             id="saveAddress"
-            className="input-box h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            className="input-box h-4 w-4 text-blue-600 focus:outline-none focus:ring-1 focus:ring-[#ccc] border-gray-300 rounded"
           />
           <label
             htmlFor="saveAddress"

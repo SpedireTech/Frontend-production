@@ -69,6 +69,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/deliver-item" element={<DeliveryForm />} />
           <Route path="/request-item" element={<PairingForm />} />
+          <Route path="/upgrade" element={<OnboardingForm />} />
         </Routes>
       </BrowserRouter>
     </div>
