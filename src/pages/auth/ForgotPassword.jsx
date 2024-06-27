@@ -84,7 +84,7 @@ export default function ForgotPassword() {
 
 						<button
 							type="submit"
-							className=" w-full h-[54px] font-semibold py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white text-base hover:bg-opacity-80 shadow-sm"
+							className=" w-full h-[54px] font-semibold py-3.5 px-2.5 rounded-[16px] bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
 							onClick={resetHandler}
 						>
 							Submit

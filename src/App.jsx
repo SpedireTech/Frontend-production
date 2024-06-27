@@ -15,6 +15,7 @@ import DashBoard from "./pages/dashbaord/DashBoard";
 import About from "./pages/About";
 import DeliveryForm from "./pages/sendItem/DeliveryForm"
 import PairingForm from "./components/courier/PairingForm";
+import OnboardingForm from "./components/courier/OnboardingForm";
 
 function App() {
   const [open, setOpen] = useState(false);

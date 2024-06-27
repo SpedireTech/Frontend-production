@@ -79,7 +79,7 @@ const PairingForm = () => {
 						/>
 					</svg>
 				</button>
-				<h2 className="text-2xl font-semibold mb-6">Courier pairing Form</h2>
+				<h2 className="text-2xl font-semibold mb-4">Courier pairing Form</h2>
 				<p className="mb-6 text-[#4b4b4b]">
 					Kindly enter the following details.
 				</p>

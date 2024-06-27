@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 const RecentDeliveries = () => {
 	const [currentTab, setCurrentTab] = useState("All");
+	const [dropdownVisible, setDropdownVisible] = useState(null);
 	const deliveries = [
 		{
 			customer: "David More",
-			orderId: "#6774758588",
+			orderId: "#6774758580",
 			pickup: "Agege",
 			destination: "Lekki",
 			date: "1/5/2022",
@@ -15,7 +16,7 @@ const RecentDeliveries = () => {
 		},
 		{
 			customer: "David More",
-			orderId: "#6774758588",
+			orderId: "#6774758581",
 			pickup: "Agege",
 			destination: "Lekki",
 			date: "1/5/2022",
@@ -25,6 +26,66 @@ const RecentDeliveries = () => {
 		},
 		{
 			customer: "David More",
+			orderId: "#6774758582",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Failed",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758583",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758584",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Pending",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758585",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Failed",
+		},
+		{
+			customer: "David Ikenna",
+			orderId: "#6774758586",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Failed",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758587",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Pending",
+		},
+		{
+			customer: "Anjola More",
 			orderId: "#6774758588",
 			pickup: "Agege",
 			destination: "Lekki",
@@ -35,7 +96,77 @@ const RecentDeliveries = () => {
 		},
 		{
 			customer: "David More",
-			orderId: "#6774758588",
+			orderId: "#6774758589",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758590",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758591",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758592",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758593",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758594",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758595",
+			pickup: "Agege",
+			destination: "Lekki",
+			date: "1/5/2022",
+			amount: "N3000",
+			weight: "10kg",
+			status: "Successful",
+		},
+		{
+			customer: "David More",
+			orderId: "#6774758596",
 			pickup: "Agege",
 			destination: "Lekki",
 			date: "1/5/2022",
@@ -62,9 +193,16 @@ const RecentDeliveries = () => {
 				return "";
 		}
 	};
+	const toggleDropdown = (orderId) => {
+		if (dropdownVisible === orderId) {
+			setDropdownVisible(null);
+		} else {
+			setDropdownVisible(orderId);
+		}
+	};
 
 	return (
-		<div className="max-w-[70%] mx-auto p-4 rounded-lg shadow">
+		<div className="max-w-[70%] mx-auto p-4 rounded-lg  border border-[#ccc] h-screen overflow-hidden shadow">
 			<div className="flex justify-between items-center">
 				<h2 className="text-xl font-bold">Recent Deliveries</h2>
 				<button className="text-blue-600">See All</button>
@@ -123,7 +261,7 @@ const RecentDeliveries = () => {
 					)
 				</button>
 			</div>
-			<div className="overflow-x-auto">
+			<div className="overflow-auto md:h-[22rem]">
 				<table className="min-w-full bg-white">
 					<thead>
 						<tr>
@@ -175,22 +313,30 @@ const RecentDeliveries = () => {
 										{delivery.status}
 									</div>
 								</td>
-								<td className="py-2 px-4 border-b border-zinc-400 relative group">
-									<button className="focus:outline-none">
+								<td className="py-2 px-4 border-b border-zinc-400 relative">
+									<button
+										className="focus:outline-none"
+										onClick={() => toggleDropdown(delivery.orderId)}
+									>
 										<div className="flex flex-col space-y-1">
 											<div className="w-1 h-1 bg-black rounded-full"></div>
 											<div className="w-1 h-1 bg-black rounded-full"></div>
 											<div className="w-1 h-1 bg-black rounded-full"></div>
 										</div>
 									</button>
-									<div className="absolute top-0 right-0 mt-8 w-32 bg-white shadow-lg rounded-lg hidden group-focus:block group-hover:block">
-										<div className="py-2 px-4 cursor-pointer hover:bg-gray-100">
-											Hide
+									{dropdownVisible === delivery.orderId && (
+										<div className="absolute top-0 right-0 mt-8 w-32 bg-white shadow-lg rounded-lg">
+											<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
+												Hide
+											</div>
+											<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
+												Maximize
+											</div>
+											<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
+												Delete
+											</div>
 										</div>
-										<div className="py-2 px-4 cursor-pointer hover:bg-gray-100">
-											Maximize
-										</div>
-									</div>
+									)}
 								</td>
 							</tr>
 						))}
