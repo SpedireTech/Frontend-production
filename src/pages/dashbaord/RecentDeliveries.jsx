@@ -5,7 +5,7 @@ const RecentDeliveries = () => {
 	const [dropdownVisible, setDropdownVisible] = useState(null);
 	const deliveries = [
 		{
-			customer: "David More",
+			customer: "David Moreeeeeeeeeee",
 			orderId: "#6774758580",
 			pickup: "Agege",
 			destination: "Lekki",
@@ -200,9 +200,13 @@ const RecentDeliveries = () => {
 			setDropdownVisible(orderId);
 		}
 	};
-
+	const textAdjustment = (text) => {
+		return text
+			? text.slice(0, 10).padEnd(text.length > 10 ? 12 : text.length, ".")
+			: "";
+	};
 	return (
-		<div className="max-w-[70%] mx-auto p-4 rounded-lg  border border-[#ccc] h-screen overflow-hidden shadow">
+		<div className="max-w-[70%] mx-auto p-4 rounded-lg  border border-[#ccc] h-[50%] overflow-hidden shadow">
 			<div className="flex justify-between items-center">
 				<h2 className="text-xl font-bold">Recent Deliveries</h2>
 				<button className="text-blue-600">See All</button>
@@ -261,7 +265,7 @@ const RecentDeliveries = () => {
 					)
 				</button>
 			</div>
-			<div className="overflow-auto md:h-[22rem]">
+			<div className="overflow-auto md:max-h-[22rem]">
 				<table className="min-w-full bg-white">
 					<thead>
 						<tr>
@@ -284,10 +288,10 @@ const RecentDeliveries = () => {
 						{getFilteredDeliveries().map((delivery) => (
 							<tr key={delivery.orderId} className="text-center">
 								<td className="py-2 px-4 border-b border-zinc-400 whitespace-nowrap">
-									{delivery.customer}
+									{textAdjustment(delivery?.customer)}
 								</td>
 								<td className="py-2 px-4 border-b border-zinc-400">
-									{delivery.orderId}
+									{delivery?.orderId}
 								</td>
 								<td className="py-2 px-4 border-b border-zinc-400">
 									{delivery.pickup}
