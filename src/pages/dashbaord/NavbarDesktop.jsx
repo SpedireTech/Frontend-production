@@ -23,7 +23,7 @@ const Navbar = () => {
           className="flex flex-col text-center md:text-left"
           style={{ color: "#434040" }}
         >
-          <div className="text-lg">{`Welcome, ${user.name} 👋`}</div>
+          <div className="text-lg">{`Welcome, ${user?.name} 👋`}</div>
           <p className="text-xs md:text-sm">
             Here’s what is happening in your Spidire account
           </p>
@@ -68,15 +68,15 @@ const Navbar = () => {
             className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center"
             style={{ backgroundColor: "#627891" }}
           >
-            {user.image ? (
+            {user?.image ? (
               <img
-                src={user.image}
+                src={user?.image}
                 alt="User"
                 className="w-full h-full object-cover"
               />
             ) : (
               <span className="text-white text-lg">
-                {user.name.charAt(0).toUpperCase()}
+                {user?.name.charAt(0).toUpperCase()}
               </span>
             )}
           </div>
