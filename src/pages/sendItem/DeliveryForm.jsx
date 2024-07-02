@@ -4,7 +4,7 @@ import axios from "axios";
 import SenderForm from "../sendItem/SenderForm";
 import ReceiverForm from "../sendItem/RecieverForm";
 import ConfirmationModal from "../sendItem/ConfirmationModal";
-import logo from "../../assets/spedire.png";
+import SideBar from "../../components/sidebar/SideBar";
 import { getStoredItem } from "../../util/lib";
 
 const DeliveryForm = () => {
@@ -47,7 +47,7 @@ const DeliveryForm = () => {
     const token = JSON.parse(localStorage.getItem("token")).value;
     try {
       const response = await axios.post(
-        "http://44.223.68.243:8080/api/v1/order/createOrder",
+        " https://spedire-app-backend-service.onrender.com/api/v1/order/createOrder",
         {
           senderId: user.senderId,
           senderName: `${formData.senderFirstName} ${formData.senderLastName}`,
@@ -76,9 +76,9 @@ const DeliveryForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
-      <div className="fixed top-4 left-4">
-        <img src={logo} alt="Logo" />
+    <div  className="flex w-full h-screen">
+      <div className="w-[20%] bg-blue-500">
+        <SideBar />
       </div>
       <div className="fixed top-4 right-8 flex justify-end mb-4">
         <button

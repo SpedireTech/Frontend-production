@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://44.223.68.243:8080";
+const URL = " https://spedire-app-backend-service.onrender.com";
 const USER_API_URL = URL + "/api/v1/user";
 
 export async function login(data) {
