@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SenderForm from "../sendItem/SenderForm";
@@ -6,6 +6,7 @@ import ReceiverForm from "../sendItem/RecieverForm";
 import ConfirmationModal from "../sendItem/ConfirmationModal";
 import SideBar from "../../components/sidebar/SideBar";
 import { getStoredItem } from "../../util/lib";
+import DeliveryInstructionsModal from "../sendItem/DeliveryInstructionsModal ";
 
 const DeliveryForm = () => {
   const [step, setStep] = useState(1);
@@ -22,9 +23,17 @@ const DeliveryForm = () => {
     dropOffNote: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeliveryInstructionsModalOpen, setIsDeliveryInstructionsModalOpen] = useState(false); // Initialize as false
   const [responseData, setResponseData] = useState(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsDeliveryInstructionsModalOpen(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +56,7 @@ const DeliveryForm = () => {
     const token = JSON.parse(localStorage.getItem("token")).value;
     try {
       const response = await axios.post(
-        " https://spedire-app-backend-service.onrender.com/api/v1/order/createOrder",
+        "https://spedire-app-backend-service.onrender.com/api/v1/order/createOrder",
         {
           senderId: user.senderId,
           senderName: `${formData.senderFirstName} ${formData.senderLastName}`,
@@ -76,7 +85,7 @@ const DeliveryForm = () => {
   };
 
   return (
-    <div  className="flex w-full h-screen">
+    <div className="flex w-full h-screen">
       <div className="w-[20%] bg-blue-500">
         <SideBar />
       </div>
@@ -101,16 +110,16 @@ const DeliveryForm = () => {
           </svg>
         </button>
       </div>
-      <div className="mt-4 flex space-x-4  top-4 ">
-        <span className={`text-lg font-semibold ${step === 1 ? 'text-blue-500' : 'text-gray-500'}`}>
-          Sender
-        </span>
-        <p>-</p>
-        <span className={`text-lg font-semibold ${step === 2 ? 'text-blue-500' : 'text-gray-500'}`}>
-          Receiver
-        </span>
-      </div>
-      <div className="w-full max-w-2xl p-4 mt-8">
+      <div className="w-full max-w-2xl p-4 ml-32">
+        <div className="mt-4 flex space-x-4 top-4 mb-4">
+          <span className={`text-lg font-semibold ${step === 1 ? 'text-blue-500' : 'text-gray-500'}`}>
+            Sender
+          </span>
+          <p>-</p>
+          <span className={`text-lg font-semibold ${step === 2 ? 'text-blue-500' : 'text-gray-500'}`}>
+            Receiver
+          </span>
+        </div>
         {step === 1 && (
           <SenderForm
             formData={formData}
@@ -132,6 +141,10 @@ const DeliveryForm = () => {
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
         responseData={responseData}
+      />
+      <DeliveryInstructionsModal
+        isOpen={isDeliveryInstructionsModalOpen}
+        closeModal={() => setIsDeliveryInstructionsModalOpen(false)}
       />
     </div>
   );

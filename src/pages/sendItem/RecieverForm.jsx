@@ -18,12 +18,12 @@ const ReceiverForm = ({
   return (
     <div
       className="p-10 bg-white rounded-md"
-      style={{ border: "1px solid #ccc" }}
+      style={{ border: "1px solid #ccc", maxHeight: "calc(100vh - 50px)", overflowY: "scroll" }}
     >
       <form onSubmit={onSubmit} className="max-w-4xl mx-auto">
-      <div className="mb-4">
+        <div className="mb-4">
           <h2 className="text-2xl font-semibold">Add Reciever</h2>
-          <p className="text-xm text-[#4B4B4B]"> Search from your saved addresses or create a new one</p>
+          <p className="text-xm text-[#4B4B4B]">Search from your saved addresses or create a new one</p>
         </div>
         <div className="relative mb-4">
           <FaSearch className="absolute top-4 left-3 text-gray-500 mt-2" style={{ color: "#ccc" }} />
@@ -56,12 +56,10 @@ const ReceiverForm = ({
             style={{ borderColor: "#ccc" }}
           />
         </div>
-       
         <div className="mb-4">
           <label className="block text-base font-semibold text-[#4B4B4B]">Phone Number</label>
           <div className="relative mt-1">
             <img src={flag} alt="Nigerian Flag" className="absolute top-1/2 transform -translate-y-1/2 left-3 w-6 h-6" />
-            {/* <span className="absolute top-1/2 transform -translate-y-1/2 left-12">+234</span> */}
             <input
               type="text"
               name="senderPhoneNumber"
@@ -83,7 +81,7 @@ const ReceiverForm = ({
           />
         </div>
         <div className="mb-4">
-          <label className="block text-base  font-semibold text-[#4B4B4B]">Description</label>
+          <label className="block text-base font-semibold text-[#4B4B4B]">Description</label>
           <input
             type="text"
             name="description"
@@ -104,38 +102,19 @@ const ReceiverForm = ({
             style={{ borderColor: "#ccc" }}
           />
         </div>
-        {/* <div className="mb-4">
-          <label className="block text-base font-semibold text-[#4B4B4B]">Package Weight (kg)</label>
-          <input
-            type="text"
-            name="packageWeight"
-            value={formData.packageWeight}
-            onChange={handleChange}
-            className="input-box mt-1 block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
-          />
-        </div> */}
         <div className="mb-4">
-          <label className="block text-base font-semibold text-[#4B4B4B] mb-4">
-            Upload a clear item picture (Optional)
-          </label>
-          <div className="flex items-center  justify-center w-full ">
+          <label className="block text-base font-semibold text-[#4B4B4B] mb-4">Upload a clear item picture (Optional)</label>
+          <div className="flex items-center justify-center w-full">
             <label
-              className="input-box flex flex-col hover:bg-[#d3d2d2] items-center justify-center w-[400px] h-[200px]  rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+              className="input-box flex flex-col hover:bg-[#d3d2d2] items-center justify-center w-[400px] h-[200px] rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
               style={{ border: "1px solid #ccc" }}
             >
-              <div className="flex flex-col items-center  justify-center pt-5 pb-6">
-                <img
-                  src={UploadImage}
-                  alt="Upload"
-                  className="w-15 h-15 mb-3"
-                />
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <img src={UploadImage} alt="Upload" className="w-15 h-15 mb-3" />
                 <p className="mb-2 text-sm text-gray-500">
                   <span className="font-semibold">Upload</span>
                 </p>
-                <p className="text-xs text-gray-500">
-                  PNG, JPG, PDF (MAX. 800x400px)
-                </p>
+                <p className="text-xs text-gray-500">PNG, JPG, PDF (MAX. 800x400px)</p>
               </div>
               <input
                 type="file"
@@ -167,7 +146,7 @@ const ReceiverForm = ({
           />
           <label
             htmlFor="saveAddress"
-            className="ml-2 block text-sm  font-semibold text-[#4B4B4B]"
+            className="ml-2 block text-sm font-semibold text-[#4B4B4B]"
           >
             Save this address
           </label>
