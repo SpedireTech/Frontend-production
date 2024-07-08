@@ -1,7 +1,7 @@
-import React from "react";
-import UploadImage from "../../assets/UploadImageIcon.svg";
-import flag from "../../assets/NIGIcon.svg";
-import { FaSearch } from "react-icons/fa";
+import React from 'react';
+import UploadImage from '../../assets/UploadImageIcon.svg';
+import flag from '../../assets/NIGIcon.svg';
+import { FaSearch } from 'react-icons/fa';
 
 const ReceiverForm = ({
   formData,
@@ -9,6 +9,7 @@ const ReceiverForm = ({
   prevStep,
   handleSubmit,
   handleImageChange,
+  isLoading, 
 }) => {
   const onSubmit = (event) => {
     event.preventDefault();
@@ -18,15 +19,17 @@ const ReceiverForm = ({
   return (
     <div
       className="p-10 bg-white rounded-md"
-      style={{ border: "1px solid #ccc", maxHeight: "calc(100vh - 50px)", overflowY: "scroll" }}
+      style={{ border: '1px solid #ccc', maxHeight: 'calc(100vh - 50px)', overflowY: 'scroll' }}
     >
       <form onSubmit={onSubmit} className="max-w-4xl mx-auto">
         <div className="mb-4">
-          <h2 className="text-2xl font-semibold">Add Reciever</h2>
-          <p className="text-xm text-[#4B4B4B]">Search from your saved addresses or create a new one</p>
+          <h2 className="text-2xl font-semibold">Add Receiver</h2>
+          <p className="text-xm text-[#4B4B4B]">
+            Search from your saved addresses or create a new one
+          </p>
         </div>
         <div className="relative mb-4">
-          <FaSearch className="absolute top-4 left-3 text-gray-500 mt-2" style={{ color: "#ccc" }} />
+          <FaSearch className="absolute top-4 left-3 text-gray-500 mt-2" style={{ color: '#ccc' }} />
           <input
             type="text"
             name="searchDetails"
@@ -42,7 +45,7 @@ const ReceiverForm = ({
             value={formData.receiverAddress}
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
+            style={{ borderColor: '#ccc' }}
           />
         </div>
         <div className="mb-4">
@@ -53,7 +56,7 @@ const ReceiverForm = ({
             value={formData.receiverName}
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
+            style={{ borderColor: '#ccc' }}
           />
         </div>
         <div className="mb-4">
@@ -77,7 +80,7 @@ const ReceiverForm = ({
             value={formData.itemName}
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
+            style={{ borderColor: '#ccc' }}
           />
         </div>
         <div className="mb-4">
@@ -88,7 +91,7 @@ const ReceiverForm = ({
             value={formData.description}
             onChange={handleChange}
             className="input-box mt-1 focus:outline-none focus:ring-1 focus:ring-[#ccc] block w-full h-[58px] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
+            style={{ borderColor: '#ccc' }}
           />
         </div>
         <div className="mb-4">
@@ -99,15 +102,17 @@ const ReceiverForm = ({
             value={formData.itemValue}
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
+            style={{ borderColor: '#ccc' }}
           />
         </div>
         <div className="mb-4">
-          <label className="block text-base font-semibold text-[#4B4B4B] mb-4">Upload a clear item picture (Optional)</label>
+          <label className="block text-base font-semibold text-[#4B4B4B] mb-4">
+            Upload a clear item picture (Optional)
+          </label>
           <div className="flex items-center justify-center w-full">
             <label
               className="input-box flex flex-col hover:bg-[#d3d2d2] items-center justify-center w-[400px] h-[200px] rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
-              style={{ border: "1px solid #ccc" }}
+              style={{ border: '1px solid #ccc' }}
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <img src={UploadImage} alt="Upload" className="w-15 h-15 mb-3" />
@@ -134,7 +139,7 @@ const ReceiverForm = ({
             value={formData.dropOffNote}
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[96px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
-            style={{ borderColor: "#ccc" }}
+            style={{ borderColor: '#ccc' }}
           />
         </div>
         <div className="flex items-center mb-8">
@@ -144,10 +149,7 @@ const ReceiverForm = ({
             id="saveAddress"
             className="input-box h-4 w-4 text-blue-600 focus:outline-none focus:ring-1 focus:ring-[#ccc] border-gray-300 rounded"
           />
-          <label
-            htmlFor="saveAddress"
-            className="ml-2 block text-sm font-semibold text-[#4B4B4B]"
-          >
+          <label htmlFor="saveAddress" className="ml-2 block text-sm font-semibold text-[#4B4B4B]">
             Save this address
           </label>
         </div>
@@ -162,8 +164,35 @@ const ReceiverForm = ({
           <button
             type="submit"
             className="w-[48%] h-[58px] bg-button text-white rounded-xl"
+            disabled={isLoading}
           >
-            Submit
+            {isLoading ? (
+              <span className="flex items-center justify-center">
+                <svg
+                  className="animate-spin h-5 w-5 mr-3 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8h8a8 8 0 01-8 8v-8H4z"
+                  ></path>
+                </svg>
+                Submitting...
+              </span>
+            ) : (
+              'Submit'
+            )}
           </button>
         </div>
       </form>

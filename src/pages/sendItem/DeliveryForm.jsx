@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import SenderForm from "../sendItem/SenderForm";
 import ReceiverForm from "../sendItem/RecieverForm";
 import ConfirmationModal from "../sendItem/ConfirmationModal";
@@ -21,19 +23,13 @@ const DeliveryForm = () => {
     itemValue: "",
     packageWeight: "",
     dropOffNote: "",
+    pickUpNote: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDeliveryInstructionsModalOpen, setIsDeliveryInstructionsModalOpen] = useState(false); // Initialize as false
+  const [isDeliveryInstructionsModalOpen, setIsDeliveryInstructionsModalOpen] = useState(false);
   const [responseData, setResponseData] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsDeliveryInstructionsModalOpen(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,6 +50,7 @@ const DeliveryForm = () => {
 
   const handleSubmit = async () => {
     const token = JSON.parse(localStorage.getItem("token")).value;
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "https://spedire-app-backend-service.onrender.com/api/v1/order/createOrder",
@@ -69,7 +66,9 @@ const DeliveryForm = () => {
           price: formData.itemValue,
           dueDate: formData.dueDate,
           dueTime: formData.dueTime,
-          picture: "", // Add picture if needed
+          pickUpNote: formData.pickUpNote,
+          dropOffNote: formData.dropOffNote,
+          picture: "", 
         },
         {
           headers: {
@@ -79,13 +78,18 @@ const DeliveryForm = () => {
       );
       setResponseData(response.data);
       setIsModalOpen(true);
+      toast.success("Order created successfully!");
     } catch (error) {
       console.error("Error submitting the form:", error);
+      toast.error("Failed to create order.", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="flex w-full h-screen">
+      <ToastContainer />
       <div className="w-[20%] bg-blue-500">
         <SideBar />
       </div>
@@ -134,6 +138,7 @@ const DeliveryForm = () => {
             handleChange={handleChange}
             prevStep={prevStep}
             handleSubmit={handleSubmit}
+            isLoading={isLoading}
           />
         )}
       </div>
