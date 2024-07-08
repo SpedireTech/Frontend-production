@@ -1,5 +1,5 @@
 import React from "react";
-
+import Button from "../../components/Button/Button";
 const DeliveryInstructionsModal = ({ isOpen, closeModal }) => {
   if (!isOpen) return null;
 
@@ -58,6 +58,12 @@ const DeliveryInstructionsModal = ({ isOpen, closeModal }) => {
             >
               Okay
             </button>
+            {/* <Button
+                  width="100%"
+                  height="58px"
+                  text="Okay"
+                  onClick={closeModal}
+                /> */}
           </div>
         </div>
       </div>

@@ -36,6 +36,14 @@ const DeliveryForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsDeliveryInstructionsModalOpen(true);
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
   const handleDateChange = (date, field) => {
     setFormData({ ...formData, [field]: date });
   };
