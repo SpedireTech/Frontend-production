@@ -76,7 +76,7 @@ const DeliveryForm = () => {
           receiverLocation: formData.receiverAddress,
           receiverPhoneNumber: formData.receiverPhoneNumber,
           itemDescription: formData.description,
-          price: formData.itemValue,
+          itemValue: formData.itemValue,
           dueDate: formData.dueDate,
           dueTime: formData.dueTime,
           pickUpNote: formData.pickUpNote,

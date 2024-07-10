@@ -65,8 +65,8 @@ const ReceiverForm = ({
             <img src={flag} alt="Nigerian Flag" className="absolute top-1/2 transform -translate-y-1/2 left-3 w-6 h-6" />
             <input
               type="text"
-              name="senderPhoneNumber"
-              value={formData.senderPhoneNumber}
+              name="receiverPhoneNumber"
+              value={formData.receiverPhoneNumber}
               onChange={handleChange}
               className="input-box pl-20 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             />
