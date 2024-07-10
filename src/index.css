@@ -72,61 +72,6 @@ span.item:nth-child(3) {
 .group:hover .group-focus:block {
 	display: block;
 }
-<<<<<<< HEAD
-
-.scroller {
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 12px 0;
-}
-
-.inner {
-  display: inline-block;
-  animation: scroll 20s linear infinite;
-}
-#topPage {
-  background-image: url("./../src/assets/aboutbg-desktop.png");
-  background-size: cover;
-  width: 100%;
-}
-.inner span {
-  margin: 0 20px;
-  font-size: 16px; /* default font size for mobile */
-}
-
-/* Larger font size for tablets and small desktops */
-@media (min-width: 768px) {
-  .inner span {
-    font-size: 24px;
-  }
-}
-
-/* Larger font size for large desktops */
-@media (min-width: 1024px) {
-  .inner span {
-    font-size: 32px;
-  }
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1; /* fade in */
-  }
-
-  95% {
-    opacity: 1; /* stay visible */
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%);
-  }
-}
-=======
->>>>>>> 8f2dd538d477c4476842dc81ed9664b59c0fc345
 /* ANIMATION */
 
 @keyframes flipUp {

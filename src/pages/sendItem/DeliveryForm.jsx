@@ -3,18 +3,20 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { format } from "date-fns";
 import SenderForm from "../sendItem/SenderForm";
 import ReceiverForm from "../sendItem/RecieverForm";
 import ConfirmationModal from "../sendItem/ConfirmationModal";
 import SideBar from "../../components/sidebar/SideBar";
 import { getStoredItem } from "../../util/lib";
-import DeliveryInstructionsModal from "../sendItem/DeliveryInstructionsModal ";
+import DeliveryInstructionsModal from "../sendItem/DeliveryInstructionsModal";
 
 const DeliveryForm = () => {
   const [step, setStep] = useState(1);
   const user = getStoredItem("user");
   const [formData, setFormData] = useState({
     ...user,
+    senderAddress: [],
     receiverName: "",
     receiverAddress: "",
     receiverPhoneNumber: "",
@@ -26,26 +28,26 @@ const DeliveryForm = () => {
     pickUpNote: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDeliveryInstructionsModalOpen, setIsDeliveryInstructionsModalOpen] = useState(false);
+  const [isInstructionsModalOpen, setIsInstructionsModalOpen] = useState(false);
   const [responseData, setResponseData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInstructionsModalOpen(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsDeliveryInstructionsModalOpen(true);
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
   const handleDateChange = (date, field) => {
-    setFormData({ ...formData, [field]: date });
+    setFormData({ ...formData, [field]: format(date, "MM/dd/yyyy") });
   };
 
   const nextStep = () => {
@@ -58,13 +60,16 @@ const DeliveryForm = () => {
 
   const handleSubmit = async () => {
     const token = JSON.parse(localStorage.getItem("token")).value;
+    const senderName = `${user.name}`;
+    console.log("Sender Name:", senderName);
+    console.log("Sender location:", formData.senderAddress);
     setIsLoading(true);
     try {
       const response = await axios.post(
         "https://spedire-app-backend-service.onrender.com/api/v1/order/createOrder",
         {
           senderId: user.senderId,
-          senderName: `${formData.senderFirstName} ${formData.senderLastName}`,
+          senderName: senderName,
           senderLocation: formData.senderAddress,
           senderPhoneNumber: formData.senderPhoneNumber,
           receiverName: formData.receiverName,
@@ -76,7 +81,7 @@ const DeliveryForm = () => {
           dueTime: formData.dueTime,
           pickUpNote: formData.pickUpNote,
           dropOffNote: formData.dropOffNote,
-          picture: "", 
+          picture: "picture", 
         },
         {
           headers: {
@@ -156,8 +161,8 @@ const DeliveryForm = () => {
         responseData={responseData}
       />
       <DeliveryInstructionsModal
-        isOpen={isDeliveryInstructionsModalOpen}
-        closeModal={() => setIsDeliveryInstructionsModalOpen(false)}
+        isOpen={isInstructionsModalOpen}
+        closeModal={() => setIsInstructionsModalOpen(false)}
       />
     </div>
   );

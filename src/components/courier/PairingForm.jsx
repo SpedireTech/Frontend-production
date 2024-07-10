@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../components/sidebar/SideBar";
 import InputComponent from "../../components/reusables/InputComponent";
 import { pairCourier } from "../../util/http";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import DeliveryInstructionsModal from "../../pages/sendItem/DeliveryInstructionsModal";
 
 const PairingForm = () => {
   const navigate = useNavigate();
@@ -12,7 +15,18 @@ const PairingForm = () => {
     weight: "",
     category: "",
   });
-  async function submitHandler() {
+  const [isInstructionsModalOpen, setIsInstructionsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInstructionsModalOpen(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  async function submitHandler(e) {
+    e.preventDefault();
     const currentToastId = toast.loading("Loading...");
     if (
       !formData.currentLocation ||
@@ -55,11 +69,12 @@ const PairingForm = () => {
   }
 
   return (
-	<div className="flex w-full h-screen">
+    <div className="flex w-full h-screen">
+      <ToastContainer />
       <div className="w-[20%] bg-blue-500">
         <SideBar />
       </div>
-	  <div className="fixed top-4 right-8 flex justify-end mb-4">
+      <div className="fixed top-4 right-8 flex justify-end mb-4">
         <button
           onClick={() => navigate("/dashboard")}
           className="text-gray-500 hover:text-gray-700"
@@ -80,7 +95,7 @@ const PairingForm = () => {
           </svg>
         </button>
       </div>
-	  <div className="w-full max-w-2xl p-4 ml-32 mt-10">
+      <div className="w-full max-w-2xl p-4 ml-32 mt-10">
         <h2 className="text-2xl font-semibold mb-4">Courier pairing Form</h2>
         <p className="mb-6 text-[#4b4b4b]">
           Kindly enter the following details.
@@ -108,40 +123,6 @@ const PairingForm = () => {
               value={formData.destination}
             />
           </div>
-          {/* <div className="mb-4">
-						<label className="block text-base font-semibold text-[#4B4B4B] mb-2">
-							Category
-						</label>
-						<select
-							onChange={(e) =>
-								setFormData({ ...formData, category: e.target.value })
-							}
-							value={formData.category}
-							className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
-						>
-							<option>Electronics</option>
-							<option>Clothing</option>
-							<option>Books</option>
-							<option>Other</option>
-						</select>
-					</div> */}
-          {/* <div className="mb-4">
-						<label className="block text-[#4B4B4B] text-base font-semibold mb-2">
-							Preferred Item Weight
-						</label>
-						<select
-							onChange={(e) =>
-								setFormData({ ...formData, weight: e.target.value })
-							}
-							value={formData.weight}
-							className="w-full px-2.5 py-3.5 bg-[#F9F9F9] text-[#4B4B4B] focus:outline-none focus:ring-1 focus:ring-gray-500 rounded-[14px]"
-						>
-							<option>0-5kg</option>
-							<option>5-10kg</option>
-							<option>10-15kg</option>
-							<option>15-20kg</option>
-						</select>
-					</div> */}
           <button
             type="submit"
             onClick={submitHandler}
@@ -151,6 +132,10 @@ const PairingForm = () => {
           </button>
         </form>
       </div>
+      <DeliveryInstructionsModal
+        isOpen={isInstructionsModalOpen}
+        closeModal={() => setIsInstructionsModalOpen(false)}
+      />
     </div>
   );
 };
