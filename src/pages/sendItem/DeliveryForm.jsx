@@ -2,21 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import { format } from "date-fns";
-import SenderForm from "../sendItem/SenderForm";
-import ReceiverForm from "../sendItem/RecieverForm";
-import ConfirmationModal from "../sendItem/ConfirmationModal";
+import "react-toastify/dist/ReactToastify.css";
+import { format, parse, isValid } from "date-fns";
+import SenderForm from "./SenderForm";
+import ReceiverForm from "./RecieverForm";
+import ConfirmationModal from "./ConfirmationModal";
 import SideBar from "../../components/sidebar/SideBar";
 import { getStoredItem } from "../../util/lib";
-import DeliveryInstructionsModal from "../sendItem/DeliveryInstructionsModal";
+import DeliveryInstructionsModal from "./DeliveryInstructionsModal";
+import { LoadScript } from "@react-google-maps/api";
 
 const DeliveryForm = () => {
   const [step, setStep] = useState(1);
   const user = getStoredItem("user");
   const [formData, setFormData] = useState({
     ...user,
-    senderAddress: [],
+    senderAddress: "",
     receiverName: "",
     receiverAddress: "",
     receiverPhoneNumber: "",
@@ -26,6 +27,8 @@ const DeliveryForm = () => {
     packageWeight: "",
     dropOffNote: "",
     pickUpNote: "",
+    saveSenderAddress: false,
+    saveReceiverAddress: false,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isInstructionsModalOpen, setIsInstructionsModalOpen] = useState(false);
@@ -50,6 +53,20 @@ const DeliveryForm = () => {
     setFormData({ ...formData, [field]: format(date, "MM/dd/yyyy") });
   };
 
+  const handleTimeChange = (time, field) => {
+    if (time === "") {
+      setFormData({ ...formData, [field]: null }); // Set to null explicitly
+    } else {
+      const parsedTime = parse(time, "hh:mm a", new Date());
+      if (isValid(parsedTime)) {
+        const formattedTime = format(parsedTime, "hh:mm a");
+        setFormData({ ...formData, [field]: formattedTime });
+      } else {
+        setFormData({ ...formData, [field]: time });
+      }
+    }
+  };
+
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -63,7 +80,12 @@ const DeliveryForm = () => {
     const senderName = `${user.name}`;
     console.log("Sender Name:", senderName);
     console.log("Sender location:", formData.senderAddress);
+    console.log("Sender duetime:", formData.dueTime);
     setIsLoading(true);
+
+    // Check if dueTime is null or a valid time before sending the request
+    const dueTime = formData.dueTime ? formData.dueTime : null;
+
     try {
       const response = await axios.post(
         "https://spedire-app-backend-service.onrender.com/api/v1/order/createOrder",
@@ -78,10 +100,13 @@ const DeliveryForm = () => {
           itemDescription: formData.description,
           itemValue: formData.itemValue,
           dueDate: formData.dueDate,
-          dueTime: formData.dueTime,
+          dueTime: dueTime,
           pickUpNote: formData.pickUpNote,
           dropOffNote: formData.dropOffNote,
-          picture: "picture", 
+          itemName: formData.itemName,
+          picture: "picture",
+          saveSenderAddress: formData.saveSenderAddress,
+          saveReceiverAddress: formData.saveReceiverAddress,
         },
         {
           headers: {
@@ -101,70 +126,81 @@ const DeliveryForm = () => {
   };
 
   return (
-    <div className="flex w-full h-screen">
-      <ToastContainer />
-      <div className="w-[20%] bg-blue-500">
-        <SideBar />
-      </div>
-      <div className="fixed top-4 right-8 flex justify-end mb-4">
-        <button
-          onClick={() => navigate("/dashboard")}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-      <div className="w-full max-w-2xl p-4 ml-32">
-        <div className="mt-4 flex space-x-4 top-4 mb-4">
-          <span className={`text-lg font-semibold ${step === 1 ? 'text-blue-500' : 'text-gray-500'}`}>
-            Sender
-          </span>
-          <p>-</p>
-          <span className={`text-lg font-semibold ${step === 2 ? 'text-blue-500' : 'text-gray-500'}`}>
-            Receiver
-          </span>
+    <LoadScript googleMapsApiKey="AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8" libraries={["places"]}>
+      <div className="flex w-full h-screen">
+        <ToastContainer />
+        <div className="w-[20%] bg-blue-500">
+          <SideBar />
         </div>
-        {step === 1 && (
-          <SenderForm
-            formData={formData}
-            handleChange={handleChange}
-            handleDateChange={handleDateChange}
-            nextStep={nextStep}
-          />
-        )}
-        {step === 2 && (
-          <ReceiverForm
-            formData={formData}
-            handleChange={handleChange}
-            prevStep={prevStep}
-            handleSubmit={handleSubmit}
-            isLoading={isLoading}
-          />
-        )}
+        <div className="fixed top-4 right-8 flex justify-end mb-4">
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div className="w-full max-w-2xl p-4 ml-32">
+          <div className="mt-4 flex space-x-4 top-4 mb-4">
+            <span
+              className={`text-lg font-semibold ${
+                step === 1 ? "text-blue-500" : "text-gray-500"
+              }`}
+            >
+              Sender
+            </span>
+            <p>-</p>
+            <span
+              className={`text-lg font-semibold ${
+                step === 2 ? "text-blue-500" : "text-gray-500"
+              }`}
+            >
+              Receiver
+            </span>
+          </div>
+          {step === 1 && (
+            <SenderForm
+              formData={formData}
+              handleChange={handleChange}
+              handleDateChange={handleDateChange}
+              handleTimeChange={handleTimeChange}
+              nextStep={nextStep}
+            />
+          )}
+          {step === 2 && (
+            <ReceiverForm
+              formData={formData}
+              handleChange={handleChange}
+              prevStep={prevStep}
+              handleSubmit={handleSubmit}
+              isLoading={isLoading}
+            />
+          )}
+        </div>
+        <ConfirmationModal
+          isOpen={isModalOpen}
+          closeModal={() => setIsModalOpen(false)}
+          responseData={responseData}
+        />
+        <DeliveryInstructionsModal
+          isOpen={isInstructionsModalOpen}
+          closeModal={() => setIsInstructionsModalOpen(false)}
+        />
       </div>
-      <ConfirmationModal
-        isOpen={isModalOpen}
-        closeModal={() => setIsModalOpen(false)}
-        responseData={responseData}
-      />
-      <DeliveryInstructionsModal
-        isOpen={isInstructionsModalOpen}
-        closeModal={() => setIsInstructionsModalOpen(false)}
-      />
-    </div>
+    </LoadScript>
   );
 };
 

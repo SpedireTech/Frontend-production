@@ -1,34 +1,40 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import React, { useState, useRef, useEffect, forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FaSearch, FaLocationArrow } from "react-icons/fa";
-import AddressInput from "./AddressInput.jsx";
+import { FaSearch } from "react-icons/fa";
+import AddressInput from "./AddressInput";
+import axios from "axios";
+import { format, parse, isValid } from "date-fns";
 
-const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
-  const [currentLocation, setCurrentLocation] = useState(
-    formData.senderAddress || []
+// Custom input component for time picker with placeholder
+const CustomTimeInput = forwardRef(({ value, onClick, onChange }, ref) => (
+  <input
+    value={value}
+    onClick={onClick}
+    onChange={onChange}
+    ref={ref}
+    placeholder="HH:MM"
+    className="input-box mt-1 block w-full md:w-[270px] h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+  />
+));
+
+const SenderForm = ({
+  formData,
+  handleChange,
+  nextStep,
+  handleDateChange,
+  handleTimeChange,
+}) => {
+  const [senderAutoDetectLocation, setSenderAutoDetectLocation] = useState(
+    formData.senderAddress || ""
   );
-  const [senderAutoDetectLocation, setSenderAutoDetectLocation] = useState("");
   const [nearbyLocations, setNearbyLocations] = useState([]);
-  const [error, setError] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [infoMessage, setInfoMessage] = useState("");
+  const [error, setError] = useState(null);
+  const [dropdownDisplayCount, setDropdownDisplayCount] = useState(0);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
-
-  const getLocation = async () => {
-    try {
-      const position = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-      });
-      const { latitude, longitude } = position.coords;
-      fetchNearbyLocations(latitude, longitude);
-    } catch (err) {
-      setError("Unable to retrieve your location");
-      console.error(err);
-    }
-  };
 
   const fetchNearbyLocations = async (latitude, longitude) => {
     try {
@@ -54,7 +60,10 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
         (place) => place.displayName.text
       );
       setNearbyLocations(places);
-      setShowDropdown(true);
+      if (dropdownDisplayCount < 2) {
+        setShowDropdown(true);
+        setDropdownDisplayCount(dropdownDisplayCount + 1);
+      }
     } catch (error) {
       console.error("Error fetching nearby locations:", error);
     }
@@ -88,32 +97,27 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
     }
   };
 
-  const handleSelectLocation = (location) => {
-    const newLocation = [...currentLocation, location].slice(0, 3);
-    setCurrentLocation(newLocation);
-    handleChange({ target: { name: "senderAddress", value: newLocation } });
-    setShowDropdown(false);
-  };
-
-  const handleIconClick = () => {
-    setInfoMessage(
-      "Select up to 3 locations that best describe where you are at."
-    );
-    getLocation();
-  };
-
-  const handleAddressSelect = async (address) => {
-    setInfoMessage(
-      "Select up to 3 locations that best describe where you are at."
-    );
-    setSenderAutoDetectLocation(address);
-  };
-
   useEffect(() => {
     if (senderAutoDetectLocation) {
       fetchAddressLocation(senderAutoDetectLocation);
     }
   }, [senderAutoDetectLocation]);
+
+  const handleAddressSelect = async (address) => {
+    setInfoMessage("Select a location that best describes where you are at.");
+    setSenderAutoDetectLocation(address);
+    handleChange({ target: { name: "senderAddress", value: address } });
+  };
+
+  const handleSelectLocation = (location) => {
+    setSenderAutoDetectLocation(location);
+    setShowDropdown(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    nextStep();
+  };
 
   const handleClickOutside = (event) => {
     if (
@@ -133,16 +137,14 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
     };
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    nextStep();
+  const handleSaveAddressChange = (event) => {
+    handleChange({
+      target: { name: "saveSenderAddress", value: event.target.checked },
+    });
   };
 
   return (
-    <div
-      className="p-10 bg-white rounded-md"
-      style={{ border: "1px solid #ccc" }}
-    >
+    <div className="p-10 bg-white rounded-md" style={{ border: "1px solid #ccc" }}>
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
         <div className="mb-4">
           <h2 className="text-2xl font-semibold">Sender</h2>
@@ -166,16 +168,10 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
           <label className="block text-base font-semibold text-[#4B4B4B]">
             Address
           </label>
-          <div className="relative w-full">
+          <div ref={inputRef} style={styles.inputWrapper}>
             <AddressInput
-              value={currentLocation}
-              onChange={handleSelectLocation}
-            />
-            <FaLocationArrow
-              onClick={handleIconClick}
-              className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500"
-              style={{ cursor: "pointer", color: "#ccc" }}
-              title="Auto detect your location"
+              value={senderAutoDetectLocation}
+              onChange={handleAddressSelect}
             />
             {showDropdown && (
               <div ref={dropdownRef} style={styles.dropdownContainer}>
@@ -185,12 +181,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
                     <li
                       key={index}
                       onClick={() => handleSelectLocation(location)}
-                      style={{
-                        ...styles.dropdownItem,
-                        backgroundColor: currentLocation.includes(location)
-                          ? "#d3d3d3"
-                          : "#fff",
-                      }}
+                      style={styles.dropdownItem}
                     >
                       {location}
                     </li>
@@ -214,21 +205,26 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             />
           </div>
           <div className="w-full sm:w-1/2 relative">
-            <label className="block text-base font-semibold text-[#4B4B4B]">
+            <label className="block text-base  font-semibold text-[#4B4B4B]">
               Due Time
             </label>
-            <input
-              type="time"
-              name="dueTime"
-              value={formData.dueTime}
-              onChange={handleChange}
-              className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            <DatePicker
+              selected={
+                formData.dueTime
+                  ? parse(formData.dueTime, "hh:mm a", new Date())
+                  : null
+              }
+              onChange={(time) =>
+                handleTimeChange(format(time, "hh:mm a"), "dueTime")
+              }
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={1}
+              timeCaption="Time"
+              dateFormat="h:mm aa"
+              className="input-box mt-1 block w-full md:w-[300px] h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+              customInput={<CustomTimeInput />}
             />
-            {!formData.dueTime && (
-              <span className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 pointer-events-none">
-                HH:MM
-              </span>
-            )}
           </div>
         </div>
         <div className="mb-4">
@@ -249,6 +245,7 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
             name="saveAddress"
             id="saveAddress"
             className="input-box h-4 w-4 text-blue-600 focus:outline-none focus:ring-1 focus:ring-[#ccc] border-gray-300 rounded"
+            onChange={handleSaveAddressChange}
           />
           <label
             htmlFor="saveAddress"
@@ -269,6 +266,11 @@ const SenderForm = ({ formData, handleChange, nextStep, handleDateChange }) => {
 };
 
 const styles = {
+  inputWrapper: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+  },
   infoMessage: {
     color: "#666",
     marginBottom: "10px",

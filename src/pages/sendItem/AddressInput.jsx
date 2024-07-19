@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 const AddressInput = ({ value, onChange }) => {
   const [predictions, setPredictions] = useState([]);
-  const [inputValue, setInputValue] = useState(value.join(", "));
+  const [inputValue, setInputValue] = useState(value);
   const autocompleteService = useRef(null);
   const inputRef = useRef(null);
 
@@ -18,12 +18,12 @@ const AddressInput = ({ value, onChange }) => {
       autocompleteService.current.getPlacePredictions(
         {
           input: value,
-          componentRestrictions: { country: "NG" },
+          componentRestrictions: { country: 'NG' },
         },
         (predictions, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             const filteredPredictions = predictions.filter((prediction) =>
-              prediction.description.includes("Lagos")
+              prediction.description.includes('Lagos')
             );
             setPredictions(filteredPredictions);
           } else {
@@ -35,9 +35,8 @@ const AddressInput = ({ value, onChange }) => {
   };
 
   const handlePredictionClick = (prediction) => {
-    const newValue = [...value, prediction.description].slice(0, 3);
-    setInputValue(newValue.join(", "));
-    onChange(newValue);
+    setInputValue(prediction.description);
+    onChange(prediction.description);
     setPredictions([]);
   };
 
@@ -47,7 +46,7 @@ const AddressInput = ({ value, onChange }) => {
         ref={inputRef}
         type="text"
         placeholder="Location"
-        className="input-box w-full p-3 focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 text-sm rounded-2xl"
+        className="input-box w-full md:w-[560px] h-[58px] rounded-2xl p-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#ccc] text-sm"
         onChange={handleInputChange}
         value={inputValue}
       />

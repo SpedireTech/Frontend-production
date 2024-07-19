@@ -17,6 +17,7 @@ import DeliveryForm from "./pages/sendItem/DeliveryForm"
 import PairingForm from "./components/courier/PairingForm";
 import OnboardingForm from "./components/courier/OnboardingForm";
 import WalletComponent from "./components/wallet/WalletComponent";
+import TestLocation from "./pages/sendItem/testLocation";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -72,6 +73,7 @@ function App() {
           <Route path="/request-item" element={<PairingForm />} />
           <Route path="/upgrade" element={<OnboardingForm />} />
           <Route path="/wallet" element={<WalletComponent />} />
+          <Route path="/test" element={<TestLocation />} />
         </Routes>
       </BrowserRouter>
     </div>
