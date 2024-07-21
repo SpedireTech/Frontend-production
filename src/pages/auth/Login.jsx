@@ -37,8 +37,10 @@ export default function Login() {
 	});
 	const [info, setInfo] = useState("");
 	async function loginHandler() {
+		const currentToastId = toast.loading("Loading...");
 		if (!formData.email || !formData.password) {
 			toast.error("Fill out all fields to login", {
+				id: currentToastId,
 				duration: 3000,
 				position: "top-center",
 			});
@@ -73,6 +75,7 @@ export default function Login() {
 				86400000
 			);
 			toast.success(`Login Successful`, {
+				id: currentToastId,
 				duration: 3000,
 				position: "top-right",
 			});
@@ -81,8 +84,9 @@ export default function Login() {
 			toast.error(
 				`${error?.response?.data.message || "something went wrong"}`,
 				{
+					id: currentToastId,
 					duration: 3000,
-					position: "top-right",
+					position: "top-center",
 				}
 			);
 		}
@@ -159,7 +163,7 @@ export default function Login() {
 					</div>
 					<button
 						type="submit"
-						className=" w-full h-[54px] mt-4 py-2 px-8 font-semibold font-hg rounded-lg bg-button text-white text-base hover:bg-opacity-80 shadow-sm"
+						className=" w-full h-[54px] mt-4 py-2 px-8 font-semibold rounded-lg bg-button text-white text-base hover:bg-opacity-80 shadow-sm"
 						onClick={loginHandler}
 					>
 						Login

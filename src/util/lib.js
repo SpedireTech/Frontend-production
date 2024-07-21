@@ -12,7 +12,6 @@ export function getStoredItem(key) {
 	const itemStr = localStorage.getItem(key);
 
 	if (!itemStr) {
-		// window.location.reload();
 		return null;
 	}
 

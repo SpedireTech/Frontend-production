@@ -15,8 +15,10 @@ export default function ResetPassword() {
 		confirmPassword: "",
 	});
 	async function resetHandler() {
+		const currentToastId = toast.loading("Loading...");
 		if (formData.password !== formData.confirmPassword) {
 			toast.error("Password does not match", {
+				id: currentToastId,
 				position: "top-left",
 				duration: 9000,
 			});
@@ -33,6 +35,7 @@ export default function ResetPassword() {
 			const response = await resetPassword(data);
 			if (response.success === true) {
 				toast.success(`Password reset successful`, {
+					id: currentToastId,
 					duration: 3000,
 					position: "top-right",
 				});
@@ -42,6 +45,7 @@ export default function ResetPassword() {
 			toast.error(
 				`${error?.response?.data.message || "something went wrong"}`,
 				{
+					id: currentToastId,
 					duration: 3000,
 					position: "top-right",
 				}

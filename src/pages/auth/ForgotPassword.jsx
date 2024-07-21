@@ -13,8 +13,10 @@ export default function ForgotPassword() {
 		email: "",
 	});
 	async function resetHandler() {
+		const currentToastId = toast.loading("Loading...");
 		if (!formData.email) {
 			toast.error("Fill out your email to reset password", {
+				id: currentToastId,
 				position: "top-left",
 				duration: 9000,
 			});
@@ -28,6 +30,7 @@ export default function ForgotPassword() {
 		try {
 			await forgotPassword(data);
 			toast.success(`Password reset link sent to your mail`, {
+				id: currentToastId,
 				duration: 3000,
 				position: "top-right",
 			});
@@ -36,6 +39,7 @@ export default function ForgotPassword() {
 			toast.error(
 				`${error?.response?.data.message || "something went wrong"}`,
 				{
+					id: currentToastId,
 					duration: 3000,
 					position: "top-right",
 				}
@@ -80,7 +84,7 @@ export default function ForgotPassword() {
 
 						<button
 							type="submit"
-							className=" w-full h-[54px] font-semibold py-4.5 px-2.5 rounded-[16px] font-hk bg-[#08418A] text-white text-base hover:bg-opacity-80 shadow-sm"
+							className=" w-full h-[54px] font-semibold py-3.5 px-2.5 rounded-[16px] bg-[#08418A] text-white hover:bg-opacity-80 shadow-sm"
 							onClick={resetHandler}
 						>
 							Submit

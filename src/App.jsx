@@ -7,13 +7,17 @@ import Login from "./pages/auth/Login";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import LandingPage from "./pages/landing/LandingPage";
 import ResetPassword from "./pages/auth/ResetPassword";
-import AboutPage from "./pages/About";
 import widget from "./assets/widget.png";
 import cancel from "./assets/cancel.png";
 import { useEffect, useState } from "react";
 import { AiOutlineMail, AiOutlineWhatsApp } from "react-icons/ai";
-import DashBoard from "./pages/DashBoard";
+import DashBoard from "./pages/dashbaord/DashBoard";
 import About from "./pages/About";
+import DeliveryForm from "./pages/sendItem/DeliveryForm"
+import PairingForm from "./components/courier/PairingForm";
+import OnboardingForm from "./components/courier/OnboardingForm";
+import WalletComponent from "./components/wallet/WalletComponent";
+import TestLocation from "./pages/sendItem/testLocation";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -65,6 +69,11 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/about" element={<About />} />
+          <Route path="/deliver-item" element={<DeliveryForm />} />
+          <Route path="/request-item" element={<PairingForm />} />
+          <Route path="/upgrade" element={<OnboardingForm />} />
+          <Route path="/wallet" element={<WalletComponent />} />
+          <Route path="/test" element={<TestLocation />} />
         </Routes>
       </BrowserRouter>
     </div>

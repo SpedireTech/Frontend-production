@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";  // Import the useNavigate hook
 import grid from "../../assets/about/grid_view.png";
 import send from "../../assets/about/send.png";
 import local_shipping from "../../assets/about/local_shipping.png";
@@ -24,14 +25,24 @@ const otherData = [
   { id: 8, name: "FAQs", icon: `${quiz}` },
   { id: 9, name: "Log out", icon: `${inputs}` },
 ];
+
 const SideBarData = () => {
   const [active, setActive] = useState(null);
+  const navigate = useNavigate();  // Initialize the navigate function
 
   const handleClick = (id) => {
     if (active === id) {
       return;
     }
     setActive(id);
+
+    // Add navigation based on the clicked item id
+    if (id === 2) {
+      navigate("/deliver-item");
+    }
+    if (id === 3) {
+      navigate("/request-item");
+    }
   };
 
   useEffect(() => {
@@ -41,7 +52,7 @@ const SideBarData = () => {
   return (
     <div className="w-[192px] h-full flex flex-col gap-y-2">
       <div className="w-full mt-4">
-        <img src={logo} />
+        <img src={logo} alt="Logo" />
       </div>
       {data.map((item) => (
         <div
@@ -54,7 +65,7 @@ const SideBarData = () => {
               active === item.id ? "bg-button rounded-lg" : ""
             } `}
           >
-            <img src={item.icon} className="w-5 h-5" />
+            <img src={item.icon} className="w-5 h-5" alt={`${item.name} Icon`} />
             <div className="w-full">
               <p className="font-hg font-normal text-white text-[18px]">
                 {item.name}
@@ -72,7 +83,7 @@ const SideBarData = () => {
               active === otherItem.id ? "bg-button rounded-lg" : ""
             } `}
           >
-            <img src={otherItem.icon} className="w-5 h-5" />
+            <img src={otherItem.icon} className="w-5 h-5" alt={`${otherItem.name} Icon`} />
             <div className="w-full">
               <p className="font-hg font-normal text-white text-[18px]">
                 {otherItem.name}
