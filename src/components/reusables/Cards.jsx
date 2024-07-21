@@ -10,7 +10,7 @@ import { MdCancel } from "react-icons/md";
 
 const Cards = () => {
   return (
-    <div className="grid grid-cols-2 gap-4 gap-x-3 w-100%">
+    <div className="grid grid-cols-2 gap-4 gap-x-3 w-[618px]">
       <Card
         text={"total items sent"}
         amount={0}

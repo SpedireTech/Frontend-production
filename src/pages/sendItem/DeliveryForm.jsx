@@ -126,81 +126,78 @@ const DeliveryForm = () => {
   };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8" libraries={["places"]}>
-      <div className="flex w-full h-screen">
-        <ToastContainer />
-        <div className="w-[20%] bg-blue-500">
-          <SideBar />
-        </div>
-        <div className="fixed top-4 right-8 flex justify-end mb-4">
-          <button
-            onClick={() => navigate("/dashboard")}
-            className="text-gray-500 hover:text-gray-700"
+    // <LoadScript googleMapsApiKey="AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8" libraries={["places"]}>
+    <div className="flex w-full h-screen">
+      <ToastContainer />
+      <div className="fixed top-4 right-8 flex justify-end mb-4">
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="w-full max-w-2xl p-4 ml-32">
-          <div className="mt-4 flex space-x-4 top-4 mb-4">
-            <span
-              className={`text-lg font-semibold ${
-                step === 1 ? "text-blue-500" : "text-gray-500"
-              }`}
-            >
-              Sender
-            </span>
-            <p>-</p>
-            <span
-              className={`text-lg font-semibold ${
-                step === 2 ? "text-blue-500" : "text-gray-500"
-              }`}
-            >
-              Receiver
-            </span>
-          </div>
-          {step === 1 && (
-            <SenderForm
-              formData={formData}
-              handleChange={handleChange}
-              handleDateChange={handleDateChange}
-              handleTimeChange={handleTimeChange}
-              nextStep={nextStep}
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
             />
-          )}
-          {step === 2 && (
-            <ReceiverForm
-              formData={formData}
-              handleChange={handleChange}
-              prevStep={prevStep}
-              handleSubmit={handleSubmit}
-              isLoading={isLoading}
-            />
-          )}
-        </div>
-        <ConfirmationModal
-          isOpen={isModalOpen}
-          closeModal={() => setIsModalOpen(false)}
-          responseData={responseData}
-        />
-        <DeliveryInstructionsModal
-          isOpen={isInstructionsModalOpen}
-          closeModal={() => setIsInstructionsModalOpen(false)}
-        />
+          </svg>
+        </button>
       </div>
-    </LoadScript>
+      <div className="w-full max-w-2xl p-4 ml-32">
+        <div className="mt-4 flex space-x-4 top-4 mb-4">
+          <span
+            className={`text-lg font-semibold ${
+              step === 1 ? "text-blue-500" : "text-gray-500"
+            }`}
+          >
+            Sender
+          </span>
+          <p>-</p>
+          <span
+            className={`text-lg font-semibold ${
+              step === 2 ? "text-blue-500" : "text-gray-500"
+            }`}
+          >
+            Receiver
+          </span>
+        </div>
+        {step === 1 && (
+          <SenderForm
+            formData={formData}
+            handleChange={handleChange}
+            handleDateChange={handleDateChange}
+            handleTimeChange={handleTimeChange}
+            nextStep={nextStep}
+          />
+        )}
+        {step === 2 && (
+          <ReceiverForm
+            formData={formData}
+            handleChange={handleChange}
+            prevStep={prevStep}
+            handleSubmit={handleSubmit}
+            isLoading={isLoading}
+          />
+        )}
+      </div>
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(false)}
+        responseData={responseData}
+      />
+      <DeliveryInstructionsModal
+        isOpen={isInstructionsModalOpen}
+        closeModal={() => setIsInstructionsModalOpen(false)}
+      />
+    </div>
+    // </LoadScript>
   );
 };
 
