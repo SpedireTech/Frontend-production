@@ -4,9 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FaSearch } from "react-icons/fa";
 import AddressInput from "./AddressInput";
 import axios from "axios";
-import { format, parse, isValid } from "date-fns";
+import { format, parse } from "date-fns";
+import Spinner from "../sendItem/reusables/Spinner"; 
+import townsInLagos from "../sendItem/reusables/towns"; 
 
-// Custom input component for time picker with placeholder
 const CustomTimeInput = forwardRef(({ value, onClick, onChange }, ref) => (
   <input
     value={value}
@@ -15,6 +16,7 @@ const CustomTimeInput = forwardRef(({ value, onClick, onChange }, ref) => (
     ref={ref}
     placeholder="HH:MM"
     className="input-box mt-1 block w-full md:w-[270px] h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+    required
   />
 ));
 
@@ -28,90 +30,41 @@ const SenderForm = ({
   const [senderAutoDetectLocation, setSenderAutoDetectLocation] = useState(
     formData.senderAddress || ""
   );
-  const [nearbyLocations, setNearbyLocations] = useState([]);
+  const [savedAddresses, setSavedAddresses] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [infoMessage, setInfoMessage] = useState("");
-  const [error, setError] = useState(null);
-  const [dropdownDisplayCount, setDropdownDisplayCount] = useState(0);
+  const [isFetchingSavedAddresses, setIsFetchingSavedAddresses] = useState(false);
+  const [predictions, setPredictions] = useState([]);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  const fetchNearbyLocations = async (latitude, longitude) => {
+  const fetchSavedAddresses = async () => {
+    setIsFetchingSavedAddresses(true);
     try {
-      const response = await axios.post(
-        "https://places.googleapis.com/v1/places:searchNearby",
-        {
-          maxResultCount: 10,
-          locationRestriction: {
-            circle: {
-              center: { latitude, longitude },
-              radius: 1500.0,
-            },
-          },
-        },
+      const token = JSON.parse(localStorage.getItem("token")).value;
+      const response = await axios.get(
+        "https://spedire-app-backend-service.onrender.com/api/v1/address/sender",
         {
           headers: {
-            "X-Goog-Api-Key": "AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8",
-            "X-Goog-FieldMask": "places.displayName",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      const places = response.data.places.map(
-        (place) => place.displayName.text
-      );
-      setNearbyLocations(places);
-      if (dropdownDisplayCount < 2) {
-        setShowDropdown(true);
-        setDropdownDisplayCount(dropdownDisplayCount + 1);
-      }
+      setSavedAddresses(response.data.data || []);
     } catch (error) {
-      console.error("Error fetching nearby locations:", error);
+      console.error("Error fetching saved addresses:", error);
+    } finally {
+      setIsFetchingSavedAddresses(false);
     }
   };
-
-  const fetchAddressLocation = async (address) => {
-    try {
-      const response = await axios.post(
-        "https://places.googleapis.com/v1/places:searchText",
-        {
-          textQuery: address,
-        },
-        {
-          headers: {
-            "X-Goog-Api-Key": "AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8",
-            "X-Goog-FieldMask": "*",
-          },
-        }
-      );
-      if (response.data.places && response.data.places.length > 0) {
-        const place = response.data.places[0];
-        const location = place.location;
-        const latitude = location.latitude;
-        const longitude = location.longitude;
-        fetchNearbyLocations(latitude, longitude);
-      } else {
-        console.error("No places found in the response.");
-      }
-    } catch (error) {
-      console.error("Error fetching address location:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (senderAutoDetectLocation) {
-      fetchAddressLocation(senderAutoDetectLocation);
-    }
-  }, [senderAutoDetectLocation]);
 
   const handleAddressSelect = async (address) => {
-    setInfoMessage("Select a location that best describes where you are at.");
     setSenderAutoDetectLocation(address);
     handleChange({ target: { name: "senderAddress", value: address } });
+    setShowDropdown(false);
   };
 
   const handleSelectLocation = (location) => {
-    setSenderAutoDetectLocation(location);
-    setShowDropdown(false);
+    handleAddressSelect(location);
   };
 
   const handleSubmit = (event) => {
@@ -137,10 +90,45 @@ const SenderForm = ({
     };
   }, []);
 
-  const handleSaveAddressChange = (event) => {
-    handleChange({
-      target: { name: "saveSenderAddress", value: event.target.checked },
-    });
+  const handleInputChange = (address) => {
+    setSenderAutoDetectLocation(address);
+    if (address) {
+      setShowDropdown(true);
+      setPredictions([]);
+      fetchPredictions(address);
+    } else {
+      setPredictions([]);
+      fetchSavedAddresses();
+    }
+  };
+
+  const fetchPredictions = (value) => {
+    const autocompleteService = new window.google.maps.places.AutocompleteService();
+    autocompleteService.getPlacePredictions(
+      {
+        input: value,
+        componentRestrictions: { country: 'NG' },
+      },
+      (predictions, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          const filteredPredictions = predictions.filter((prediction) =>
+            prediction.description.includes('Lagos')
+          );
+          setPredictions(filteredPredictions);
+        } else {
+          setPredictions([]);
+        }
+      }
+    );
+  };
+
+  const handlePredictionClick = (prediction) => {
+    handleAddressSelect(prediction.description);
+  };
+
+  const handleAddressClick = () => {
+    fetchSavedAddresses();
+    setShowDropdown(true);
   };
 
   return (
@@ -158,39 +146,71 @@ const SenderForm = ({
             style={{ color: "#ccc" }}
           />
           <input
+            ref={inputRef}
             type="text"
-            name="searchDetails"
-            placeholder="Search saved details"
+            name="senderAddress"
+            value={senderAutoDetectLocation}
+            onClick={handleAddressClick}
+            onChange={(e) => handleInputChange(e.target.value)}
+            placeholder="Select or input address"
             className="input-box pl-10 mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
-        </div>
-        <div className="mb-4">
-          <label className="block text-base font-semibold text-[#4B4B4B]">
-            Address
-          </label>
-          <div ref={inputRef} style={styles.inputWrapper}>
-            <AddressInput
-              value={senderAutoDetectLocation}
-              onChange={handleAddressSelect}
-            />
-            {showDropdown && (
-              <div ref={dropdownRef} style={styles.dropdownContainer}>
-                <p style={styles.infoMessage}>{infoMessage}</p>
+          {showDropdown && (
+            <div ref={dropdownRef} style={styles.dropdownContainer}>
+              {predictions.length === 0 && (
+                <div>
+                  <p className="text-sm text-gray-500 px-4 py-2">
+                    {savedAddresses.length === 0 ? 'You have no saved address yet, add new ones' : 'Your saved addresse(s)'}
+                  </p>
+                  <ul style={styles.dropdown}>
+                    {savedAddresses.map((address, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleSelectLocation(address)}
+                        style={styles.dropdownItem}
+                      >
+                        {address}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {predictions.length > 0 && (
                 <ul style={styles.dropdown}>
-                  {nearbyLocations.map((location, index) => (
+                  {predictions.map((prediction) => (
                     <li
-                      key={index}
-                      onClick={() => handleSelectLocation(location)}
+                      key={prediction.place_id}
+                      className="p-2 cursor-pointer hover:bg-gray-200"
+                      onClick={() => handlePredictionClick(prediction)}
                       style={styles.dropdownItem}
                     >
-                      {location}
+                      {prediction.description}
                     </li>
                   ))}
                 </ul>
-              </div>
-            )}
-            {error && <p style={styles.error}>{error}</p>}
-          </div>
+              )}
+            </div>
+          )}
+          {isFetchingSavedAddresses && <Spinner />}
+        </div>
+        <div className="mb-4">
+          <label className="block text-base font-semibold text-[#4B4B4B]">
+            Town in Lagos
+          </label>
+          <select
+            name="senderTown"
+            value={formData.senderTown}
+            onChange={handleChange}
+            className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            required
+          >
+            <option value="" disabled>Select town</option>
+            {townsInLagos.map((town, index) => (
+              <option key={index} value={town}>
+                {town}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-4 flex flex-wrap sm:flex-nowrap space-x-0 sm:space-x-3">
           <div className="w-full sm:w-1/2 mb-4 sm:mb-0">
@@ -202,6 +222,7 @@ const SenderForm = ({
               onChange={(date) => handleDateChange(date, "dueDate")}
               placeholderText="MM/dd/yyyy"
               className="input-box mt-1 block w-full md:w-[280px] h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+              required
             />
           </div>
           <div className="w-full sm:w-1/2 relative">
@@ -224,6 +245,7 @@ const SenderForm = ({
               dateFormat="h:mm aa"
               className="input-box mt-1 block w-full md:w-[300px] h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
               customInput={<CustomTimeInput />}
+              required
             />
           </div>
         </div>
@@ -237,6 +259,7 @@ const SenderForm = ({
             value={formData.pickUpNote}
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[96px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            required
           />
         </div>
         <div className="flex items-center mb-8">
@@ -245,7 +268,11 @@ const SenderForm = ({
             name="saveAddress"
             id="saveAddress"
             className="input-box h-4 w-4 text-blue-600 focus:outline-none focus:ring-1 focus:ring-[#ccc] border-gray-300 rounded"
-            onChange={handleSaveAddressChange}
+            onChange={(event) =>
+              handleChange({
+                target: { name: "saveSenderAddress", value: event.target.checked },
+              })
+            }
           />
           <label
             htmlFor="saveAddress"
@@ -271,10 +298,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
   },
-  infoMessage: {
-    color: "#666",
-    marginBottom: "10px",
-  },
   dropdownContainer: {
     position: "absolute",
     top: "100%",
@@ -295,9 +318,6 @@ const styles = {
   dropdownItem: {
     padding: "10px",
     cursor: "pointer",
-  },
-  error: {
-    color: "red",
   },
 };
 

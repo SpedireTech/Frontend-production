@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 
 const AddressInput = ({ value, onChange }) => {
   const [predictions, setPredictions] = useState([]);
@@ -13,17 +13,18 @@ const AddressInput = ({ value, onChange }) => {
 
     if (value) {
       if (!autocompleteService.current) {
-        autocompleteService.current = new window.google.maps.places.AutocompleteService();
+        autocompleteService.current =
+          new window.google.maps.places.AutocompleteService();
       }
       autocompleteService.current.getPlacePredictions(
         {
           input: value,
-          componentRestrictions: { country: 'NG' },
+          componentRestrictions: { country: "NG" },
         },
         (predictions, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             const filteredPredictions = predictions.filter((prediction) =>
-              prediction.description.includes('Lagos')
+              prediction.description.includes("Lagos")
             );
             setPredictions(filteredPredictions);
           } else {
@@ -45,8 +46,8 @@ const AddressInput = ({ value, onChange }) => {
       <input
         ref={inputRef}
         type="text"
-        placeholder="Location"
-        className="input-box w-full md:w-[560px] h-[58px] rounded-2xl p-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#ccc] text-sm"
+        placeholder="Select or input address"
+        className="input-box w-full md:w-[543px] h-[58px] rounded-2xl p-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-[#ccc] text-sm"
         onChange={handleInputChange}
         value={inputValue}
       />

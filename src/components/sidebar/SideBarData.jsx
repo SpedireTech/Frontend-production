@@ -13,12 +13,12 @@ import logo from "../../assets/spedire.png";
 
 const data = [
   { id: 1, name: "Dashboard", icon: `${grid}`, link: "/dashboard" },
-  { id: 2, name: "Send Item", icon: `${send}`, link: "/dashboard/send-item" },
+  { id: 2, name: "Send Item", icon: `${send}`, link: "/dashboard/deliver-item" },
   {
     id: 3,
     name: "Deliver Item",
     icon: `${local_shipping}`,
-    link: "/dashboard/deliver-item",
+    link: "/dashboard/request-item",
   },
   {
     id: 4,

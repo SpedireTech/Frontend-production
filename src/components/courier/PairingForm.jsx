@@ -71,9 +71,9 @@ const PairingForm = () => {
   return (
     <div className="flex w-full h-screen">
       <ToastContainer />
-      <div className="w-[20%] bg-blue-500">
+      {/* <div className="w-[20%] bg-blue-500">
         <SideBar />
-      </div>
+      </div> */}
       <div className="fixed top-4 right-8 flex justify-end mb-4">
         <button
           onClick={() => navigate("/dashboard")}

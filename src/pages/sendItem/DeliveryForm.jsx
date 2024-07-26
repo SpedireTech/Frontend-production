@@ -7,7 +7,6 @@ import { format, parse, isValid } from "date-fns";
 import SenderForm from "./SenderForm";
 import ReceiverForm from "./RecieverForm";
 import ConfirmationModal from "./ConfirmationModal";
-import SideBar from "../../components/sidebar/SideBar";
 import { getStoredItem } from "../../util/lib";
 import DeliveryInstructionsModal from "./DeliveryInstructionsModal";
 import { LoadScript } from "@react-google-maps/api";
@@ -18,8 +17,10 @@ const DeliveryForm = () => {
   const [formData, setFormData] = useState({
     ...user,
     senderAddress: "",
+    senderTown: "",
     receiverName: "",
     receiverAddress: "",
+    receiverTown: "", 
     receiverPhoneNumber: "",
     itemName: "",
     description: "",
@@ -55,7 +56,7 @@ const DeliveryForm = () => {
 
   const handleTimeChange = (time, field) => {
     if (time === "") {
-      setFormData({ ...formData, [field]: null }); // Set to null explicitly
+      setFormData({ ...formData, [field]: null }); 
     } else {
       const parsedTime = parse(time, "hh:mm a", new Date());
       if (isValid(parsedTime)) {
@@ -83,7 +84,6 @@ const DeliveryForm = () => {
     console.log("Sender duetime:", formData.dueTime);
     setIsLoading(true);
 
-    // Check if dueTime is null or a valid time before sending the request
     const dueTime = formData.dueTime ? formData.dueTime : null;
 
     try {
@@ -93,9 +93,11 @@ const DeliveryForm = () => {
           senderId: user.senderId,
           senderName: senderName,
           senderLocation: formData.senderAddress,
+          senderTown: formData.senderTown, 
           senderPhoneNumber: formData.senderPhoneNumber,
           receiverName: formData.receiverName,
           receiverLocation: formData.receiverAddress,
+          receiverTown: formData.receiverTown, 
           receiverPhoneNumber: formData.receiverPhoneNumber,
           itemDescription: formData.description,
           itemValue: formData.itemValue,
@@ -116,7 +118,6 @@ const DeliveryForm = () => {
       );
       setResponseData(response.data);
       setIsModalOpen(true);
-      toast.success("Order created successfully!");
     } catch (error) {
       console.error("Error submitting the form:", error);
       toast.error("Failed to create order.", error);
@@ -126,7 +127,7 @@ const DeliveryForm = () => {
   };
 
   return (
-    // <LoadScript googleMapsApiKey="AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8" libraries={["places"]}>
+    <LoadScript googleMapsApiKey="AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8" libraries={["places"]}>
     <div className="flex w-full h-screen">
       <ToastContainer />
       <div className="fixed top-4 right-8 flex justify-end mb-4">
@@ -197,7 +198,7 @@ const DeliveryForm = () => {
         closeModal={() => setIsInstructionsModalOpen(false)}
       />
     </div>
-    // </LoadScript>
+     </LoadScript>
   );
 };
 

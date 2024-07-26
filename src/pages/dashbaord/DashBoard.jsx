@@ -32,8 +32,8 @@ const DashBoard = () => {
           </div>
         </div>
         <div className="max-w-full flex flex-col md:flex-row w-full gap-2">
-          {/* <RecentDeliveries />
-          <Map /> */}
+          <RecentDeliveries />
+          <Map />
         </div>
       </div>
     </div>

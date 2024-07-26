@@ -22,10 +22,14 @@ const ConfirmationModal = ({ isOpen, closeModal }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="fixed inset-0 bg-gray-800 bg-opacity-85 backdrop-filter border border-gray-300 backdrop-blur-sm"></div>
+      <div
+        className="fixed inset-0 bg-gray-800 bg-opacity-50 border border-gray-300"
+        style={{ backdropFilter: "blur(1.5px)" }}
+      ></div>
       <div
         ref={modalRef}
-        className="bg-white p-6 rounded-lg w-full max-w-3xl relative z-10"
+        className="bg-white p-4 rounded-lg w-full max-w-lg md:max-w-none relative z-10 mx-4"
+        style={{ width: "350px", height: "391px", md: { width: "614px", height: "440px" }}}
       >
         <button
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
@@ -38,7 +42,7 @@ const ConfirmationModal = ({ isOpen, closeModal }) => {
             src={Mark}
             alt="Confirmation Mark"
             className="mx-auto mb-4"
-            style={{ width: "292px", height: "292px" }}
+            style={{ width: "150px", height: "150px", md: { width: "292px", height: "292px" }}}
           />
           <h3 className="mt-2 text-lg font-medium text-gray-900">
             Congratulations, your order has been submitted.

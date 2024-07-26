@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import UploadImage from "../../assets/UploadImageIcon.svg";
 import flag from "../../assets/NIGIcon.svg";
 import { FaSearch } from "react-icons/fa";
-import { FaSpinner } from "react-icons/fa"; // Import the spinner icon
+import { FaSpinner } from "react-icons/fa"; 
 import axios from "axios";
 import AddressInput from "./AddressInput";
+import Spinner from "../sendItem/reusables/Spinner"; 
+import townsInLagos from "../sendItem/reusables/towns"; 
 
 const ReceiverForm = ({
   formData,
@@ -12,95 +14,46 @@ const ReceiverForm = ({
   prevStep,
   handleSubmit,
   handleImageChange,
-  isLoading, // Add this prop to get loading state
+  isLoading, 
 }) => {
   const [receiverAutoDetectLocation, setReceiverAutoDetectLocation] = useState(
     formData.receiverAddress || ""
   );
-  const [nearbyLocations, setNearbyLocations] = useState([]);
+  const [savedAddresses, setSavedAddresses] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [infoMessage, setInfoMessage] = useState("");
-  const [error, setError] = useState(null);
-  const [dropdownDisplayCount, setDropdownDisplayCount] = useState(0);
+  const [predictions, setPredictions] = useState([]);
+  const [isFetchingSavedAddresses, setIsFetchingSavedAddresses] = useState(false);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  const fetchNearbyLocations = async (latitude, longitude) => {
+  const fetchSavedAddresses = async () => {
+    setIsFetchingSavedAddresses(true);
     try {
-      const response = await axios.post(
-        "https://places.googleapis.com/v1/places:searchNearby",
-        {
-          maxResultCount: 10,
-          locationRestriction: {
-            circle: {
-              center: { latitude, longitude },
-              radius: 1500.0,
-            },
-          },
-        },
+      const token = JSON.parse(localStorage.getItem("token")).value;
+      const response = await axios.get(
+        "https://spedire-app-backend-service.onrender.com/api/v1/address/receiver",
         {
           headers: {
-            "X-Goog-Api-Key": "AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8",
-            "X-Goog-FieldMask": "places.displayName",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      const places = response.data.places.map(
-        (place) => place.displayName.text
-      );
-      setNearbyLocations(places);
-      if (dropdownDisplayCount < 2) {
-        setShowDropdown(true);
-        setDropdownDisplayCount(dropdownDisplayCount + 1);
-      }
+      setSavedAddresses(response.data.data || []);
     } catch (error) {
-      console.error("Error fetching nearby locations:", error);
+      console.error("Error fetching saved addresses:", error);
+    } finally {
+      setIsFetchingSavedAddresses(false);
     }
   };
-
-  const fetchAddressLocation = async (address) => {
-    try {
-      const response = await axios.post(
-        "https://places.googleapis.com/v1/places:searchText",
-        {
-          textQuery: address,
-        },
-        {
-          headers: {
-            "X-Goog-Api-Key": "AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8",
-            "X-Goog-FieldMask": "*",
-          },
-        }
-      );
-      if (response.data.places && response.data.places.length > 0) {
-        const place = response.data.places[0];
-        const location = place.location;
-        const latitude = location.latitude;
-        const longitude = location.longitude;
-        fetchNearbyLocations(latitude, longitude);
-      } else {
-        console.error("No places found in the response.");
-      }
-    } catch (error) {
-      console.error("Error fetching address location:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (receiverAutoDetectLocation) {
-      fetchAddressLocation(receiverAutoDetectLocation);
-    }
-  }, [receiverAutoDetectLocation]);
 
   const handleAddressSelect = async (address) => {
-    setInfoMessage("Select a location that best describes where you are at.");
     setReceiverAutoDetectLocation(address);
     handleChange({ target: { name: "receiverAddress", value: address } });
+    setShowDropdown(false);
   };
 
   const handleSelectLocation = (location) => {
-    setReceiverAutoDetectLocation(location);
-    setShowDropdown(false);
+    handleAddressSelect(location);
   };
 
   const handleClickOutside = (event) => {
@@ -120,6 +73,47 @@ const ReceiverForm = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleInputChange = (address) => {
+    setReceiverAutoDetectLocation(address);
+    if (address) {
+      setShowDropdown(true);
+      setPredictions([]);
+      fetchPredictions(address);
+    } else {
+      setPredictions([]);
+      fetchSavedAddresses();
+    }
+  };
+
+  const fetchPredictions = (value) => {
+    const autocompleteService = new window.google.maps.places.AutocompleteService();
+    autocompleteService.getPlacePredictions(
+      {
+        input: value,
+        componentRestrictions: { country: 'NG' },
+      },
+      (predictions, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          const filteredPredictions = predictions.filter((prediction) =>
+            prediction.description.includes('Lagos')
+          );
+          setPredictions(filteredPredictions);
+        } else {
+          setPredictions([]);
+        }
+      }
+    );
+  };
+
+  const handlePredictionClick = (prediction) => {
+    handleAddressSelect(prediction.description);
+  };
+
+  const handleAddressClick = () => {
+    fetchSavedAddresses();
+    setShowDropdown(true);
+  };
 
   const handleSaveAddressChange = (event) => {
     handleChange({
@@ -142,7 +136,7 @@ const ReceiverForm = ({
       }}
     >
       <form onSubmit={onSubmit} className="max-w-4xl mx-auto">
-        <div className="mb-4">
+      <div className="mb-4">
           <h2 className="text-2xl font-semibold">Add Receiver</h2>
           <p className="text-xm text-[#4B4B4B]">
             Search from your saved addresses or create a new one
@@ -154,39 +148,71 @@ const ReceiverForm = ({
             style={{ color: "#ccc" }}
           />
           <input
+            ref={inputRef}
             type="text"
-            name="searchDetails"
-            placeholder="Search saved details"
-            className="input-box pl-10 mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            name="receiverAddress"
+            value={receiverAutoDetectLocation}
+            onClick={handleAddressClick}
+            onChange={(e) => handleInputChange(e.target.value)}
+            placeholder="Select or input address"
+            className="input-box pl-10 mt-1 block w-full md:w-[543px] h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
           />
-        </div>
-        <div className="mb-4">
-          <label className="block text-base font-semibold text-[#4B4B4B]">
-            Drop Off Address
-          </label>
-          <div ref={inputRef} style={styles.inputWrapper}>
-            <AddressInput
-              value={receiverAutoDetectLocation}
-              onChange={handleAddressSelect}
-            />
-            {showDropdown && (
-              <div ref={dropdownRef} style={styles.dropdownContainer}>
-                <p style={styles.infoMessage}>{infoMessage}</p>
+          {showDropdown && (
+            <div ref={dropdownRef} style={styles.dropdownContainer}>
+              {predictions.length === 0 && (
+                <div>
+                  <p className="text-sm text-gray-500 px-4 py-2">
+                    {savedAddresses.length === 0 ? 'You have no saved address yet, add new ones' : 'Your saved addresse(s)'}
+                  </p>
+                  <ul style={styles.dropdown}>
+                    {savedAddresses.map((address, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleSelectLocation(address)}
+                        style={styles.dropdownItem}
+                      >
+                        {address}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {predictions.length > 0 && (
                 <ul style={styles.dropdown}>
-                  {nearbyLocations.map((location, index) => (
+                  {predictions.map((prediction) => (
                     <li
-                      key={index}
-                      onClick={() => handleSelectLocation(location)}
+                      key={prediction.place_id}
+                      className="p-2 cursor-pointer hover:bg-gray-200"
+                      onClick={() => handlePredictionClick(prediction)}
                       style={styles.dropdownItem}
                     >
-                      {location}
+                      {prediction.description}
                     </li>
                   ))}
                 </ul>
-              </div>
-            )}
-            {error && <p style={styles.error}>{error}</p>}
+              )}
+            </div>
+          )}
+          {isFetchingSavedAddresses && <Spinner />}
           </div>
+        <div className="mb-4">
+          <label className="block text-base font-semibold text-[#4B4B4B]">
+            Town in Lagos
+          </label>
+          <select
+            name="receiverTown"
+            value={formData.receiverTown}
+            onChange={handleChange}
+            className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+            required
+          >
+            <option value="" disabled>Select town</option>
+            {townsInLagos.map((town, index) => (
+              <option key={index} value={town}>
+                {town}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-4">
           <label className="block text-base font-semibold text-[#4B4B4B]">
@@ -199,6 +225,7 @@ const ReceiverForm = ({
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
+            required
           />
         </div>
         <div className="mb-4">
@@ -217,6 +244,7 @@ const ReceiverForm = ({
               value={formData.receiverPhoneNumber}
               onChange={handleChange}
               className="input-box pl-20 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
+              required
             />
           </div>
         </div>
@@ -231,6 +259,7 @@ const ReceiverForm = ({
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
+            required
           />
         </div>
         <div className="mb-4">
@@ -257,6 +286,7 @@ const ReceiverForm = ({
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[58px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
+            required
           />
         </div>
         <div className="mb-4">
@@ -302,6 +332,7 @@ const ReceiverForm = ({
             onChange={handleChange}
             className="input-box mt-1 block w-full h-[96px] focus:outline-none focus:ring-1 focus:ring-[#ccc] border border-gray-300 shadow-sm sm:text-sm rounded-2xl"
             style={{ borderColor: "#ccc" }}
+            required
           />
         </div>
         <div className="flex items-center mb-8">
@@ -344,10 +375,6 @@ const styles = {
     position: "relative",
     display: "flex",
     alignItems: "center",
-  },
-  infoMessage: {
-    color: "#666",
-    marginBottom: "10px",
   },
   dropdownContainer: {
     position: "absolute",
