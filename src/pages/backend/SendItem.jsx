@@ -100,19 +100,23 @@ const SendItem = () => {
     event.preventDefault();
 
     const payload = {
-      senderName: 'Zainab Wilfred',
-      senderId: 'Why do we have senderId',
-      senderLocation,
-      senderPhoneNumber: '09087655443',
-      receiverName: 'Kudirat Jamiu',
-      receiverPhoneNumber: '07087544331',
-      receiverLocation,
-      itemDescription: 'Bag of Clothes',
-      price: '89000',
-      dueDate: '24/09/2024',
-      dueTime: '07:00AM',
-      picture: 'null',
-    };
+      "pickUpNote": "pickUpNote_0c211fd30c85",
+      "senderName": "Ifeola Adeyinks",
+      "itemName": "Books and Bag",
+      "senderId": "senderId_4ec07bb76f89",
+      "senderLocation": [
+      "Onipanu", "Agege"
+    ],
+    "senderPhoneNumber": "09078655443",
+    "receiverName": "Bili Latifa",
+    "receiverPhoneNumber": "07045277998",
+    "receiverLocation": "Ikeja", 
+    "itemDescription": "itemDescription_a64758cb84dd",
+    "itemValue": "6500",
+    "dueDate": "08/12/2024",
+    "dueTime": "11:00",
+    "picture": "picture_95c81ff00cfd"
+  };
 
     console.log("Payload == ", payload);
 
