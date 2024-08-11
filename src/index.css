@@ -91,3 +91,27 @@ span.item:nth-child(3) {
 		transform: rotateX(90deg);
 	}
 }
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+    opacity: 0; /* start from transparent */
+  }
+
+  10% {
+    opacity: 1; /* fade in */
+  }
+
+  90% {
+    opacity: 1; /* stay visible */
+  }
+
+  100% {
+    transform: translateX(-100%);
+    opacity: 0; /* fade out */
+  }
+}
+.shadow-bottomCustom {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}

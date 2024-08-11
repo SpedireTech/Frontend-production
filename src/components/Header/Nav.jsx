@@ -4,25 +4,23 @@ import Button from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 
 const navData = [
-  { id: 1, name: "home" },
-  { id: 2, name: "about us" },
-  { id: 3, name: "track delivery" },
-  { id: 4, name: "resources" },
-  { id: 5, name: "login" },
+  { id: 1, name: "home", link: "/" },
+  { id: 2, name: "about us", link: "/about" },
+  { id: 3, name: "track delivery", link: "/track_delivery" },
+  { id: 4, name: "resources", link: "/resources" },
+  { id: 5, name: "login", link: "/login" },
 ];
 
 const Nav = () => {
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate(); // React Router's navigate hook
+  const navigate = useNavigate();
 
-  const handleClick = (name) => {
+  const handleClick = (name, link) => {
     setActive(name);
     // Navigate to specific routes when certain nav items are clicked
-    if (name === "login") {
-      navigate("/login");
-    }
+    navigate(link);
   };
 
   useEffect(() => {
@@ -37,9 +35,10 @@ const Nav = () => {
 
   return (
     <nav
-      className={`p-4 lg:p-8 w-full max-h-[100px] bg-white ${
-        isScrolled ? "fixed top-0 shadow-lg z-50" : ""
-      }`}
+      // className={`p-4 lg:p-8 w-full max-h-[100px] bg-white ${
+      //   isScrolled ? "sticky top-0 shadow-lg z-50" : ""
+      // }`}
+      className={`p-4 lg:p-8 w-full max-h-[100px] bg-white fixed top-0 shadow-lg z-50`}
     >
       {/* Desktop view */}
       <div className="hidden md:hidden lg:flex w-full h-[60px] items-center gap-x-20 xl:gap-x-48">
@@ -53,7 +52,7 @@ const Nav = () => {
               className={`font-hg text-[20px] xl:text-[24px] capitalize cursor-pointer ${
                 active === item.name ? "text-active" : "text-inactive"
               } hover:text-active`}
-              onClick={() => handleClick(item.name)}
+              onClick={() => handleClick(item.name, item.link)}
             >
               {item.name}
             </p>
@@ -81,6 +80,26 @@ const Nav = () => {
             <span className="hamburger-middle"></span>
             <span className="hamburger-bottom"></span>
           </button>
+        </div>
+      </div>
+      <div className="lg:hidden">
+        <div
+          id="menu"
+          className={`${
+            open ? "" : "hidden"
+          } absolute z-10 flex flex-col items-center self-end py-16 mt-4 space-y-10 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md text-gold`}
+        >
+          {navData.map((item) => (
+            <p
+              key={item.id}
+              className={`font-hg text-[20px] xl:text-[24px] capitalize cursor-pointer ${
+                active === item.name ? "text-active" : "text-inactive"
+              } hover:text-active`}
+              onClick={() => handleClick(item.name, item.link)}
+            >
+              {item.name}
+            </p>
+          ))}
         </div>
       </div>
     </nav>

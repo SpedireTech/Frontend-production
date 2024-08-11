@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import spedire from "../../assets/spedire.png";
+import SideBar from "../../components/sidebar/SideBar";
 import InputComponent from "../../components/reusables/InputComponent";
 import { pairCourier } from "../../util/http";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import DeliveryInstructionsModal from "../../pages/sendItem/DeliveryInstructionsModal";
 import { getStoredItem } from "../../util/lib";
 
 const PairingForm = () => {
@@ -13,9 +15,18 @@ const PairingForm = () => {
 		currentLocation: "",
 		destination: "",
 	});
-	async function submitHandler() {
-		console.log("I'm here");
-		console.log(formData);
+	const [isInstructionsModalOpen, setIsInstructionsModalOpen] = useState(false);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsInstructionsModalOpen(true);
+		}, 3000);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	async function submitHandler(e) {
+		e.preventDefault();
 		const currentToastId = toast.loading("Loading...");
 		if (!formData.currentLocation || !formData.destination) {
 			toast.error("Kindly fill out all fields", {
@@ -27,14 +38,12 @@ const PairingForm = () => {
 		}
 
 		const data = {
-			destination: formData.destination,
-			currentLocation: [formData.currentLocation],
+			currentLocation: formData.currentLocation,
+			destination: [formData.destination],
 		};
 
 		try {
 			const res = await pairCourier(data);
-			console.log("I'm here", res);
-			console.log(res);
 			toast.success(`${res?.message || "Successfully Paired"}`, {
 				id: currentToastId,
 				duration: 3000,
@@ -54,22 +63,23 @@ const PairingForm = () => {
 	}
 
 	return (
-		<div className="min-h-screen relative flex items-center justify-center bg-gray-100">
-			<div className="top-4 left-4 fixed">
-				<img src={spedire} alt="Spedire" className="h-10" />
-			</div>
-			<div className=" bg-white p-8 rounded-lg shadow-lg lg:max-w-[42rem] max-w-md md:w-full md:mt-16">
+		<div className="flex w-full h-screen">
+			<ToastContainer />
+			{/* <div className="w-[20%] bg-blue-500">
+        <SideBar />
+      </div> */}
+			<div className="fixed top-4 right-8 flex justify-end mb-4">
 				<button
-					className="fixed top-4 right-4"
 					onClick={() => navigate("/dashboard")}
+					className="text-gray-500 hover:text-gray-700"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
+						className="h-6 w-6"
 						fill="none"
 						viewBox="0 0 24 24"
-						strokeWidth="1.5"
 						stroke="currentColor"
-						className="w-6 h-6"
+						strokeWidth={2}
 					>
 						<path
 							strokeLinecap="round"
@@ -78,6 +88,8 @@ const PairingForm = () => {
 						/>
 					</svg>
 				</button>
+			</div>
+			<div className="w-full max-w-2xl p-4 ml-32 mt-10">
 				<h2 className="text-2xl font-semibold mb-4">Courier pairing Form</h2>
 				<p className="mb-6 text-[#4b4b4b]">
 					Kindly enter the following details.
@@ -114,6 +126,10 @@ const PairingForm = () => {
 					</button>
 				</form>
 			</div>
+			<DeliveryInstructionsModal
+				isOpen={isInstructionsModalOpen}
+				closeModal={() => setIsInstructionsModalOpen(false)}
+			/>
 		</div>
 	);
 };

@@ -2,12 +2,13 @@ import React from "react";
 import carrier from "../../assets/carrier1.png";
 import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
+import Slider from "../../components/TextSlider/Slider";
 
 const Hero = () => {
   return (
     <div className="p-4 w-full" data-aos="zoom-in">
       {/* styling for desktop */}
-      <div className="hidden lg:flex items-center flex-row-reverse w-full">
+      <div className="hidden mt-36 lg:flex items-center flex-row-reverse w-full">
         <div className="w-1/2 flex items-center justify-center ">
           <img src={carrier} alt="carrier" className="w-[689px] h-[779px]" />
         </div>
@@ -39,15 +40,15 @@ const Hero = () => {
               service in town.
             </p>
             <div className="mt-24">
-            <Link to="/register">
-            <Button text={"Get started"} width={"260px"} height={"64px"} />
-          </Link>
+              <Link to="/register">
+                <Button text={"Get started"} width={"260px"} height={"64px"} />
+              </Link>
             </div>
           </div>
         </div>
       </div>
       {/* styling for mobile and tab */}
-      <div className="flex flex-col h-full lg:hidden">
+      <div className="flex flex-col h-full mt-36 lg:hidden">
         <p className="text-sm md:text-xl font-hg text-hero">
           Experience Fast Delivery
         </p>
