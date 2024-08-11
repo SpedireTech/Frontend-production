@@ -4,176 +4,176 @@ const RecentDeliveries = () => {
 	const [currentTab, setCurrentTab] = useState("All");
 	const [dropdownVisible, setDropdownVisible] = useState(null);
 	const deliveries = [
-		{
-			customer: "David Moreeeeeeeeeee",
-			orderId: "#6774758580",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758581",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Pending",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758582",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Failed",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758583",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758584",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Pending",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758585",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Failed",
-		},
-		{
-			customer: "David Ikenna",
-			orderId: "#6774758586",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Failed",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758587",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Pending",
-		},
-		{
-			customer: "Anjola More",
-			orderId: "#6774758588",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Failed",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758589",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758590",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758591",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758592",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758593",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758594",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758595",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
-		{
-			customer: "David More",
-			orderId: "#6774758596",
-			pickup: "Agege",
-			destination: "Lekki",
-			date: "1/5/2022",
-			amount: "N3000",
-			weight: "10kg",
-			status: "Successful",
-		},
+		// {
+		// 	customer: "David Moreeeeeeeeeee",
+		// 	orderId: "#6774758580",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758581",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Pending",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758582",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Failed",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758583",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758584",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Pending",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758585",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Failed",
+		// },
+		// {
+		// 	customer: "David Ikenna",
+		// 	orderId: "#6774758586",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Failed",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758587",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Pending",
+		// },
+		// {
+		// 	customer: "Anjola More",
+		// 	orderId: "#6774758588",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Failed",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758589",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758590",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758591",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758592",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758593",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758594",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758595",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
+		// {
+		// 	customer: "David More",
+		// 	orderId: "#6774758596",
+		// 	pickup: "Agege",
+		// 	destination: "Lekki",
+		// 	date: "1/5/2022",
+		// 	amount: "N3000",
+		// 	weight: "10kg",
+		// 	status: "Successful",
+		// },
 	];
 
 	const getFilteredDeliveries = () => {
@@ -206,17 +206,19 @@ const RecentDeliveries = () => {
 			: "";
 	};
 	return (
-		<div className="max-w-[70%] mx-auto p-4 rounded-lg  border border-[#ccc] h-[50%] overflow-hidden shadow">
+		<div className="max-w-[70%] mx-auto p-4 rounded-lg  border border-[#ccc] flex-grow overflow-hidden shadow">
 			<div className="flex justify-between items-center">
-				<h2 className="text-xl font-bold">Recent Deliveries</h2>
+				<h2 className="text-xl text-[#4B4B4B] font-semibold">
+					Recent Deliveries
+				</h2>
 				<button className="text-blue-600">See All</button>
 			</div>
-			<div className="flex gap-4 my-4">
+			<div className="flex font-semibold gap-4 my-4">
 				<button
 					className={`py-2 px-4 ${
 						currentTab === "All"
 							? "text-blue-600 border-b-2 border-blue-600"
-							: "text-gray-600"
+							: "text-[#4B4B4B]"
 					}`}
 					onClick={() => setCurrentTab("All")}
 				>
@@ -226,7 +228,7 @@ const RecentDeliveries = () => {
 					className={`py-2 px-4 ${
 						currentTab === "Successful"
 							? "text-blue-600 border-b-2 border-blue-600"
-							: "text-gray-600"
+							: "text-[#4B4B4B]"
 					}`}
 					onClick={() => setCurrentTab("Successful")}
 				>
@@ -241,7 +243,7 @@ const RecentDeliveries = () => {
 					className={`py-2 px-4 ${
 						currentTab === "Pending"
 							? "text-blue-600 border-b-2 border-blue-600"
-							: "text-gray-600"
+							: "text-[#4B4B4B]"
 					}`}
 					onClick={() => setCurrentTab("Pending")}
 				>
@@ -256,7 +258,7 @@ const RecentDeliveries = () => {
 					className={`py-2 px-4 ${
 						currentTab === "Failed"
 							? "text-blue-600 border-b-2 border-blue-600"
-							: "text-gray-600"
+							: "text-[#4B4B4B]"
 					}`}
 					onClick={() => setCurrentTab("Failed")}
 				>
@@ -267,7 +269,7 @@ const RecentDeliveries = () => {
 			</div>
 			<div className="overflow-auto md:max-h-[22rem]">
 				<table className="min-w-full bg-white">
-					<thead>
+					<thead className="text-[#4B4B4B] font-medium">
 						<tr>
 							<th className="py-2 px-4 border-b border-zinc-400">Customer</th>
 							<th className="py-2 px-4 border-b border-zinc-400">Order ID</th>
@@ -284,67 +286,77 @@ const RecentDeliveries = () => {
 							<th className="py-2 px-4 border-b border-zinc-400">Action</th>
 						</tr>
 					</thead>
-					<tbody>
-						{getFilteredDeliveries().map((delivery) => (
-							<tr key={delivery.orderId} className="text-center">
-								<td className="py-2 px-4 border-b border-zinc-400 whitespace-nowrap">
-									{textAdjustment(delivery?.customer)}
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400">
-									{delivery?.orderId}
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400">
-									{delivery.pickup}
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400">
-									{delivery.destination}
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400">
-									{delivery.date}
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400">
-									{delivery.amount}
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400">
-									{delivery.weight}
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400">
-									<div
-										className={`w-full h-full py-1 px-1 rounded-lg ${getStatusClasses(
-											delivery.status
-										)}`}
-									>
-										{delivery.status}
-									</div>
-								</td>
-								<td className="py-2 px-4 border-b border-zinc-400 relative">
-									<button
-										className="focus:outline-none"
-										onClick={() => toggleDropdown(delivery.orderId)}
-									>
-										<div className="flex flex-col space-y-1">
-											<div className="w-1 h-1 bg-black rounded-full"></div>
-											<div className="w-1 h-1 bg-black rounded-full"></div>
-											<div className="w-1 h-1 bg-black rounded-full"></div>
+					{getFilteredDeliveries().length > 0 ? (
+						<tbody>
+							{getFilteredDeliveries().map((delivery) => (
+								<tr key={delivery.orderId} className="text-center">
+									<td className="py-2 px-4 border-b border-zinc-400 whitespace-nowrap">
+										{textAdjustment(delivery?.customer)}
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400">
+										{delivery?.orderId}
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400">
+										{delivery.pickup}
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400">
+										{delivery.destination}
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400">
+										{delivery.date}
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400">
+										{delivery.amount}
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400">
+										{delivery.weight}
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400">
+										<div
+											className={`w-full h-full py-1 px-1 rounded-lg ${getStatusClasses(
+												delivery.status
+											)}`}
+										>
+											{delivery.status}
 										</div>
-									</button>
-									{dropdownVisible === delivery.orderId && (
-										<div className="absolute top-0 right-0 mt-8 w-32 bg-white shadow-lg rounded-lg">
-											<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
-												Hide
+									</td>
+									<td className="py-2 px-4 border-b border-zinc-400 relative">
+										<button
+											className="focus:outline-none"
+											onClick={() => toggleDropdown(delivery.orderId)}
+										>
+											<div className="flex flex-col space-y-1">
+												<div className="w-1 h-1 bg-black rounded-full"></div>
+												<div className="w-1 h-1 bg-black rounded-full"></div>
+												<div className="w-1 h-1 bg-black rounded-full"></div>
 											</div>
-											<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
-												Maximize
+										</button>
+										{dropdownVisible === delivery.orderId && (
+											<div className="absolute top-0 right-0 mt-8 w-32 bg-white shadow-lg rounded-lg">
+												<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
+													Hide
+												</div>
+												<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
+													Maximize
+												</div>
+												<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
+													Delete
+												</div>
 											</div>
-											<div className="py-2 px-4 cursor-pointer border-b border-[#ccc] hover:bg-[#F9F9F9]">
-												Delete
-											</div>
-										</div>
-									)}
-								</td>
-							</tr>
-						))}
-					</tbody>
+										)}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					) : (
+						<tr>
+							<td colSpan="9" className="py-16 text-center">
+								<div className="flex items-center w-full justify-center whitespace-nowrap">
+									<p> No deliveries yet</p>
+								</div>
+							</td>
+						</tr>
+					)}
 				</table>
 			</div>
 		</div>

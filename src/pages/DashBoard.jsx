@@ -2,6 +2,7 @@ import React from "react";
 import { getStoredItem } from "../util/lib";
 import Map from "../components/dashboard/Map";
 import RecentDeliveries from "../components/dashboard/RecentDeliveries";
+import TransactionHistory from "../components/wallet/TransactionHistory";
 
 const DashBoard = () => {
 	const user = getStoredItem("user");
@@ -11,8 +12,8 @@ const DashBoard = () => {
 				DashBoard
 			</div>
 			<div className="flex flex-col md:flex-row w-full gap-2">
-				<RecentDeliveries />
-				<Map />
+				<TransactionHistory />
+				{/* <Map /> */}
 			</div>
 		</div>
 	);

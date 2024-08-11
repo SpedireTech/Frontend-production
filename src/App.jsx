@@ -11,6 +11,9 @@ import DashBoard from "./pages/DashBoard";
 import About from "./pages/About";
 import PairingForm from "./components/courier/PairingForm";
 import OnboardingForm from "./components/courier/OnboardingForm";
+import RecentDeliveries from "./components/dashboard/RecentDeliveries";
+import FundWallet from "./components/wallet/FundWallet";
+import SendFund from "./components/wallet/SendFund";
 
 function App() {
 	return (
@@ -25,6 +28,8 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/forgot-password" element={<ForgotPassword />} />
 					<Route path="/reset-password" element={<ResetPassword />} />
+					<Route path="/check" element={<SendFund />} />
+					<Route path="/deliver-item" element={<PairingForm />} />
 					<Route path="/dashboard" element={<DashBoard />} />
 					<Route path="/about" element={<About />} />
 				</Routes>

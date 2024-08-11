@@ -61,7 +61,6 @@ export default function Login() {
 			}
 			console.log(response?.access_token);
 			const res = await initializeUser(response?.access_token);
-			console.log("res: " + res);
 			setUser(res?.data);
 			storeItem("token", response?.access_token, 86400000);
 			storeItem(
