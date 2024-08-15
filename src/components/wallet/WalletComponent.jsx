@@ -5,7 +5,9 @@ import sendIcon from "../../assets/sendIcon.svg";
 import copyIcon from "../../assets/copyIcon.svg";
 import PaymentMethodComponent from "./PaymentMethodComponent";
 import BankTransferModal from "./BankTransferModal";
-import TransactionManager from "./TransactionModals";  // Import the TransactionManager
+import TransactionManager from "./TransactionModals"; 
+import SendFund from "../../components/wallet/SendFund";
+import FundWallet from "../../components/wallet/FundWallet";
 
 const WalletComponent = () => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -73,8 +75,8 @@ const WalletComponent = () => {
                 </div>
             </div>
             <BankTransferModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
-            <PaymentMethodComponent isVisible={isPaymentMethodVisible} onClose={handleContinueFromPaymentMethod} />
-            {isTransactionManagerActive && <TransactionManager />}
+           {/* <SendFund/> */}
+           {/* <FundWallet/> */}
         </>
     );
 };
