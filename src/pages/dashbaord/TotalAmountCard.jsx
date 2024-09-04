@@ -23,7 +23,7 @@ const TotalAmountCard = () => {
     : { width: "23px", height: "23px" };
 
   return (
-    <div className="bg-blue-800 text-white rounded-lg shadow-md p-2 flex flex-col justify-between w-full md:w-120 h-56 md:h-80 px-6">
+    <div className="bg-blue-800 text-white rounded-lg shadow-md p-2 flex flex-col justify-between w-full h-80 md:w-120 md:h-80 px-6">
       <div className="flex justify-between items-start mt-5">
         <div className="text-sm font-semibold">Total amount</div>
         <img src={wifiImage} alt="WiFi" style={wifiStyle} />
