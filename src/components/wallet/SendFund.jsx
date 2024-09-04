@@ -58,7 +58,7 @@ const SendFund = () => {
 	return (
 		<div className="min-h-screen flex justify-center">
 			<div className=" bg-transparent lg:max-w-[42rem] max-w-md md:w-full mt-6">
-				<h2 className="text-2xl font-medium mb-4">Send Funds</h2>
+				<h2 className="text-2xl font-medium mb-4">Wallet to bank</h2>
 				<form>
 					<div className="mb-4">
 						<InputComponent

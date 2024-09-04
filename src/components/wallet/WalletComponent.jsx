@@ -8,6 +8,7 @@ import BankTransferModal from "./BankTransferModal";
 import TransactionManager from "./TransactionModals"; 
 import SendFund from "../../components/wallet/SendFund";
 import FundWallet from "../../components/wallet/FundWallet";
+import PaymentForm from "./PaymentFor";
 
 const WalletComponent = () => {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -27,7 +28,7 @@ const WalletComponent = () => {
     return (
         <>
             <div
-                className="m-20 text-white p-8 rounded-lg shadow-lg"
+                className="m-5 text-white p-8 rounded-lg shadow-lg"
                 style={{ width: "961px", height: "326px", backgroundColor: "#08418A" }}
             >
                 <div className="flex justify-between items-start">
@@ -74,7 +75,7 @@ const WalletComponent = () => {
                     </div>
                 </div>
             </div>
-            <BankTransferModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+            <PaymentForm isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
            {/* <SendFund/> */}
            {/* <FundWallet/> */}
         </>
