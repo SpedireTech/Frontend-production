@@ -83,6 +83,7 @@ function App() {
 						<Route path="wallet" element={<WalletComponent />} />
 						<Route path="test" element={<TestLocation />} />
 						<Route path="send-item" element={<SendItem />} />
+						{/* <Route path="/check" element={<SendFund />} /> */}
 					</Route>
 				</Routes>
 			</BrowserRouter>

@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const DashboardLayout = () => {
   return (
     <div className="flex w-full max-w-full">
-      <div className="w-[20%]">
+      <div className="hidden lg:flex w-[20%]">
         <SideBar />
       </div>
       <div>

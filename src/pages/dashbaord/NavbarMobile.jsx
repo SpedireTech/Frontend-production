@@ -7,19 +7,47 @@ import {
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { getStoredItem } from "../../util/lib";
+import { CiSearch } from "react-icons/ci";
+import SideBar from "../../components/sidebar/SideBar";
 
 const NavBarMobile = () => {
   const user = getStoredItem("user");
   const [isActive, setIsActive] = useState(true);
+  const [open, setOpen] = React.useState("");
 
   const toggleActive = () => {
     setIsActive(!isActive);
   };
 
   return (
-    <div className="flex flex-col p-4 bg-white">
+    <div className="relative flex flex-col p-4 bg-white">
       <div className="flex justify-between items-center w-full mb-2">
-        <FontAwesomeIcon icon={faSearch} className="text-gray-400 w-5 h-5" />
+        <div className="flex w-1/5 h-9 items-center gap-x-3">
+          <button
+            id="menu-btn"
+            className={`block hamburger md:hidden focus:outline-none ${
+              open ? "open" : !open
+            }`}
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            <span className="hamburger-top"></span>
+            <span className="hamburger-middle"></span>
+            <span className="hamburger-bottom"></span>
+          </button>
+          <CiSearch className="text-gray-400 font-normal w-6 h-6" />
+        </div>
+        <div className="lg:hidden">
+          <div
+            id="menu"
+            className={`${
+              open ? "sidebar-visible" : "sidebar-hidden"
+            } absolute flex flex-col items-center w-72 top-16 -left-4`}
+          >
+            <SideBar />
+          </div>
+        </div>
         <div className="flex items-center space-x-2 ml-auto">
           <span style={{ color: "#434040" }}>
             {isActive ? "Active" : "Offline"}
@@ -66,16 +94,16 @@ const NavBarMobile = () => {
         className="flex flex-col text-left mb-2"
         style={{ color: "#434040" }}
       >
-        <div className="text-lg">{`Welcome, ${user?.name} 👋`}</div>
+        <div className="text-lg font-medium font-hg text-inactive">{`Welcome, ${user?.name} 👋`}</div>
         <p className="text-xs md:text-sm">
-          Here’s what is happening in your Spidire account
+          Here’s what is happening in your Spedire account
         </p>
       </div>
 
       <div className="flex justify-between items-center w-full">
         <div
-          className="text-xl font-bold text-left"
-          style={{ color: "#434040" }}
+          className="text-xl font-bold text-left font-hg"
+          style={{ color: "#434040", fontSize: "18px" }}
         >
           Dashboard
         </div>
