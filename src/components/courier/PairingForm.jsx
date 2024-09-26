@@ -3,11 +3,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../components/sidebar/SideBar";
 import InputComponent from "../../components/reusables/InputComponent";
-import { pairCourier } from "../../util/http";
-import { ToastContainer, toast } from "react-toastify";
+// import { pairCourier } from "../../util/http";
+// import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DeliveryInstructionsModal from "../../pages/sendItem/DeliveryInstructionsModal";
-import { getStoredItem } from "../../util/lib";
 
 const PairingForm = () => {
 	const navigate = useNavigate();
