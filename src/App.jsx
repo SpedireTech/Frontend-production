@@ -21,8 +21,6 @@ import TestLocation from "./pages/sendItem/testLocation";
 import DashboardLayout from "./pages/DashboardLayout";
 import SendItem from "./pages/dashbaord/SendItem";
 import RecentDeliveries from "./components/dashboard/RecentDeliveries";
-import FundWallet from "./components/wallet/FundWallet";
-import SendFund from "./components/wallet/SendFund";
 
 function App() {
 	const [open, setOpen] = useState(false);
@@ -83,7 +81,7 @@ function App() {
 						<Route path="wallet" element={<WalletComponent />} />
 						<Route path="test" element={<TestLocation />} />
 						<Route path="send-item" element={<SendItem />} />
-						{/* <Route path="/check" element={<SendFund />} /> */}
+						{/* <Route path="check" element={<SendFund />} /> */}
 					</Route>
 				</Routes>
 			</BrowserRouter>

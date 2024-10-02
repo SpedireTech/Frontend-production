@@ -52,9 +52,9 @@ const FundWallet = () => {
 	}
 
 	return (
-		<div className="min-h-screen flex justify-center">
-			<div className=" bg-transparent lg:max-w-[42rem] max-w-md md:w-full mt-6">
-				<h2 className="text-2xl font-medium mb-4">Wallet to wallet</h2>
+		<div className="flex flex-grow justify-start">
+			<div className=" bg-transparent w-full">
+				{/* <h2 className="text-2xl font-medium mb-4">Wallet to wallet</h2> */}
 
 				<form>
 					<div className="mb-4">
@@ -108,7 +108,7 @@ const FundWallet = () => {
 						onClick={submitHandler}
 						className="w-full bg-[#08418A] text-white px-2.5 py-3.5 rounded-[14px] hover:bg-opacity-80 transition duration-300"
 					>
-						Submit
+						Continue
 					</button>
 				</form>
 			</div>

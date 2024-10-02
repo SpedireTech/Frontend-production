@@ -24,3 +24,14 @@ export function getStoredItem(key) {
 	}
 	return item.value;
 }
+export function filterDate(milliseconds) {
+	const daysMilli = Date.now() - milliseconds;
+	return new Date(daysMilli);
+}
+export function filterByMostRecentDate(transactions) {
+	return transactions.sort((a, b) => {
+		const dateA = new Date(a.date).getTime();
+		const dateB = new Date(b.date).getTime();
+		return dateB - dateA;
+	});
+}

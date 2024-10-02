@@ -7,7 +7,6 @@ import { fundWallet } from "../../util/http";
 const SendFund = () => {
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
-		accountName: "",
 		bankName: "",
 		accountNumber: "",
 		amount: "",
@@ -28,7 +27,6 @@ const SendFund = () => {
 		}
 
 		const data = {
-			accountName: formData.accountName,
 			bankName: formData.bankName,
 			accountNumber: formData.accountNumber,
 			amount: formData.amount,
@@ -56,20 +54,10 @@ const SendFund = () => {
 	}
 
 	return (
-		<div className="min-h-screen flex justify-center">
-			<div className=" bg-transparent lg:max-w-[42rem] max-w-md md:w-full mt-6">
-				<h2 className="text-2xl font-medium mb-4">Wallet to bank</h2>
+		<div className="flex justify-start">
+			<div className=" bg-transparent w-full">
+				{/* <h2 className="text-2xl font-medium mb-4">Wallet to bank</h2> */}
 				<form>
-					<div className="mb-4">
-						<InputComponent
-							label="Account Name"
-							type="text"
-							onChange={(e) =>
-								setFormData({ ...formData, accountName: e.target.value })
-							}
-							value={formData.accountName}
-						/>
-					</div>
 					<div className="mb-4">
 						<InputComponent
 							label="Bank Name"
@@ -91,16 +79,16 @@ const SendFund = () => {
 							value={formData.accountNumber}
 						/>
 					</div>
-					<div className="mb-4 relative">
-						<span class="absolute top-[2.4rem] md:top-12 left-3 text-xs md:text-base">
+					<div className="mb-4">
+						{/* <span class="absolute top-[2.4rem] md:top-12 left-3 text-xs md:text-base">
 							₦
-						</span>
+						</span> */}
 						<InputComponent
 							label="Amount"
 							type="number"
 							step="0.01"
 							pattern="[0-9]+([.][0-9]{1,2})?"
-							placeholder="    Amount in Naira (NGN)"
+							placeholder="Amount in Naira (NGN)"
 							required="true"
 							onChange={(e) =>
 								setFormData({ ...formData, amount: e.target.value })
@@ -138,7 +126,7 @@ const SendFund = () => {
 						onClick={submitHandler}
 						className="w-full bg-[#08418A] text-white px-2.5 py-3.5 rounded-[14px] hover:bg-opacity-80 transition duration-300"
 					>
-						Submit
+						Withdraw
 					</button>
 				</form>
 			</div>
