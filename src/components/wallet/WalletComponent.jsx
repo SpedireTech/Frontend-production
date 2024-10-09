@@ -30,7 +30,7 @@ const WalletComponent = () => {
 
 	return (
 		<>
-			<div className="flex flex-col">
+			<div className="flex flex-col h-full xl:h-[920px] 2xl:h-[1200px]">
 				<div
 					className="m-5 text-white p-8 rounded-lg shadow-lg"
 					style={{

@@ -58,7 +58,7 @@ const SendFund = () => {
 			<div className=" bg-transparent w-full">
 				{/* <h2 className="text-2xl font-medium mb-4">Wallet to bank</h2> */}
 				<form>
-					<div className="mb-4">
+					<div className="mb-2">
 						<InputComponent
 							label="Bank Name"
 							type="text"
@@ -68,7 +68,7 @@ const SendFund = () => {
 							value={formData.bankName}
 						/>
 					</div>
-					<div className="mb-4">
+					<div className="mb-2">
 						<InputComponent
 							label="Bank Account Number"
 							required="true"
@@ -79,7 +79,7 @@ const SendFund = () => {
 							value={formData.accountNumber}
 						/>
 					</div>
-					<div className="mb-4">
+					<div className="mb-2">
 						{/* <span class="absolute top-[2.4rem] md:top-12 left-3 text-xs md:text-base">
 							₦
 						</span> */}
@@ -96,7 +96,7 @@ const SendFund = () => {
 							value={formData.amount}
 						/>
 					</div>
-					<div className="mb-2 ">
+					<div className="mb-1 ">
 						<InputComponent
 							label={
 								<div>
