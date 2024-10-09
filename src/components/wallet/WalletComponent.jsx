@@ -84,7 +84,7 @@ const WalletComponent = () => {
 				</div>
 				<div>
 					{showSendFundMethod ? (
-						<SendFundMethod /> // Show SendFundMethod component when state is true
+						<SendFundMethod onClose={() => setShowSendFundMethod(false)} /> // Show SendFundMethod component when state is true
 					) : (
 						<TransactionHistory /> // Show TransactionHistory by default
 					)}

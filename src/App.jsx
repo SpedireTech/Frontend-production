@@ -21,6 +21,7 @@ import TestLocation from "./pages/sendItem/testLocation";
 import DashboardLayout from "./pages/DashboardLayout";
 import SendItem from "./pages/dashbaord/SendItem";
 import RecentDeliveries from "./components/dashboard/RecentDeliveries";
+import CourierMatching from "./components/courier/CourierMatching";
 
 function App() {
 	const [open, setOpen] = useState(false);
@@ -81,7 +82,7 @@ function App() {
 						<Route path="wallet" element={<WalletComponent />} />
 						<Route path="test" element={<TestLocation />} />
 						<Route path="send-item" element={<SendItem />} />
-						{/* <Route path="check" element={<SendFund />} /> */}
+						{/* <Route path="check" element={<CourierMatching />} /> */}
 					</Route>
 				</Routes>
 			</BrowserRouter>
