@@ -213,7 +213,7 @@ const SenderForm = ({
           </select>
         </div>
         <div className="mb-4 flex flex-wrap sm:flex-nowrap space-x-0 sm:space-x-3">
-          <div className="w-full sm:w-1/2 mb-4 sm:mb-0">
+          <div className="w-full mb-4 sm:mb-0">
             <label className="block text-base font-semibold text-[#4B4B4B]">
               Due Date
             </label>
@@ -225,7 +225,7 @@ const SenderForm = ({
               required
             />
           </div>
-          <div className="w-full sm:w-1/2 relative">
+          <div className="w-full relative">
             <label className="block text-base  font-semibold text-[#4B4B4B]">
               Due Time
             </label>

@@ -128,10 +128,10 @@ const ReceiverForm = ({
 
   return (
     <div
-      className="p-10 bg-white rounded-md"
+      className="w-full p-10 bg-white rounded-md"
       style={{
         border: "1px solid #ccc",
-        maxHeight: "calc(100vh - 50px)",
+        maxHeight: "calc(140vh - 50px)",
         overflowY: "scroll",
       }}
     >
@@ -295,7 +295,7 @@ const ReceiverForm = ({
           </label>
           <div className="flex items-center justify-center w-full">
             <label
-              className="input-box flex flex-col hover:bg-[#d3d2d2] items-center justify-center w-[400px] h-[200px] rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+              className="input-box flex flex-col hover:bg-[#d3d2d2] items-center justify-center w-[200px] h-[200px] rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
               style={{ border: "1px solid #ccc" }}
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
