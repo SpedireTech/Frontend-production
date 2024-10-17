@@ -68,7 +68,8 @@ const RegistrationForm = () => {
       console.log("Registration successful:" + response.data.data);
       localStorage.setItem("userToken", token);
       setIsLoading(false);
-      toast.success("Registration successful! OTP Code: " + otp);
+      // toast.success("Registration successful! OTP Code: " + otp);
+      toast.success("Registration successful!");
       setTimeout(() => {
         window.location.href = "/verify-otp";
       }, 5000);
