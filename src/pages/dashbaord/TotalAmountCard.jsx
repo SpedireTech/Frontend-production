@@ -16,16 +16,16 @@ const TotalAmountCard = () => {
 
   const styles = {
     card: {
-      backgroundColor: '#1e40af', // Tailwind blue-800
+      backgroundColor: '#1e40af', 
       color: 'white',
-      borderRadius: '0.5rem', // Tailwind rounded-lg
+      borderRadius: '0.5rem',
       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
       padding: isDesktop ? '1.5rem' : '0.5rem',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      width: '100%',
-      height: isDesktop ? '20rem' : 'auto',
+      width: isDesktop ? '100%' : '380px',
+      height: isDesktop ? '20rem' : '202px',
       maxWidth: isDesktop ? '30rem' : 'none'
     },
     header: {
@@ -35,7 +35,7 @@ const TotalAmountCard = () => {
       marginTop: '1.25rem',
     },
     title: {
-      fontSize: isDesktop ? '1.25rem' : '1rem', // Larger on desktop
+      fontSize: isDesktop ? '1.25rem' : '1rem', 
       fontWeight: '600',
     },
     content: {
@@ -45,7 +45,7 @@ const TotalAmountCard = () => {
       flexGrow: 1,
     },
     amount: {
-      fontSize: isDesktop ? '5rem' : '2.5rem', // Larger on desktop
+      fontSize: isDesktop ? '5rem' : '2.5rem',
       fontWeight: '700',
     },
     footer: {
@@ -55,14 +55,14 @@ const TotalAmountCard = () => {
       marginBottom: '1.25rem',
     },
     topUpText: {
-      fontSize: isDesktop ? '1.25rem' : '1rem', // Larger on desktop
+      fontSize: isDesktop ? '1.25rem' : '1rem',
       fontWeight: '600',
       marginRight: '0.5rem',
     },
     topUpButton: {
       backgroundColor: 'white',
-      color: '#1e40af', // Tailwind blue-800
-      borderRadius: '9999px', // Full roundness
+      color: '#1e40af',
+      borderRadius: '9999px',
       padding: '0.25rem',
       marginRight: '1rem',
     },

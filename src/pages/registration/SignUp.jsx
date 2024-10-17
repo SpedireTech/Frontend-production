@@ -141,12 +141,12 @@ const RegistrationForm = () => {
             Create an account with Spedire
           </h2>
 
-          <div className="w-full my-2 mt-4 input-box justify-center flex items-center">
+          {/* <div className="w-full my-2 mt-4 input-box justify-center flex items-center">
             <img
               src={googleIcon}
               alt="Continue with Google"
               className="h-full"
-              // style={{ marginLeft: "140px", marginRight: "5px" }}
+              style={{ marginLeft: "140px", marginRight: "5px" }}
             />
             <p
               style={{ color: "#666666" }}
@@ -154,9 +154,9 @@ const RegistrationForm = () => {
             >
               Continue with Google
             </p>
-          </div>
+          </div> */}
 
-          <div className="relative flex py-3 items-center">
+          {/* <div className="relative flex py-3 items-center">
             <div
               style={{ color: "#808080" }}
               className="flex-grow border-t"
@@ -168,7 +168,7 @@ const RegistrationForm = () => {
               style={{ color: "#808080" }}
               className="flex-grow border-t"
             ></div>
-          </div>
+          </div> */}
           <form onSubmit={handleSubmit}>
             <div className="mt-3">
               <p

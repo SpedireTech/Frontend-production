@@ -113,7 +113,7 @@ export default function Login() {
 					<h2 className="text-[20px] md:text-[30px] font-semibold text-neutral-850">
 						Welcome back
 					</h2>
-					<div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-base">
+					{/* <div className="mt-4 w-full bg-[#F9F9F9] hover:bg-gray-200 rounded-lg text-base">
 						<button
 							className="flex items-center w-full justify-center  p-3 "
 							onClick={googleAuthLogin}
@@ -125,12 +125,12 @@ export default function Login() {
 							/>{" "}
 							Continue with Google
 						</button>
-					</div>
-					<div className="relative flex items-center mb-4 w-full ">
+					</div> */}
+					{/* <div className="relative flex items-center mb-4 w-full ">
 						<div className="flex-grow border-t border-gray-300"></div>
 						<span className="flex-shrink mx-4 text-gray-400">or</span>
 						<div className="flex-grow border-t border-gray-300"></div>
-					</div>
+					</div> */}
 					<InputComponent
 						label={"Email"}
 						placeholder="example@gmail.com"

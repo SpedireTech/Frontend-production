@@ -72,7 +72,7 @@ const PaymentModal = ({ isOpen, onClose, amount }) => {
           />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <button
+          {/* <button
             className="bg-button"
             style={{
               color: "white",
@@ -85,7 +85,7 @@ const PaymentModal = ({ isOpen, onClose, amount }) => {
             }}
           >
             <div style={{ textAlign: "left", display: "flex" }}>
-              {/* SVG Icon would go here */}
+              
               <span>Pay via wallet</span>
             </div>
             <span
@@ -93,7 +93,7 @@ const PaymentModal = ({ isOpen, onClose, amount }) => {
             >
               Make payment via your Spedire account.
             </span>
-          </button>
+          </button> */}
           <button
             className="bg-button"
             style={{
