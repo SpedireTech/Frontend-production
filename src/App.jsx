@@ -20,6 +20,7 @@ import WalletComponent from "./components/wallet/WalletComponent";
 import TestLocation from "./pages/sendItem/testLocation";
 import DashboardLayout from "./pages/DashboardLayout";
 import SendItem from "./pages/dashbaord/SendItem";
+import NewTask from "./pages/dashbaord/NewTask";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -79,6 +80,7 @@ function App() {
             <Route path="wallet" element={<WalletComponent />} />
             <Route path="test" element={<TestLocation />} />
             <Route path="send-item" element={<SendItem />} />
+            <Route path="vendor" element={<NewTask />} />
           </Route>
         </Routes>
       </BrowserRouter>
