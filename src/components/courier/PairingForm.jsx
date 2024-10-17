@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SideBar from "../../components/sidebar/SideBar";
 import InputComponent from "../../components/reusables/InputComponent";
 // import { pairCourier } from "../../util/http";
-// import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DeliveryInstructionsModal from "../../pages/sendItem/DeliveryInstructionsModal";
 
@@ -62,7 +62,8 @@ const PairingForm = () => {
 	}
 
 	return (
-		<div className="flex w-full h-screen">
+		<div className="flex justify-center w-full h-screen">
+			{/* md:w-[946px] */}
 			<ToastContainer />
 			{/* <div className="w-[20%] bg-blue-500">
         <SideBar />
@@ -88,7 +89,8 @@ const PairingForm = () => {
 					</svg>
 				</button>
 			</div>
-			<div className="w-full max-w-2xl p-4 ml-32 mt-10">
+			<div className="w-full p-4 ml-6 mt-10 md:w-3/5">
+				{/* md:w-[550px] */}
 				<h2 className="text-2xl font-semibold mb-4">Courier pairing Form</h2>
 				<p className="mb-6 text-[#4b4b4b]">
 					Kindly enter the following details.

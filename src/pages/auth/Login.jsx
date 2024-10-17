@@ -92,13 +92,13 @@ export default function Login() {
 	}
 	return (
 		<div className="flex h-screen">
+			<div className="absolute top-0 left-0 p-4">
+				<img src={logo} alt="Company Logo" className="h-8 md:h-12 " />
+			</div>
 			<div
 				className="flex lg:w-1/2 h-screen bg-[#E7EEF8] items-center justify-center "
 				style={{ display: isMobile ? "none" : "flex" }}
 			>
-				<div className="absolute top-0 left-0 p-4">
-					<img src={logo} alt="Company Logo" className="h-12" />
-				</div>
 				<ImageComponent
 					src={LoginImage}
 					alt="Login image"
@@ -151,7 +151,6 @@ export default function Login() {
 						value={formData.password}
 					/>
 
-					
 					<div className="flex w-full justify-end items-end">
 						<Link
 							to="/forgot-password"

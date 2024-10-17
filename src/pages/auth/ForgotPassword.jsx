@@ -4,7 +4,7 @@ import PasswordImage from "../../assets/auth/forgot.svg";
 import logo from "../../assets/spedire.png";
 import ImageComponent from "../../components/reusables/Image";
 import { forgotPassword } from "../../util/http";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export default function ForgotPassword() {
@@ -48,10 +48,10 @@ export default function ForgotPassword() {
 	}
 	return (
 		<div className="flex h-screen">
+			<div className="absolute top-0 left-0 p-4">
+				<img src={logo} alt="Company Logo" className="h-8 md:h-12" />
+			</div>
 			<div className="hidden md:flex lg:flex md:w-1/2 h-screen bg-[#E7EEF8] items-center justify-center ">
-				<div className="absolute top-0 left-0 p-4">
-					<img src={logo} alt="Company Logo" className="h-12" />
-				</div>
 				<ImageComponent
 					src={PasswordImage}
 					alt="Password image"
@@ -67,11 +67,11 @@ export default function ForgotPassword() {
 							Forgot Password
 						</h2>
 
-						<h4 className="text-base text-[#4b4b4b] font-normal text-neutral-850">
+						<h4 className="text-sm md:text-base text-[#4b4b4b] font-normal text-neutral-850">
 							Kindly input your email address
 						</h4>
 					</div>
-					<div className="flex flex-col md:h-[191px] items-start gap-8 ">
+					<div className="flex flex-col md:h-[191px] items-start gap-5 md:gap-8 ">
 						<InputComponent
 							label="Email address"
 							placeholder="example@gmail.com"
@@ -89,6 +89,14 @@ export default function ForgotPassword() {
 						>
 							Submit
 						</button>
+						<div className="flex w-full justify-center items-center">
+							<span className="text-[#4B4B4B] text-xs md:text-base">
+								Already have an account?{" "}
+								<Link to="/login" className="text-button">
+									Login
+								</Link>
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
