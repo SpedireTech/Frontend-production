@@ -14,27 +14,75 @@ const TotalAmountCard = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const wifiStyle = isDesktop
-    ? { width: "46px", height: "32px" }
-    : { width: "24px", height: "24px" };
-
-  const plusStyle = isDesktop
-    ? { width: "30px", height: "30px" }
-    : { width: "23px", height: "23px" };
+  const styles = {
+    card: {
+      backgroundColor: '#1e40af', // Tailwind blue-800
+      color: 'white',
+      borderRadius: '0.5rem', // Tailwind rounded-lg
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      padding: isDesktop ? '1.5rem' : '0.5rem',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      width: '100%',
+      height: isDesktop ? '20rem' : 'auto',
+      maxWidth: isDesktop ? '30rem' : 'none'
+    },
+    header: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'start',
+      marginTop: '1.25rem',
+    },
+    title: {
+      fontSize: isDesktop ? '1.25rem' : '1rem', // Larger on desktop
+      fontWeight: '600',
+    },
+    content: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexGrow: 1,
+    },
+    amount: {
+      fontSize: isDesktop ? '5rem' : '2.5rem', // Larger on desktop
+      fontWeight: '700',
+    },
+    footer: {
+      display: 'flex',
+      justifyContent: 'end',
+      alignItems: 'center',
+      marginBottom: '1.25rem',
+    },
+    topUpText: {
+      fontSize: isDesktop ? '1.25rem' : '1rem', // Larger on desktop
+      fontWeight: '600',
+      marginRight: '0.5rem',
+    },
+    topUpButton: {
+      backgroundColor: 'white',
+      color: '#1e40af', // Tailwind blue-800
+      borderRadius: '9999px', // Full roundness
+      padding: '0.25rem',
+      marginRight: '1rem',
+    },
+    icon: isDesktop ? { width: '46px', height: '32px' } : { width: '24px', height: '24px' },
+    plusIcon: isDesktop ? { width: '30px', height: '30px' } : { width: '23px', height: '23px' }
+  };
 
   return (
-    <div className="bg-blue-800 text-white rounded-lg shadow-md p-2 flex flex-col justify-between w-full h-80 md:w-120 md:h-80 px-6">
-      <div className="flex justify-between items-start mt-5">
-        <div className="text-sm font-semibold">Total amount</div>
-        <img src={wifiImage} alt="WiFi" style={wifiStyle} />
+    <div style={styles.card}>
+      <div style={styles.header}>
+        <div style={styles.title}>Total amount</div>
+        <img src={wifiImage} alt="WiFi" style={styles.icon} />
       </div>
-      <div className="flex justify-center items-center flex-grow">
-        <span className="text-5xl font-bold">₦ 0.00</span>
+      <div style={styles.content}>
+        <span style={styles.amount}>₦ 0.00</span>
       </div>
-      <div className="flex justify-end items-center space-x-1 mb-5">
-        <span className="text-sm font-semibold mr-2">Top-Up</span>
-        <button className="bg-white text-blue-800 rounded-full p-1 mr-4">
-          <img src={plusImage} alt="Plus" style={plusStyle} />
+      <div style={styles.footer}>
+        <span style={styles.topUpText}>Top-Up</span>
+        <button style={styles.topUpButton}>
+          <img src={plusImage} alt="Plus" style={styles.plusIcon} />
         </button>
       </div>
     </div>

@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import Button from "../../components/Button/Button";
 import logo from "../../assets/spedire.png";
@@ -7,11 +5,14 @@ import axios from "axios";
 import Lady from "../../assets/VeryOtp.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const PhoneVerification = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isLoading, setIsLoading] = useState(false);
+  const [isResending, setIsResending] = useState(false);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
@@ -32,6 +33,27 @@ const PhoneVerification = () => {
       if (index < code.length - 1 && e.target.value) {
         document.forms[0].elements[index + 1].focus();
       }
+    }
+  };
+
+  const handleResendCode = async () => {
+    setIsResending(true);
+    const token = localStorage.getItem("userToken");
+    try {
+      const response = await axios.get(
+        "http://44.223.68.243:8080/api/v1/otp/resendOtp",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+      setIsResending(false);
+      toast.success("Code Resent Successfully");
+    } catch (error) {
+      console.error("Error resending code:", error);
+      setIsResending(false);
+      toast.error("Failed to resend code");
     }
   };
 
@@ -59,7 +81,7 @@ const PhoneVerification = () => {
       setIsLoading(false);
       toast.success("Verification Successful, kindly login");
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/login";
       }, 5000);
     } catch (error) {
       console.error("Verification error");
@@ -130,6 +152,11 @@ const PhoneVerification = () => {
                 />
               ))}
             </div>
+            <p style={{ textAlign: "center", color: "black", cursor: "pointer", fontSize: "14px" }}
+               onClick={!isResending ? handleResendCode : undefined}>
+              Didn't receive a code?
+              {isResending ? <FontAwesomeIcon icon={faSpinner} spin style={{ marginLeft: '5px' }} /> : " Resend code"}
+            </p>
             <div className="mt-6">
               <Button
                width="100%"
