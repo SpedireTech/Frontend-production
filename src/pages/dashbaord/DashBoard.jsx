@@ -30,21 +30,21 @@ const DashBoard = () => {
   return (
     <div className="w-full flex flex-col gap-y-6 h-screen lg:px-4">
       {isDesktop ? <NavbarDesktop /> : <NavBarMobile />}
-      <div className="relative w-full flex flex-col items-center px-4">
-        <div className="flex flex-col w-full max-w-screen-lg items-center">
-          <div className="w-full flex justify-center items-center">
+      <div className="relative w-full gap-8 flex flex-col px-4">
+        <div className="flex flex-col gap-y-10 lg:flex-row w-full justify-between gap-x-2 items-center">
+          <div className="flex flex-col gap-y-10 lg:flex-row w-full justify-center items-center">
             <TotalAmountCard />
           </div>
-          <div className="w-full flex flex-wrap justify-center items-center mt-4">
+
+          <div className="flex flex-wrap">
             <Cards />
           </div>
         </div>
-        <div className="w-full max-w-screen-lg flex flex-col md:flex-row justify-center items-center mt-4">
+        <div className="max-w-full flex flex-col md:flex-row w-full gap-2">
           <RecentDeliveries />
           <Map />
         </div>
       </div>
-
       <div className="w-screen lg:hidden">
         <BottomNavigation />
       </div>

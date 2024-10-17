@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-const PaymentModal = ({ isOpen, onClose, amount }) => {
+const PaymentModal = ({ isOpen, onClose, amount, orderIdNumber }) => {
   const [inputAmount, setInputAmount] = useState(amount || "");
 
   if (!isOpen) {
@@ -9,6 +10,29 @@ const PaymentModal = ({ isOpen, onClose, amount }) => {
 
   const handleAmountChange = (e) => {
     setInputAmount(e.target.value);
+  };
+
+  const handleCardPayment = async () => {
+    const token = localStorage.getItem('userToken');  
+    const data = {
+      amount: inputAmount,
+      orderId: orderIdNumber
+    };
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/v1/carrier/service-charge", data, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        }
+      });
+      if (response.data && response.data.data && response.data.data.authorizationUrl) {
+        window.open(response.data.data.authorizationUrl, "_blank");  // Open Paystack payment page in a new tab
+      }
+      console.log("Payment initialization successful:", response.data);
+    } catch (error) {
+      console.error("Payment Error:", error.response ? error.response.data : error.message);
+    }
   };
 
   return (
@@ -107,6 +131,7 @@ const PaymentModal = ({ isOpen, onClose, amount }) => {
             }}
           >
             <div
+             onClick={handleCardPayment}
               style={{
                 textAlign: "left",
                 display: "flex",

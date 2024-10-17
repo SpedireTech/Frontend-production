@@ -18,6 +18,13 @@ const NavBarMobile = () => {
     setIsActive(!isActive);
   };
 
+  const renderSidebar = () => {
+    if (open) {
+      return <SideBar />;
+    }
+    return null;
+  };
+
   return (
     <div
       style={{
@@ -76,7 +83,7 @@ const NavBarMobile = () => {
             }}
           ></span>
         </button>
-
+        {renderSidebar()} 
         {/* Search Icon */}
         <FontAwesomeIcon
           icon={faSearch}
