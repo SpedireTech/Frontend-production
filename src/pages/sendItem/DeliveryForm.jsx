@@ -128,7 +128,7 @@ const DeliveryForm = () => {
 
 	return (
 		<LoadScript
-			googleMapsApiKey="AIzaSyAGHpgeiFAzUQqrosmbd2G531zmD9zgiI8"
+			googleMapsApiKey="AIzaSyAFJ857mY26RWOoPQzpcMc1pJRjVEC5QoI"
 			libraries={["places"]}
 		>
 			<div className="flex w-full h-screen">
