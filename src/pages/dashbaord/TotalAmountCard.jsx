@@ -24,7 +24,7 @@ const TotalAmountCard = () => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      width: isDesktop ? '100%' : '350px',
+      width: isDesktop ? '100%' : '380px',
       height: isDesktop ? '20rem' : '202px',
       maxWidth: isDesktop ? '30rem' : 'none'
     },

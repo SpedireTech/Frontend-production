@@ -28,14 +28,12 @@ const DashBoard = () => {
 	const openPaymentModal = () => setPaymentModalOpen(true);
 
 	return (
-		<div className="w-full flex flex-col gap-y-6 h-screen lg:px-4">
+		<div className="w-full flex flex-col gap-y-6 h-screen md:pb-8 lg:px-4">
 			{isDesktop ? <NavbarDesktop /> : <NavBarMobile />}
-			{/* <div className="relative md:w-full gap-8 flex flex-col px-4"> */}
-			<div className="">
-				{/* <div className="flex flex-col gap-y-10 lg:flex-row w-full justify-between gap-x-2 items-center"> */}
-				<div className="">
-					{/* <div className="w-[90%] lg:w-full md:w-full flex justify-center"> */}
-					<div className="">
+		
+			<div className="relative gap-8 px-4 flex flex-col md:w-full">
+				<div className="flex flex-col gap-y-10 lg:flex-row md:w-full justify-between gap-x-2">
+					<div className=" md:w-full ">
 						<TotalAmountCard />
 					</div>
 					{/* <div className="flex flex-wrap"> */}
@@ -43,8 +41,7 @@ const DashBoard = () => {
 						<Cards />
 					</div>
 				</div>
-				{/* <div className="max-w-full flex flex-col lg:flex-row w-full gap-2"> */}
-				<div className="">
+				<div className="flex flex-col gap-8 md:max-w-full lg:flex-row">
 					<RecentDeliveries />
 					<Map />
 				</div>

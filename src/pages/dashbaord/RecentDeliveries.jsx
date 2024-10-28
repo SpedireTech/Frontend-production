@@ -206,7 +206,7 @@ const RecentDeliveries = () => {
 			: "";
 	};
 	return (
-		<div className="max-w-[70%] mx-auto p-4 rounded-lg  border border-[#ccc] h-[410px] overflow-hidden shadow">
+		<div className="w-[380px] md:w-[73%] md:p-4 rounded-lg  border border-[#ccc] h-[410px] overflow-hidden shadow">
 			<div className="flex justify-between items-center">
 				<h2 className="text-xl font-bold">Recent Deliveries</h2>
 				<button className="text-blue-600">See All</button>

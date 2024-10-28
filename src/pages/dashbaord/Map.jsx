@@ -3,7 +3,7 @@ import map from "../../assets/Map.svg";
 
 const Map = () => {
 	return (
-		<div className="w-[73%] mx-auto lg:max-w-[30%] h-[410px] p-4 md:p-0 rounded-lg lg:mx-0">
+		<div className="w-[380px] lg:max-w-[30%] h-[410px] md:p-0 rounded-lg lg:mx-0">
 			<img
 				src={map}
 				alt="No deliveries ongoing"

@@ -25,7 +25,7 @@ const Navbar = () => {
         >
           <div className="text-lg">{`Welcome, ${user?.name} 👋`}</div>
           <p className="text-xs md:text-sm">
-            Here’s what is happening in your Spidire account
+            Here’s what is happening in your Spedire account
           </p>
         </div>
         <div className="flex items-center space-x-10 ml-auto">
